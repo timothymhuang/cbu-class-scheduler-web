@@ -1,6 +1,7 @@
 function submitClasses()
 {
     let input = document.getElementById("inputClasses").value.split("\n")
+    document.getElementById("inputClasses").value = ""
     const DoW = ["M","T","W","R","F"]
     let columns
     let section
@@ -78,4 +79,23 @@ function submitClasses()
 
     localStorage.setItem("data",JSON.stringify(data))
     console.log(data)
+}
+
+function generateSchedules()
+{
+    data = JSON.parse(localStorage.getItem("data"))
+
+    a = data["class"]
+    console.log(a)
+
+    localStorage.setItem("data",JSON.stringify(data))
+}
+
+function testFunction()
+{
+    data = JSON.parse(localStorage.getItem("data"))
+
+
+    
+    localStorage.setItem("data",JSON.stringify(data))
 }
