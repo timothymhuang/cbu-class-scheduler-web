@@ -1,0 +1,281 @@
+		ENG113-A	Composition		0 ∕ 25	Closed	
+STAFF, STAFF / MWF 12:00-01:00PM; MAIN Campus, James Complex, Smart Classroom, 191 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-AA	Composition		0 ∕ 25	Closed	
+Vandiver, Morgan Elizabeth / MWF 01:15-02:15PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-AE	Composition		-2 ∕ 25	Closed	
+STAFF, STAFF / 00:00-00:00AM; MAIN Campus, CBU Online, Online Classroom, ONLN / Online Course
+3.0	09/04/2023	10/29/2023
+		ENG113-B	Composition		0 ∕ 25	Closed	
+Isaacs, David E. / MWF 09:30-10:30AM; MAIN Campus, Sch Business Building, Classroom, 106 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-BA	Composition		1 ∕ 25	Reopened	
+STAFF, STAFF / MWF 08:15-09:15AM; MAIN Campus, James Complex, Smart Classroom, 191 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-BE	Composition		15 ∕ 25	Open	
+STAFF, STAFF / 00:00-00:00AM; MAIN Campus, CBU Online, Online Classroom, ONLN / Online Course
+3.0	09/04/2023	10/29/2023
+		ENG113-C	Composition		0 ∕ 25	Closed	
+Yanagihara, Brittany M. / MWF 10:45-11:45AM; MAIN Campus, Building 36, Classroom, 36A2 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-CA	Composition		0 ∕ 0	Closed	
+Latchman, Charity L. / MWF 08:15-09:15AM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-CE	Composition		22 ∕ 25	Open	
+STAFF, STAFF / 00:00-00:00AM; MAIN Campus, CBU Online, Online Classroom, ONLN / Online Course
+3.0	10/31/2023	12/23/2023
+		ENG113-D	Composition		0 ∕ 25	Closed	
+Yanagihara, Brittany M. / MWF 07:00-08:00AM; MAIN Campus, James Complex, Smart Classroom, 189 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-DA	Composition		0 ∕ 25	Closed	
+Vandiver, Morgan Elizabeth / MWF 02:30-03:30PM; MAIN Campus, The Village at CBU, Classroom, 300 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-DE	Composition		25 ∕ 25	Open	
+STAFF, STAFF / 00:00-00:00AM; MAIN Campus, CBU Online, Online Classroom, ONLN / Online Course
+3.0	10/31/2023	12/23/2023
+		ENG113-EA	Composition		0 ∕ 0	Closed	
+STAFF, STAFF / MWF 02:30-03:30PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-F	Composition		0 ∕ 25	Closed	
+Lu, James J. / TR 02:00-03:30PM; MAIN Campus, James Complex, Classroom, 171 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-FA	Composition		13 ∕ 25	Open	
+Jones, Daniel M. / MW 05:00-06:30PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-G	Composition		0 ∕ 25	Closed	
+Poston, Craig Alan / MWF 09:30-10:30AM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-GA	Composition		0 ∕ 25	Closed	
+Isaacs, David E. / TR 10:30AM-12:00PM; MAIN Campus, James Complex, Smart Classroom, 189 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-GE	Composition		25 ∕ 25	Open	
+STAFF, STAFF / 00:00-00:00AM; MAIN Campus, CBU Online, Online Classroom, ONLN / Online Course
+3.0	10/31/2023	12/23/2023
+		ENG113-H	Composition		10 ∕ 25	Open	
+Rash, Gene Aaron / MWF 02:30-03:30PM; MAIN Campus, James Complex, Smart Classroom, 191 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-HA	Composition		0 ∕ 25	Closed	
+STAFF, STAFF / MWF 09:30-10:30AM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-I	Composition		7 ∕ 25	Open	
+Rash, Gene Aaron / MWF 12:00-01:00PM; MAIN Campus, James Complex, Classroom, 036 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-J	Composition		3 ∕ 25	Open	
+Walker, Deron / TR 02:00-03:30PM; MAIN Campus, James Complex, Classroom, 245 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-K	Composition		0 ∕ 25	Closed	
+Elledge, Megan L. / MWF 10:45-11:45AM; MAIN Campus, James Complex, Classroom, 166 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-M	Composition		0 ∕ 25	Closed	
+Elledge, Megan L. / MWF 12:00-01:00PM; MAIN Campus, Health Science Campus, Classroom, Q295 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-N	Composition		14 ∕ 25	Open	
+Poston, Craig Alan / MWF 08:15-09:15AM; MAIN Campus, James Complex, Smart Classroom, 192 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-O	Composition		24 ∕ 25	Open	
+Hatcher, Jennifer A. / MW 05:30-07:00PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-P	Composition		0 ∕ 0	Closed	
+STAFF, STAFF / MWF 01:15-02:15PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-Q	Composition		0 ∕ 25	Closed	
+Walker, Deron / TR 12:15-01:45PM; MAIN Campus, James Complex, Classroom, 245 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-R	Composition		25 ∕ 25	Open	
+Yanagihara, Brittany M. / MWF 08:15-09:15AM; MAIN Campus, James Complex, Classroom, 245 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-S	Composition		21 ∕ 25	Open	
+Walker, Deron / TR 10:30AM-12:00PM; MAIN Campus, James Complex, Classroom, 245 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-T	Composition		24 ∕ 25	Open	
+Poston, Craig Alan / MWF 07:00-08:00AM; MAIN Campus, James Complex, Smart Classroom, 190 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-U	Composition		14 ∕ 25	Open	
+Elledge, Megan L. / MWF 08:15-09:15AM; MAIN Campus, The Village at CBU, Classroom, 100 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-V	Composition		0 ∕ 0	Closed	
+Latchman, Charity L. / MWF 07:00-08:00AM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-W	Composition		13 ∕ 25	Open	
+Boetger, Amber Marie / MWF 01:15-02:15PM; MAIN Campus, James Complex, Smart Classroom, 191 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-X	Composition		21 ∕ 25	Open	
+Boetger, Amber Marie / MWF 02:30-03:30PM; MAIN Campus, James Complex, Smart Classroom, 189 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-Y	Composition		16 ∕ 25	Open	
+STAFF, STAFF / TR 08:45-10:15AM; MAIN Campus, James Complex, Classroom, 166 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113-Z	Composition		22 ∕ 25	Open	
+Banks, Andrew / TR 02:00-03:30PM; MAIN Campus, James Complex, Classroom, 166 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-A	Enriched Composition		0 ∕ 22	Closed	
+Robbins, David T. / TR 03:45-05:15PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-AA	Enriched Composition		0 ∕ 22	Closed	
+Clements, Mackenna L. / TR 08:45-10:15AM; MAIN Campus, James Complex, Classroom, 171 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-B	Enriched Composition		0 ∕ 22	Closed	
+George, Elise M. / TR 02:00-03:30PM; MAIN Campus, Yeager Center, Lecture Classroom, B219 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-BA	Enriched Composition		0 ∕ 22	Closed	
+Medina, Gabriel Andrew / MWF 08:15-09:15PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-C	Enriched Composition		0 ∕ 22	Closed	
+Fierro, Amanda Nicole / MWF 08:15-09:15AM; MAIN Campus, Building 36, Classroom, 36A1 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-CA	Enriched Composition		0 ∕ 0	Closed	
+Martinez, Leilani M. / MWF 08:15-09:15AM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-D	Enriched Composition		0 ∕ 22	Closed	
+Martinez, Leilani M. / MWF 10:45-11:45AM; MAIN Campus, Yeager Center, Lecture Classroom, B220 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-DA	Enriched Composition		14 ∕ 22	Open	
+Medina, Gabriel Andrew / MWF 07:00-08:00AM; MAIN Campus, James Complex, Smart Classroom, 191 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-F	Enriched Composition		0 ∕ 22	Closed	
+Travis, Erika J. / MWF 09:30-10:30AM; MAIN Campus, James Complex, Smart Classroom, 191 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-G	Enriched Composition		1 ∕ 22	Open	
+Drent, Adam Christian / MWF 01:15-02:15PM; MAIN Campus, Sch Business Building, Classroom, 103 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-H	Enriched Composition		10 ∕ 22	Open	
+Key, Jordan Robert / MWF 01:15-02:15PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-I	Enriched Composition		3 ∕ 22	Open	
+Martinez, Leilani M. / MWF 12:00-01:00PM; MAIN Campus, James Complex, Smart Classroom, 189 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-J	Enriched Composition		0 ∕ 22	Closed	
+Torres, Rachelle Nilizabeth / TR 10:30AM-12:00PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-K	Enriched Composition		0 ∕ 22	Closed	
+STAFF, STAFF / MWF 10:45-11:45AM; MAIN Campus, Health Science Campus, Classroom, Q292 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-M	Enriched Composition		14 ∕ 22	Open	
+Torres, Rachelle Nilizabeth / TR 03:45-05:15PM; MAIN Campus, James Complex, Smart Classroom, 189 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-N	Enriched Composition		13 ∕ 22	Open	
+Key, Jordan Robert / MWF 12:00-01:00PM; MAIN Campus, Yeager Center, Computer Lab, B114 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-O	Enriched Composition		17 ∕ 22	Open	
+Robbins, David T. / TR 05:30-07:00PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-P	Enriched Composition		0 ∕ 0	Closed	
+George, Elise M. / TR 03:45-05:15PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-Q	Enriched Composition		9 ∕ 22	Reopened	
+Drent, Adam Christian / MWF 02:30-03:30PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-R	Enriched Composition		15 ∕ 22	Open	
+Drent, Adam Christian / MWF 03:45-04:45PM; MAIN Campus, James Complex, Classroom, 171 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-S	Enriched Composition		21 ∕ 22	Open	
+McInteer, Kassandra L. / TR 08:45-10:15AM; MAIN Campus, Building 36, Classroom, 36A1 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-T	Enriched Composition		15 ∕ 22	Open	
+Fierro, Amanda Nicole / MWF 07:00-08:00AM; MAIN Campus, James Complex, Smart Classroom, 192 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-U	Enriched Composition		2 ∕ 22	Open	
+Fierro, Amanda Nicole / MWF 09:30-10:30AM; MAIN Campus, Health Science Campus, Classroom, L244 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-V	Enriched Composition		19 ∕ 22	Open	
+Bartels Ray, Gretchen C. / TR 10:30AM-12:00PM; MAIN Campus, Health Science Campus, Classroom, L244 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-W	Enriched Composition		21 ∕ 22	Open	
+Clements, Mackenna L. / TR 07:00-08:30AM; MAIN Campus, James Complex, Classroom, 171 / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-X	Enriched Composition		0 ∕ 0	Closed	
+Key, Jordan Robert / MWF 02:30-03:30PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-Y	Enriched Composition		16 ∕ 22	Reopened	
+Torres, Rachelle Nilizabeth / TR 02:00-03:30PM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113E-Z	Enriched Composition		0 ∕ 0	Closed	
+McInteer, Kassandra L. / TR 07:00-08:30AM; MAIN Campus, TBA / Classroom Lecture
+3.0	09/05/2023	12/12/2023
+		ENG113L-A	Composition Enrichment Lab		0 ∕ 22	Closed	
+Estrada, Gabriel Carlos / T 05:30-06:30PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-AA	Composition Enrichment Lab		0 ∕ 22	Closed	
+Hatcher, Jennifer A. / R 03:45-04:45PM; MAIN Campus, James Complex, Classroom, 166 / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-B	Composition Enrichment Lab		0 ∕ 22	Closed	
+STAFF, STAFF / R 05:30-06:30PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-BA	Composition Enrichment Lab		0 ∕ 22	Closed	
+Hatcher, Jennifer A. / R 05:30-06:30PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-C	Composition Enrichment Lab		0 ∕ 22	Closed	
+Tronti, Jennifer / M 03:45-04:45PM; MAIN Campus, Building 36, Classroom, 36A2 / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-CA	Composition Enrichment Lab		13 ∕ 22	Open	
+Jimenez, Salvador,, Jr. / M 07:30-08:30PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-D	Composition Enrichment Lab		0 ∕ 22	Closed	
+Jimenez, Salvador,, Jr. / W 03:45-04:45PM; MAIN Campus, Building 36, Classroom, 36A2 / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-DA	Composition Enrichment Lab		17 ∕ 22	Open	
+Lepore, Dominic J. / F 06:15-07:15PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-F	Composition Enrichment Lab		0 ∕ 22	Closed	
+Lepore, Dominic J. / F 03:45-04:45PM; MAIN Campus, Building 36, Classroom, 36A1 / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-G	Composition Enrichment Lab		0 ∕ 22	Closed	
+Tronti, Jennifer / M 05:00-06:00PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-H	Composition Enrichment Lab		0 ∕ 22	Closed	
+Jimenez, Salvador,, Jr. / W 05:00-06:00PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-I	Composition Enrichment Lab		16 ∕ 22	Open	
+Lepore, Dominic J. / F 05:00-06:00PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-J	Composition Enrichment Lab		14 ∕ 22	Open	
+Estrada, Gabriel Carlos / M 06:15-07:15PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-K	Composition Enrichment Lab		12 ∕ 22	Open	
+Estrada, Gabriel Carlos / T 06:45-07:45PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-M	Composition Enrichment Lab		0 ∕ 22	Closed	
+Medina, Gabriel Andrew / M 03:45-04:45PM; MAIN Campus, Building 36, Classroom, 36A1 / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-N	Composition Enrichment Lab		15 ∕ 22	Open	
+STAFF, STAFF / R 06:45-07:45PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-O	Composition Enrichment Lab		0 ∕ 22	Closed	
+Tronti, Jennifer / W 03:45-04:45PM; MAIN Campus, Building 36, Classroom, 36A1 / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-P	Composition Enrichment Lab		19 ∕ 22	Open	
+Estrada, Gabriel Carlos / T 08:00-09:00PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-Q	Composition Enrichment Lab		0 ∕ 0	Closed	
+STAFF, STAFF / R 08:00-09:00PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-R	Composition Enrichment Lab		1 ∕ 22	Open	
+Jimenez, Salvador,, Jr. / M 05:00-06:00PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-S	Composition Enrichment Lab		13 ∕ 22	Open	
+Lepore, Dominic J. / W 05:00-06:00PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-T	Composition Enrichment Lab		9 ∕ 22	Open	
+STAFF, STAFF / T 05:30-06:30PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-U	Composition Enrichment Lab		18 ∕ 22	Open	
+Estrada, Gabriel Carlos / M 05:00-06:00PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-V	Composition Enrichment Lab		0 ∕ 0	Closed	
+Lepore, Dominic J. / W 03:45-04:45PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-W	Composition Enrichment Lab		19 ∕ 22	Open	
+Hatcher, Jennifer A. / R 08:00-09:00PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-X	Composition Enrichment Lab		18 ∕ 22	Open	
+Hatcher, Jennifer A. / T 06:45-07:45PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-Y	Composition Enrichment Lab		20 ∕ 22	Reopened	
+Hatcher, Jennifer A. / W 06:15-07:15PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+		ENG113L-Z	Composition Enrichment Lab		0 ∕ 0	Closed	
+Hatcher, Jennifer A. / R 06:45-07:45PM; MAIN Campus, TBA / Discussion/Lecture
+1.0	09/05/2023	12/12/2023
+
+

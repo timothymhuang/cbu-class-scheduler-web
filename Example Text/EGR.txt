@@ -1,0 +1,80 @@
+EGR102-A	Introduction Engineering Design		0 ∕ 14	Closed	
+Nalbandian, Michael J. / M 09:00-10:30AM; MAIN Campus, Engineering, Engineering Design Clss, 214 / Classroom Lecture
+Oyanader, Mario A. / T 04:45-06:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Nalbandian, Michael J. / W 09:00-10:30AM; MAIN Campus, Engineering, Engineering Design Clss, 214 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-B	Introduction Engineering Design		0 ∕ 14	Closed	
+Nalbandian, Michael J. / M 09:00-10:30AM; MAIN Campus, Engineering, Engineering Design Clss, 214 / Classroom Lecture
+Oyanader, Mario A. / T 04:45-06:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Nalbandian, Michael J. / F 09:00-10:30AM; MAIN Campus, Engineering, Engineering Design Clss, 214 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-C	Introduction Engineering Design		0 ∕ 14	Closed	
+Oyanader, Mario A. / T 04:45-06:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Gordon, Mark T / M 09:30-11:00AM; MAIN Campus, Engineering, Engineering Design Clss, 216 / Classroom Lecture
+Gordon, Mark T / W 09:30-11:00AM; MAIN Campus, Engineering, Engineering Design Clss, 216 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-D	Introduction Engineering Design		7 ∕ 14	Open	
+Oyanader, Mario A. / T 04:45-06:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Gordon, Mark T / M 09:30-11:00AM; MAIN Campus, Engineering, Engineering Design Clss, 216 / Classroom Lecture
+Gordon, Mark T / F 09:30-11:00AM; MAIN Campus, Engineering, Engineering Design Clss, 216 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-E	Introduction Engineering Design		0 ∕ 14	Closed	
+Oyanader, Mario A. / T 04:45-06:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Gordon, Mark T / M 01:15-02:45PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / Classroom Lecture
+Gordon, Mark T / W 01:15-02:45PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-F	Introduction Engineering Design		0 ∕ 14	Closed	
+Oyanader, Mario A. / T 04:45-06:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Gordon, Mark T / M 01:15-02:45PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / Classroom Lecture
+Gordon, Mark T / F 01:15-02:45PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-G	Introduction Engineering Design		13 ∕ 14	Open	
+Gordon, Mark T / T 12:15-01:45PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / Classroom Lecture
+Oyanader, Mario A. / R 03:45-05:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Gordon, Mark T / R 10:30AM-12:00PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-H	Introduction Engineering Design		12 ∕ 14	Open	
+Gordon, Mark T / T 12:15-01:45PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / Classroom Lecture
+Oyanader, Mario A. / R 03:45-05:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Gordon, Mark T / R 12:15-01:45PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-I	Introduction Engineering Design		12 ∕ 14	Open	
+Oyanader, Mario A. / R 03:45-05:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+STAFF, STAFF / T 10:30AM-12:00PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / Classroom Lecture
+Zhao, Xueyan Sarah / R 10:30AM-12:00PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-J	Introduction Engineering Design		14 ∕ 14	Open	
+Oyanader, Mario A. / R 03:45-05:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+STAFF, STAFF / T 10:30AM-12:00PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / Classroom Lecture
+Zhao, Xueyan Sarah / R 12:15-01:45PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-K	Introduction Engineering Design		12 ∕ 14	Open	
+Oyanader, Mario A. / R 03:45-05:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Zhang, Jun / T 02:00-03:30PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / Classroom Lecture
+Zhang, Jun / R 02:00-03:30PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-L	Introduction Engineering Design		14 ∕ 14	Open	
+Oyanader, Mario A. / R 03:45-05:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Zhang, Jun / T 02:00-03:30PM; MAIN Campus, Engineering, Engineering Design Clss, 216 / Classroom Lecture
+Zhang, Jun / R 08:45-10:15AM; MAIN Campus, Engineering, Engineering Design Clss, 216 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-M	Introduction Engineering Design		0 ∕ 14	Closed	
+Oyanader, Mario A. / T 04:45-06:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Rickard, Matthew J. / T 02:00-03:30PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / Classroom Lecture
+Rickard, Matthew J. / R 02:00-03:30PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-N	Introduction Engineering Design		0 ∕ 14	Closed	
+Oyanader, Mario A. / T 04:45-06:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Rickard, Matthew J. / T 02:00-03:30PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / Classroom Lecture
+Rickard, Matthew J. / R 03:45-05:15PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-O	Introduction Engineering Design		11 ∕ 14	Open	
+Oyanader, Mario A. / R 03:45-05:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Butler, John Stephen / M 01:15-02:45PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / Classroom Lecture
+Butler, John Stephen / W 01:15-02:45PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / LAB
+4.0	01/08/2024	04/20/2024
+EGR102-P	Introduction Engineering Design		12 ∕ 14	Open	
+Oyanader, Mario A. / R 03:45-05:15PM; MAIN Campus, Yeager Center, Theatre Classroom, A112 / Classroom Lecture
+Butler, John Stephen / M 01:15-02:45PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / Classroom Lecture
+Butler, John Stephen / F 01:15-02:45PM; MAIN Campus, Engineering, Engineering Design Clss, 214 / LAB
+4.0	01/08/2024	04/20/2024

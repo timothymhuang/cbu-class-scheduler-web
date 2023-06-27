@@ -34,6 +34,9 @@ function submitClasses()
             if (!data["class"][name]["section"].hasOwnProperty(section)) {data["class"][name]["section"][section] = {}}
 
             data["class"][name]["section"][section]["open"] = ((columns[3] == "Closed") ? 0 : 1)
+            if (!data["class"][name]["section"][section].hasOwnProperty("override")) {
+                data["class"][name]["section"][section]["override"] = -1
+            }
 
 
         } else if (input[i].includes(" / ")) {
@@ -41,15 +44,18 @@ function submitClasses()
 
             // WRITE PROFESSOR NAME
             if (!data["class"][name]["section"][section].hasOwnProperty("professors")) {data["class"][name]["section"][section]["professors"] = []}
-            if (!data["class"][name]["section"][section]["professors"].some(e => e.name == columns[0])) {
-                data["class"][name]["section"][section]["professors"].push({"name":columns[0],"score":'Unsearched'})
+            if (!data["class"][name]["section"][section]["professors"].includes(columns[0])) {
+                data["class"][name]["section"][section]["professors"].push(columns[0])
             }
+            if (!data.hasOwnProperty("professor")) {data["professor"] = {}}
+            if (!data["professor"].hasOwnProperty(columns[0])) {data["professor"][columns[0]] = {}}
+            if (!data["professor"][columns[0]].hasOwnProperty("score")) {data["professor"][columns[0]]["score"] = -1}
 
             // WRITE TIME
             timeDay = columns[1].split("; ")[0].split(' ')
-            if (!data["class"][name]["section"][section].hasOwnProperty("time")) {
+            //if (!data["class"][name]["section"][section].hasOwnProperty("time")) {
                 data["class"][name]["section"][section]["time"] = []
-            }
+            //}
             if (timeDay.length <= 1) {
                 data["class"][name]["section"][section]["time"].push("online")
             } else {
@@ -84,18 +90,110 @@ function submitClasses()
 function generateSchedules()
 {
     data = JSON.parse(localStorage.getItem("data"))
+    let sectionlist
+    let process = {}
+    let open
+    let override
+    let classlist = Object.keys(data["class"])
+    let run
+    let theseTimes
+    let theseClasses
 
-    a = data["class"]
-    console.log(a)
+    // Generate Dictionary of Classes and Counters
+    for (let i = 0; i < classlist.length; i++) {
+        process[classlist[i]] = {}
+        process[classlist[i]]["count"] = 0
+        process[classlist[i]]["max"] = -1
+        process[classlist[i]]["list"] = []
+        sectionlist = Object.keys(data["class"][classlist[i]]["section"])
+        for (let j = 0; j < sectionlist.length; j++) {
+            open = data["class"][classlist[i]]["section"][sectionlist[j]]["open"]
+            override = data["class"][classlist[i]]["section"][sectionlist[j]]["override"]
+            if (override == 1 || (override != 0 && open == 1)) {
+                process[classlist[i]]["list"].push(sectionlist[j])
+            }
+        }
+        process[classlist[i]]["max"] = process[classlist[i]]["list"].length-1
+    }
 
+
+    data["schedule"] = []
+    run = 1
+    while (run) {
+        // Check Schedule Overlap
+        theseTimes = []
+        theseClasses = []
+        for (let l = 0; l < classlist.length; l++) {
+            thisTime = data["class"][classlist[l]]["section"][process[classlist[l]]["list"][process[classlist[l]]["count"]]]["time"]
+            theseClasses.push(process[classlist[l]]["list"][process[classlist[l]]["count"]])
+            for (let m = 0; m < thisTime.length; m++) {
+                theseTimes.push(thisTime[m])
+            }
+        }
+
+        if (!checkRangeOverlap(theseTimes)) {
+            data["schedule"].push(theseClasses)
+        }
+
+
+
+        // Increment the Counters
+        incThis = 0
+        while (1) {
+            if (incThis >= classlist.length) {
+                run = 0
+                break
+            }
+            if (process[classlist[incThis]]["count"] >= process[classlist[incThis]]["max"]) {
+                process[classlist[incThis]]["count"] = 0
+                incThis++
+            } else {
+                process[classlist[incThis]]["count"]++
+                break
+            }
+
+        }
+
+    }
+
+    console.log(JSON.stringify(data["schedule"]))
     localStorage.setItem("data",JSON.stringify(data))
 }
 
 function testFunction()
 {
     data = JSON.parse(localStorage.getItem("data"))
+    let sectionlist
 
-
+    let classlist = Object.keys(data["class"])
+    for (let i = 0; i < classlist.length; i++) {
+        sectionlist = Object.keys(data["class"][classlist[i]]["section"])
+        console.log(sectionlist)
+    }
     
     localStorage.setItem("data",JSON.stringify(data))
+    //console.log(localStorage.getItem("data"))
+}
+
+function checkRangeOverlap (ranges) {
+    ranges = ranges.filter(item => item !== "online")
+    // convert the string ranges to numbers
+    ranges = ranges.map (range => range.map (num => Number (num)));
+    // loop through all the ranges
+    for (let i = 0; i < ranges.length; i++) {
+      // get the start and end of the current range
+      let [startA, endA] = ranges [i];
+      // loop through the rest of the ranges
+      for (let j = i + 1; j < ranges.length; j++) {
+        // get the start and end of the other range
+        let [startB, endB] = ranges [j];
+        // check if the ranges overlap using the condition: startA <= endB && startB <= endA
+        if (startA < endB && startB < endA) {
+          // return true if there is an overlap
+          return true;
+        }
+      }
+    }
+    // return false if there is no overlap
+    return false;
 }
