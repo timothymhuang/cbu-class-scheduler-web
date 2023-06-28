@@ -85,6 +85,8 @@ function submitClasses()
 
     localStorage.setItem("data",JSON.stringify(data))
     console.log(data)
+    document.getElementById("p1").innerHTML = "Classes Inputed"
+
 }
 
 function generateSchedules()
@@ -158,19 +160,39 @@ function generateSchedules()
 
     console.log(JSON.stringify(data["schedule"]))
     localStorage.setItem("data",JSON.stringify(data))
+    document.getElementById("p1").innerHTML = "Schedules Generated"
 }
+
+function renderSchedules()
+{
+    
+}
+
+
+
+
 
 function testFunction()
 {
     data = JSON.parse(localStorage.getItem("data"))
-    let sectionlist
 
-    let classlist = Object.keys(data["class"])
-    for (let i = 0; i < classlist.length; i++) {
-        sectionlist = Object.keys(data["class"][classlist[i]]["section"])
-        console.log(sectionlist)
-    }
-    
+    //document.write('<html><body><h2>HTML</h2></body></html>');
+
+    /*
+    var tag_id = document.getElementById('display');
+    var newNode = document.createElement('p');
+    newNode.appendChild(document.createTextNode('html string'));
+    */
+
+    let exampletext = `
+    <div class="container">
+      <div class="box1">W3Docs</div>
+      <div class="box2">Learn programming</div>
+    </div>
+    `
+    var tag_id = document.getElementById('display');
+    tag_id.innerHTML = exampletext;
+
     localStorage.setItem("data",JSON.stringify(data))
     //console.log(localStorage.getItem("data"))
 }

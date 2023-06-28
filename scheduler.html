@@ -10,14 +10,61 @@
     <script type="text/javascript" src="scheduler.js"></script>
   </head>
   <body>
+    <p id="p1">Do Something</p>
     <textarea id="inputClasses" name="Text1" cols="40" rows="5"></textarea>
     <br><br>
     <button type="button" onclick="submitClasses()" value="Display">Submit</button>
     <button type="button" onclick="localStorage.clear()" value="Display">Clear Local Storage</button>
     <br><br>
     <button type="button" onclick="generateSchedules()" value="Display">Generate Schedules</button>
+    <button type="button" onclick="renderSchedules()" value="Display">Render Schedules</button>
     <br><br>
     <button type="button" onclick="testFunction()" value="Display">Test Button</button>
+
+
+    <style>
+      .container {
+        position: absolute;
+        height: 250px;
+        width: 400px;
+        background-color: #7d807e;
+      }
+      .box1 {
+        color: #fff;
+        padding-top: 60px;
+        padding-left: 50px;
+        font-size: 50px;
+        font-weight: bold;
+      }
+      .box2 {
+        padding-left: 50px;
+      }
+      .box1:hover {
+        z-index: -1;
+        opacity: 0.5;
+        font-size: 30px;
+        text-align: center;
+        transform-style: all;
+        transition-duration: 2s;
+      }
+      .box2:hover {
+        z-index: -1;
+        opacity: 0.3;
+        font-size: 40px;
+        text-align: center;
+        transform-style: all;
+        transition-duration: 2s;
+      }
+    </style>
+
+
+
+    <br>
+
+    <div id="display"></div>
+
+
+
   </body>
   <footer class="footer">
   </footer>
