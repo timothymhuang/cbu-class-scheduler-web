@@ -165,7 +165,15 @@ function generateSchedules()
 
 function renderSchedules()
 {
-    
+    let displayText
+    let width = 300
+    let height = 500
+    displayText = `
+    <div style="position:absolute;width:${width}px;height:${height}px">
+        <div class="box"></div>
+        <!--<div class="box overlay"></div>-->
+    </div>`
+    document.getElementById("display").innerHTML = displayText
 }
 
 
