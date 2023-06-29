@@ -165,14 +165,33 @@ function generateSchedules()
 
 function renderSchedules()
 {
+    let startTime = 700
+    let endTime = 1200 + 600
+    let startDay = 0 //Monday
+    let endDay = 4 //Friday
+
+    let columnWidth = 100
+    let columnPad = 10
+    let timeScale = 0.5
+
+    let totalDay = endDay-startDay+1
     let displayText
-    let width = 300
-    let height = 500
+    let width = (totalDay*columnWidth)+((totalDay+1)*columnPad)
+    let height = (endTime-startTime+1)*timeScale
+
+    for (let i = 0; i < 10 ; i++) {
+        displayText = displayText + `<hr style="position:absolute;top:${i*10}px;width:100%">`
+    }
+
     displayText = `
-    <div style="position:relative;width:${width}px;height:${height}px">
+    <div style="position:relative;width:${width}px;height:${height}px;background:#F0F0F0">
         <div class="box"></div>
-        <!--<div class="box overlay"></div>-->
+        <div class="box overlay"></div>
+        ${displayText}
     </div>`
+
+
+
     document.getElementById("display").innerHTML = displayText
 }
 
