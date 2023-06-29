@@ -165,34 +165,48 @@ function generateSchedules()
 
 function renderSchedules()
 {
-    let startTime = 700
-    let endTime = 1200 + 600
+    //Below are in MINUTES
+    let startTime = 7
+    let endTime = 12 + 7
+    let minorLineSpace = 1
+
+
     let startDay = 0 //Monday
     let endDay = 4 //Friday
 
+    //Each pixel verticaly is 1 minute unless adjusted by timeScale.
     let columnWidth = 100
     let columnPad = 10
     let timeScale = 0.5
 
     let totalDay = endDay-startDay+1
-    let displayText
+    let totalTime = endTime-startTime
+    let displayText = ""
+    let displayBackground = ""
     let width = (totalDay*columnWidth)+((totalDay+1)*columnPad)
-    let height = (endTime-startTime+1)*timeScale
+    let height = (htm(totalTime))*timeScale
 
-    for (let i = 0; i < 10 ; i++) {
-        displayText = displayText + `<hr style="position:absolute;top:${i*10}px;width:100%">`
-    }
-
-    displayText = `
-    <div style="position:relative;width:${width}px;height:${height}px;background:#F0F0F0">
-        <div class="box"></div>
-        <div class="box overlay"></div>
-        ${displayText}
+    //Prepare DIV's in display html
+    document.getElementById("display").innerHTML = `
+    <div id="controls"><button>Back</button><button>Forward</button></div><br>
+    <div style="position:relative;width:${Math.ceil(width)}px;height:${Math.ceil(height)}px;background:#F0F0F0">
+        <div id="background"></div>
+        <div id="content"></div>
     </div>`
 
+    //Edit Background
+    for (let i = 0; i < (Math.ceil(totalTime)) ; i++) {
+        displayBackground = displayBackground + `
+        <div class="minorLine" style="top:${i*60*timeScale}px"></div>
+        <p class="timeLabel" style="top:${i*60*timeScale}px">${i+startTime}:00</p>`
+    }
 
 
-    document.getElementById("display").innerHTML = displayText
+
+
+
+
+    document.getElementById("background").innerHTML = displayBackground
 }
 
 
@@ -245,4 +259,12 @@ function checkRangeOverlap (ranges) {
     }
     // return false if there is no overlap
     return false;
+}
+
+function htm (hours) {
+    return hours*60
+}
+
+function mth (minutes) {
+    return minutes/60
 }
