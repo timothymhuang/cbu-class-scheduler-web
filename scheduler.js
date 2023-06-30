@@ -34,9 +34,6 @@ function submitClasses()
             if (!data["class"][name]["section"].hasOwnProperty(section)) {data["class"][name]["section"][section] = {}}
 
             data["class"][name]["section"][section]["open"] = ((columns[3] == "Closed") ? 0 : 1)
-            if (!data["class"][name]["section"][section].hasOwnProperty("override")) {
-                data["class"][name]["section"][section]["override"] = -1
-            }
 
 
         } else if (input[i].includes(" / ")) {
@@ -58,7 +55,17 @@ function submitClasses()
             //}
             if (timeDay.length <= 1) {
                 data["class"][name]["section"][section]["time"].push("online")
+
+                // AUTO DISABLE ONLINE CLASSES
+                if (!data["class"][name]["section"][section].hasOwnProperty("override")) {
+                    data["class"][name]["section"][section]["override"] = 0
+                }
             } else {
+                // DO NOT OVERRIDE CLASSES WITH TIME
+                if (!data["class"][name]["section"][section].hasOwnProperty("override")) {
+                    data["class"][name]["section"][section]["override"] = -1
+                }
+
                 dayArray = timeDay[0].split("")
                 timeArray = timeDay[1].split('-')
                 startTime = timeArray[0].substring(0,2) + timeArray[0].substring(3,5)
@@ -84,12 +91,24 @@ function submitClasses()
 
 
     localStorage.setItem("data",JSON.stringify(data))
-    console.log(data)
+    console.log(JSON.stringify(data))
     document.getElementById("p1").innerHTML = "Classes Inputed"
 
 }
 
-function generateSchedules()
+async function callGenerateSchedules()
+{
+    document.getElementById("p1").innerHTML = "Please Wait"
+    try {
+        let result = await generateSchedules()
+        document.getElementById("p1").innerHTML = "Schedules Generated"
+    }
+    catch(err) {
+        document.getElementById("p1").innerHTML = "ERROR: " + err
+    }
+}
+
+async function generateSchedules()
 {
     data = JSON.parse(localStorage.getItem("data"))
     let sectionlist
@@ -117,6 +136,8 @@ function generateSchedules()
         }
         process[classlist[i]]["max"] = process[classlist[i]]["list"].length-1
     }
+
+    console.log(JSON.stringify(process))
 
 
     data["schedule"] = []
@@ -160,56 +181,135 @@ function generateSchedules()
 
     console.log(JSON.stringify(data["schedule"]))
     localStorage.setItem("data",JSON.stringify(data))
-    document.getElementById("p1").innerHTML = "Schedules Generated"
+    
+    return "done"
 }
 
-function renderSchedules()
+function renderBackground()
 {
-    //Below are in MINUTES
-    let startTime = 7
-    let endTime = 12 + 7
-    let minorLineSpace = 1
+    data = JSON.parse(localStorage.getItem("data"))
 
-
-    let startDay = 0 //Monday
-    let endDay = 4 //Friday
-
+    if (!data.hasOwnProperty("render")) {data["render"] = {}}
+    data["render"]["current"] = 0
+    //Below are in HOURS
+    data["render"]["startTime"] = 0
+    data["render"]["endTime"] = 24
     //Each pixel verticaly is 1 minute unless adjusted by timeScale.
-    let columnWidth = 100
-    let columnPad = 10
-    let timeScale = 0.5
+    data["render"]["columnWidth"] = 100
+    data["render"]["columnPad"] = 1
+    data["render"]["timeScale"] = 0.5
 
-    let totalDay = endDay-startDay+1
+
+    let startTime = data["render"]["startTime"]
+    let endTime = data["render"]["endTime"]
+    let columnWidth = ["render"]["columnWidth"]
+    let columnPad = data["render"]["columnPad"]
+    let timeScale = data["render"]["timeScale"]
     let totalTime = endTime-startTime
-    let displayText = ""
     let displayBackground = ""
-    let width = (totalDay*columnWidth)+((totalDay+1)*columnPad)
+    let displaySideTime = ""
+    let width = (7*columnWidth)+(8*columnPad)
     let height = (htm(totalTime))*timeScale
 
     //Prepare DIV's in display html
     document.getElementById("display").innerHTML = `
-    <div id="controls"><button>Back</button><button>Forward</button></div><br>
-    <div style="position:relative;width:${Math.ceil(width)}px;height:${Math.ceil(height)}px;background:#F0F0F0">
-        <div id="background"></div>
-        <div id="content"></div>
+    <div id="controls"><button onClick="scheduleAdv(-1)">Back</button><button onClick="scheduleAdv(1)">Forward</button></div><br>
+
+    <div class="grid-container" style="display: grid;grid-template-columns: 40px auto;">
+        <div class="grid-item" style="height: 20px;">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item" id="sideTime" style="position:relative;text-align-last: right;"></div>
+        <div class="grid-item" style="position:relative;height:${height}px;"><div id="background"></div><div id="content"></div></div>
+    </div>
+
+
+
     </div>`
 
     //Edit Background
     for (let i = 0; i < (Math.ceil(totalTime)) ; i++) {
-        displayBackground = displayBackground + `
-        <div class="minorLine" style="top:${i*60*timeScale}px"></div>
-        <p class="timeLabel" style="top:${i*60*timeScale}px">${i+startTime}:00</p>`
+        displayBackground = displayBackground + `<div class="minorLine" style="top:${i*60*timeScale}px"></div>`
+        displaySideTime = displaySideTime + `<p class="timeLabel" style="text-align:right;top:${i*60*timeScale-7}px">${i+startTime}:00</p>`
     }
 
 
 
-
-
-
+    document.getElementById("sideTime").innerHTML = displaySideTime
     document.getElementById("background").innerHTML = displayBackground
+
+    localStorage.setItem("data",JSON.stringify(data))
+
+    renderSchedule()
 }
 
 
+function renderSchedule()
+{
+    data = JSON.parse(localStorage.getItem("data"))
+
+    let startTime = data["render"]["startTime"]
+    let endTime = data["render"]["endTime"]
+    let columnWidth = ["render"]["columnWidth"]
+    let columnPad = data["render"]["columnPad"]
+    let timeScale = data["render"]["timeScale"]
+    let displayContent = ""
+    let columnFraction = 100/7
+
+    let colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#8B00FF", "#FF00FF", "#FF1493", "#FF69B4", "#FFC0CB", "#FFE4E1", "#FFEBCD", "#FFFACD", "#F0FFF0", "#E0FFFF", "#ADD8E6", "#87CEFA", "#B0E0E6", "#F0F8FF"]
+
+
+    //Add Content Squares
+    console.log(data["schedule"],data["render"]["current"])
+    for (let i = 0; i < data["schedule"][data["render"]["current"]].length; i++) {
+        thisSection = data["schedule"][data["render"]["current"]][i]
+        thisClass = thisSection.substring (0, thisSection.indexOf("-"))
+        thisTime = data["class"][thisClass]["section"][thisSection]["time"]
+        for (let j = 0; j < thisTime.length; j++) {
+            if (thisTime[j] == ["online"]) {break}
+            thisDay = parseInt(thisTime[j][0].substring(0, thisTime[j][0].indexOf(".")))
+            thisStartTime = thisTime[j][0].substring(thisTime[j][0].indexOf(".")+1)
+            thisEndTime = thisTime[j][1].substring(thisTime[j][1].indexOf(".")+1)
+
+            startMinutes = htm(thisStartTime.substring(0,2)) + parseInt(thisStartTime.substring(2))
+            endMinutes = htm(thisEndTime.substring(0,2)) + parseInt(thisEndTime.substring(2))
+
+            displayContent = displayContent + `<div style="position:absolute;left:${Math.round(thisDay*columnFraction+columnPad)}%;top:${(startMinutes-htm(startTime))*timeScale}px;right:${Math.round(100-((thisDay+1)*columnFraction-columnPad))}%;height:${(endMinutes-startMinutes)*timeScale}px;background:${colors[i]}">${thisSection}</div>`
+
+            //<p class="timeLabel" style="top:${(startMinutes-htm(startTime))*timeScale}px;left:${thisDay*columnFraction+columnPad}%">${thisSection}</p>
+
+            //console.log(Math.round((thisDay+1)*columnFraction+columnPad))
+            //console.log(thisDay, startMinutes, thisEndTime)
+        }
+
+
+        //console.log(thisSection, thisClass, JSON.stringify(thisTime))
+    }
+
+    document.getElementById("content").innerHTML = displayContent
+
+    localStorage.setItem("data",JSON.stringify(data))
+}
+
+
+function scheduleAdv(moveByThis) {
+    data = JSON.parse(localStorage.getItem("data"))
+
+    temp = data["render"]["current"]
+
+    data["render"]["current"] = data["render"]["current"] + moveByThis
+
+    if (data["render"]["current"] >= data["schedule"].length || data["render"]["current"]<0) {
+        data["render"]["current"] = temp
+    }
+
+
+    document.getElementById("p1").innerHTML = "Page " + data["render"]["current"]
+
+
+    localStorage.setItem("data",JSON.stringify(data))
+
+    renderSchedule()
+}
 
 
 
@@ -217,22 +317,8 @@ function testFunction()
 {
     data = JSON.parse(localStorage.getItem("data"))
 
-    //document.write('<html><body><h2>HTML</h2></body></html>');
+    console.log(JSON.stringify(data))
 
-    /*
-    var tag_id = document.getElementById('display');
-    var newNode = document.createElement('p');
-    newNode.appendChild(document.createTextNode('html string'));
-    */
-
-    let exampletext = `
-    <div class="container">
-      <div class="box1">W3Docs</div>
-      <div class="box2">Learn programming</div>
-    </div>
-    `
-    var tag_id = document.getElementById('display');
-    tag_id.innerHTML = exampletext;
 
     localStorage.setItem("data",JSON.stringify(data))
     //console.log(localStorage.getItem("data"))
