@@ -5,26 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="" />
 
-    <title>Hello World!</title>
+    <title>Scheduler</title>
 
     <script type="text/javascript" src="scheduler.js"></script>
     <link rel="stylesheet" href="style.css">
-
-
-
   </head>
-  <body>
-    <p id="p1">Do Something</p>
-    <textarea id="inputClasses" name="Text1" cols="40" rows="5"></textarea>
-    <br><br>
-    <button type="button" onclick="submitClasses()" value="Display">Submit</button>
-    <button type="button" onclick="localStorage.clear()" value="Display">Clear Local Storage</button>
-    <button type="button" onclick="testFunction()" value="Display">Test Button</button>
-    <br><br>
-    <button type="button" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
-    <button type="button" onclick="renderBackground()" value="Display">Render Schedules</button>
-
-    <hr><br>
+  <body onload="menubar('render')">
+    <div>
+      <button type="button" onclick="menubar('home')">Home</button>
+      <button type="button" onclick="menubar('input')">Input Classes</button>
+      <button type="button" onclick="menubar('manage')">Manage Classes</button>
+      <button type="button" onclick="menubar('render')">Render Schedules</button>
+    </div>
+    <hr>
 
     <div id="display"></div>
 

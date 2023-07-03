@@ -1,3 +1,35 @@
+function menubar(option)
+{
+    switch(option) {
+        case "home":
+            document.getElementById("display").innerHTML = `
+            <h1>Class Scheduler</h1>
+            `
+            break
+        case "input":
+            document.getElementById("display").innerHTML = `
+            <p id="p1">Do Something</p>
+            <textarea id="inputClasses" name="Text1" cols="40" rows="5"></textarea>
+            <br><br>
+            <button type="button" onclick="submitClasses()" value="Display">Submit</button>
+            <button type="button" onclick="localStorage.clear()" value="Display">Clear Local Storage</button>
+            <button type="button" onclick="testFunction()" value="Display">Test Button</button>
+            <br><br>
+            <button type="button" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
+            `
+            break
+        case "render":
+            renderBackground()
+            break
+        case "manage":
+            break
+        default:
+            document.getElementById("display").innerHTML = `
+            <h1>No Content</h1>
+            `
+    }
+}
+
 function submitClasses()
 {
     let input = document.getElementById("inputClasses").value.split("\n")
@@ -198,6 +230,12 @@ function renderBackground()
     data["render"]["columnWidth"] = 100
     data["render"]["columnPad"] = 1
     data["render"]["timeScale"] = 0.5
+    data["render"]["weekends"] = 0
+
+    let weekends = data["render"]["weekends"]
+    const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    let days = ((weekends) ? 7 : 5)
+
 
 
     let startTime = data["render"]["startTime"]
@@ -208,34 +246,38 @@ function renderBackground()
     let totalTime = endTime-startTime
     let displayBackground = ""
     let displaySideTime = ""
+    let displayDayLabel = ""
     let width = (7*columnWidth)+(8*columnPad)
     let height = (htm(totalTime))*timeScale
 
     //Prepare DIV's in display html
     document.getElementById("display").innerHTML = `
+    <p id="p1">Page 0</p>
     <div id="controls"><button onClick="scheduleAdv(-1)">Back</button><button onClick="scheduleAdv(1)">Forward</button></div><br>
 
     <div class="grid-container" style="display: grid;grid-template-columns: 40px auto;">
-        <div class="grid-item" style="height: 20px;">1</div>
-        <div class="grid-item">2</div>
+        <div class="grid-item" style="height: 10px;"></div>
+        <div class="grid-item" id="dayLabel"><p>test</p></div>
         <div class="grid-item" id="sideTime" style="position:relative;text-align-last: right;"></div>
         <div class="grid-item" style="position:relative;height:${height}px;"><div id="background"></div><div id="content"></div></div>
     </div>
-
-
 
     </div>`
 
     //Edit Background
     for (let i = 0; i < (Math.ceil(totalTime)) ; i++) {
         displayBackground = displayBackground + `<div class="minorLine" style="top:${i*60*timeScale}px"></div>`
-        displaySideTime = displaySideTime + `<p class="timeLabel" style="text-align:right;top:${i*60*timeScale-7}px">${i+startTime}:00</p>`
+        displaySideTime = displaySideTime + `<p class="timeLabel" style="text-align:right;top:${i*60*timeScale-7}px">${((i+startTime>12) ? i+startTime-12 : i+startTime)}:00</p>`
     }
 
 
+    for (let i = 0; i < days; i++) {
+        displayDayLabel = displayDayLabel + `<div style="float:left;width:${100/days}%;padding;10px"><p style="text-align:center">${daysOfWeek[i]}</p></div>`
+    }
 
     document.getElementById("sideTime").innerHTML = displaySideTime
     document.getElementById("background").innerHTML = displayBackground
+    document.getElementById("dayLabel").innerHTML = displayDayLabel
 
     localStorage.setItem("data",JSON.stringify(data))
 
@@ -252,9 +294,15 @@ function renderSchedule()
     let columnWidth = ["render"]["columnWidth"]
     let columnPad = data["render"]["columnPad"]
     let timeScale = data["render"]["timeScale"]
+    let weekends = data["render"]["weekends"]
     let displayContent = ""
-    let columnFraction = 100/7
+    let columnFraction = 0
 
+    if (weekends) {
+        columnFraction = 100/7
+    } else {
+        columnFraction = 100/5
+    }
     let colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#8B00FF", "#FF00FF", "#FF1493", "#FF69B4", "#FFC0CB", "#FFE4E1", "#FFEBCD", "#FFFACD", "#F0FFF0", "#E0FFFF", "#ADD8E6", "#87CEFA", "#B0E0E6", "#F0F8FF"]
 
 
