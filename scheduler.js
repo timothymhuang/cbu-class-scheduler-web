@@ -22,6 +22,10 @@ function menubar(option)
             renderBackground()
             break
         case "manage":
+            manageClasses()
+            break
+        case "settings":
+            displaySettings()
             break
         default:
             document.getElementById("display").innerHTML = `
@@ -29,6 +33,10 @@ function menubar(option)
             `
     }
 }
+
+/************
+INPUT CLASSES
+************/
 
 function submitClasses()
 {
@@ -217,6 +225,37 @@ async function generateSchedules()
     return "done"
 }
 
+/*************
+MANAGE CLASSES
+*************/
+
+function manageClasses() {
+    data = JSON.parse(localStorage.getItem("data"))
+    let displayThis = ""
+
+    classes = Object.keys(data.class)
+    console.log(classes)
+    for (let i = 0 ; i < classes.length ; i++) {
+        console.log(classes[i])
+        displayThis += `<h1>${classes[i]}</h1>`
+        sections = Object.keys(data["class"][classes[i]]["section"])
+
+        for (let j = 0 ; j < sections.length ; j++) {
+            console.log(sections[j])
+            displayThis += `<p>${sections[j]}</p>`
+        }
+    }
+
+
+    document.getElementById("display").innerHTML = displayThis
+
+    localStorage.setItem("data",JSON.stringify(data))
+}
+
+/***************
+RENDER SCHEDULES
+***************/
+
 function renderBackground()
 {
     data = JSON.parse(localStorage.getItem("data"))
@@ -230,7 +269,7 @@ function renderBackground()
     data["render"]["columnWidth"] = 100
     data["render"]["columnPad"] = 1
     data["render"]["timeScale"] = 0.5
-    data["render"]["weekends"] = 0
+    if (!data["render"].hasOwnProperty("weekends")) {data["render"]["weekends"] = 0}
 
     let weekends = data["render"]["weekends"]
     const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -359,7 +398,42 @@ function scheduleAdv(moveByThis) {
     renderSchedule()
 }
 
+/*******
+SETTINGS
+*******/
 
+function displaySettings() {
+    data = JSON.parse(localStorage.getItem("data"))
+
+    if (!data["render"].hasOwnProperty("weekends")) {data["render"]["weekends"] = 0}
+
+    document.getElementById("display").innerHTML = `
+    <h1>Settings</h1>
+    <input type="checkbox" id="weekend" onclick="changeSetting('weekends', this.checked)" ${(data["render"]["weekends"]) ? 'checked' : ''}>
+    <label for="weekend">Include Weekends</label>
+    `
+
+    localStorage.setItem("data",JSON.stringify(data))
+}
+
+function changeSetting(name, value) {
+    data = JSON.parse(localStorage.getItem("data"))
+
+    console.log(name, value)
+
+    switch(name) {
+        case "weekends":
+            data["render"]["weekends"] = value
+            break
+        default:
+    }
+
+    localStorage.setItem("data",JSON.stringify(data))
+}
+
+/**************
+Other Functions
+**************/
 
 function testFunction()
 {
