@@ -21,11 +21,14 @@ function menubar(option)
         case "render":
             renderBackground()
             break
-        case "manage":
+        case "classes":
             manageClasses()
             break
         case "settings":
             displaySettings()
+            break
+        case "professors":
+            manageProfessors()
             break
         default:
             document.getElementById("display").innerHTML = `
@@ -141,7 +144,7 @@ async function callGenerateSchedules()
     document.getElementById("p1").innerHTML = "Please Wait"
     try {
         let result = await generateSchedules()
-        document.getElementById("p1").innerHTML = "Schedules Generated"
+        document.getElementById("p1").innerHTML = result
     }
     catch(err) {
         document.getElementById("p1").innerHTML = "ERROR: " + err
@@ -159,6 +162,7 @@ async function generateSchedules()
     let run
     let theseTimes
     let theseClasses
+    let log = ""
 
     // Generate Dictionary of Classes and Counters
     for (let i = 0; i < classlist.length; i++) {
@@ -175,10 +179,16 @@ async function generateSchedules()
             }
         }
         process[classlist[i]]["max"] = process[classlist[i]]["list"].length-1
+        if (process[classlist[i]]["max"] == -1) {
+            log += classlist[i] + " excluded because no sections are available.<br>"
+            console.log(classlist[i] + " excluded because no sections are available.")
+            delete process[classlist[i]]
+            delete classlist[i]
+        }
     }
-
-    console.log(JSON.stringify(process))
-
+    classlist = classlist.filter(function(item) {
+        return item != undefined
+    });
 
     data["schedule"] = []
     run = 1
@@ -219,10 +229,9 @@ async function generateSchedules()
 
     }
 
-    console.log(JSON.stringify(data["schedule"]))
     localStorage.setItem("data",JSON.stringify(data))
-    
-    return "done"
+    log = "<b>Schedules Generated</b><br>" + log
+    return log
 }
 
 /*************
@@ -232,17 +241,81 @@ MANAGE CLASSES
 function manageClasses() {
     data = JSON.parse(localStorage.getItem("data"))
     let displayThis = ""
+    let professors = []
+    const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
     classes = Object.keys(data.class)
-    console.log(classes)
     for (let i = 0 ; i < classes.length ; i++) {
-        console.log(classes[i])
         displayThis += `<h1>${classes[i]}</h1>`
         sections = Object.keys(data["class"][classes[i]]["section"])
 
+        displayThis += `
+        <div class="wrapper">
+        <div class="item" style="width:100px;"><label><b>Section</b></label></div>
+        <div class="item" style="width:70px;"><label><b>Status</b></label></div>
+        <div class="item" style="width:100px;"><label><b>Override</b></label></div>
+        <div class="item" style="width:275px;"><label><b>Time</b></label></div>
+        <div class="item" style="width:50px;"><label><b>Score</b></label></div>
+        <div class="item" style="width:200px;"><label><b>Professor</b></label></div>
+        </div>
+        <div class="manageClassItem"></div>
+        `
+
         for (let j = 0 ; j < sections.length ; j++) {
-            console.log(sections[j])
-            displayThis += `<p>${sections[j]}</p>`
+            sectionInfo = data["class"][classes[i]]["section"][sections[j]]
+
+            thisSection = sections[j]
+            thisClass = thisSection.substring (0, thisSection.indexOf("-"))
+            thisTime = data["class"][thisClass]["section"][thisSection]["time"]
+            displayThisTime = ""
+            for (let k = 0; k < thisTime.length; k++) {
+                if (thisTime[k] == ["online"]) {
+                    displayThisTime += "Online"
+                    break
+                }
+                thisDay = parseInt(thisTime[k][0].substring(0, thisTime[k][0].indexOf(".")))
+                thisStartTime = thisTime[k][0].substring(thisTime[k][0].indexOf(".")+1)
+                thisEndTime = thisTime[k][1].substring(thisTime[k][1].indexOf(".")+1)
+
+                displayThisTime += daysOfWeek[thisDay] + ", " + beautifyTime(thisStartTime) + " - " + beautifyTime(thisEndTime) + "<br>"
+            }
+            professors = data["class"][thisClass]["section"][thisSection]["professors"]
+            displayThisProfessors = ""
+            displayThisScore = ""
+            for (l = 0; l < professors.length ; l++) {
+                displayThisProfessors += `${professors[l]}<br>`
+                theScore = data["professor"][professors[l]]["score"]
+                if (theScore >= 4) {
+                    scoreColor = "#009000"
+                } else if (theScore >= 3) {
+                    scoreColor = "#FF8000"
+                } else {
+                    scoreColor = "#FF0000"
+                }
+                displayThisScore += `<label style="color:${scoreColor}">${theScore}</label><br>`
+            }
+            
+            displayThis += `
+            <div class="wrapper">
+            <div class="item" style="width:100px;"><label>${sections[j]}</label></div>
+
+            <div class="item" style="width:70px;"><label style="color:${(sectionInfo.open == 1) ? "Green" : "Red"}">${(sectionInfo.open == 1) ? "Open" : "Closed"}</label></div>
+
+            <div class="item" style="width:100px;"><select id="dropdown" onchange="changeClassOption('override','${[classes[i]]}','${[sections[j]]}',this)">
+                <option value="1" ${(sectionInfo.override == -1) ? "selected" : ""}></option>
+                <option value="2" ${(sectionInfo.override == 1) ? "selected" : ""}>Enable</option>
+                <option value="3" ${(sectionInfo.override == 0) ? "selected" : ""}>Disable</option>
+            </select></div>
+
+            <div class="item" style="width:275px;"><label>${displayThisTime}</label></div>
+
+            <div class="item" style="width:50px;">${displayThisScore}</div>
+
+            <div class="item" style="width:200px;"><label>${displayThisProfessors}</label></div>
+
+            </div>
+            <div class="manageClassItem"></div>
+            `
         }
     }
 
@@ -250,6 +323,44 @@ function manageClasses() {
     document.getElementById("display").innerHTML = displayThis
 
     localStorage.setItem("data",JSON.stringify(data))
+}
+
+function changeClassOption(type, thisClass, thisSection, value) {
+    data = JSON.parse(localStorage.getItem("data"))
+
+    switch (type) {
+        case "override":
+            switch (value.value) {
+                case "1":
+                    data["class"][thisClass]["section"][thisSection]["override"] = -1
+                    break
+                case "2":
+                    data["class"][thisClass]["section"][thisSection]["override"] = 1
+                    break
+                case "3":
+                    data["class"][thisClass]["section"][thisSection]["override"] = 0
+                    break
+                default:
+                    break
+            }
+            break
+        default:
+            break
+    }
+
+    /*
+        if (value.value == 1) {
+            data["class"][thisClass]["section"][thisSection]["override"] = -1
+        } else if (value.value == 2) {
+            data["class"][thisClass]["section"][thisSection]["override"] = 1
+        } else if (value.value == 3) {
+            data["class"][thisClass]["section"][thisSection]["override"] = 0
+        }
+    }
+    */
+
+    localStorage.setItem("data",JSON.stringify(data))
+    return
 }
 
 /***************
@@ -431,9 +542,107 @@ function changeSetting(name, value) {
     localStorage.setItem("data",JSON.stringify(data))
 }
 
+/****************
+MANAGE PROFESSORS
+****************/
+
+function manageProfessors() {
+    data = JSON.parse(localStorage.getItem("data"))
+    let displayThis = ""
+
+    displayThis += `
+    <button type="button" onclick="upload('professors')">Import Professor Scores</button>
+    <button type="button" onclick="download('professors')">Export Professor Scores</button>
+    <div class="wrapper">
+    <div class="item" style="width:200px;"><label><b>Name</b></label></div>
+    <div class="item" style="width:50px;"><label><b>Score</b></label></div>
+    </div>
+    <hr style="height:0px; margin-top:0px">
+    `
+
+    professor = Object.keys(data["professor"])
+    for (let i = 0 ; i < professor.length ; i++) {
+        displayThis += `
+        <div class="wrapper">
+        <div class="item" style="width:200px"><label>${professor[i]}</label></div>
+        <div class="item" style="width:50px"><input type="text" value="${data['professor'][professor[i]]['score']}" style="width:50px" onchange="changeProfessorOption('overallScore','${professor[i]}',this)"></div>
+        </div>
+        `
+    }
+
+    document.getElementById("display").innerHTML = displayThis
+
+    localStorage.setItem("data",JSON.stringify(data))
+}
+
+function changeProfessorOption(option, name, value) {
+    data = JSON.parse(localStorage.getItem("data"))
+
+    switch (option) {
+        case "overallScore":
+            data["professor"][name]["score"] = value.value
+            console.log(value.value)
+            break
+        default:
+    }
+
+    localStorage.setItem("data",JSON.stringify(data))
+}
+
 /**************
 Other Functions
 **************/
+
+function download(what) {
+    data = JSON.parse(localStorage.getItem("data"))
+
+    switch (what) {
+        case "professors":
+            var json = `{"type":"professor","data":${JSON.stringify(data["professor"])}}`
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(new Blob([json], {type:"application/json"}));
+            a.download = "Class Scheduler - Professors.json";
+            a.click();
+            break
+        default:
+            break
+    }
+
+    localStorage.setItem("data",JSON.stringify(data))
+}
+
+function upload(what) {
+    data = JSON.parse(localStorage.getItem("data"))
+
+    switch (what) {
+        case "professors":
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function (event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+                reader.onload = function () {
+                var newdata = JSON.parse(reader.result);
+                // do something with the data
+                if (newdata["type"] != "professor") {
+                    alert("Invalid File")
+                } else {
+                    professors = 
+                    data["professor"] = newdata["data"]
+                    localStorage.setItem("data",JSON.stringify(data))
+                    menubar('professors')
+                }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+            break
+        default:
+            break
+    }
+
+}
 
 function testFunction()
 {
@@ -446,7 +655,7 @@ function testFunction()
     //console.log(localStorage.getItem("data"))
 }
 
-function checkRangeOverlap (ranges) {
+function checkRangeOverlap(ranges) {
     ranges = ranges.filter(item => item !== "online")
     // convert the string ranges to numbers
     ranges = ranges.map (range => range.map (num => Number (num)));
@@ -469,10 +678,24 @@ function checkRangeOverlap (ranges) {
     return false;
 }
 
-function htm (hours) {
+function htm(hours) {
     return hours*60
 }
 
-function mth (minutes) {
+function mth(minutes) {
     return minutes/60
 }
+
+function beautifyTime(time) {
+    hours = time.substring(0,2)
+    minutes = time.substring(2)
+    if (parseInt(hours) >= 12) {
+        if (parseInt(hours) >= 13) {
+            return (hours-12) + ":" + minutes + " PM"
+        } else {
+            return hours + ":" + minutes + " PM"
+        }
+    } else {
+        return hours + ":" + minutes + " AM"
+    }
+} 

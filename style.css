@@ -13,6 +13,25 @@
     font-size: 14px;
 }
 
+.wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.item {
+    align-items: center;
+    position: relative;
+}
+
+.manageClassItem {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    background: #dddddd;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
 /*
 .container {
     width: 150px;
