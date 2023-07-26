@@ -4,19 +4,11 @@ function menubar(option)
         case "home":
             document.getElementById("display").innerHTML = `
             <h1>Class Scheduler</h1>
+            <p>Created by Timothy Huang. All rights reserved.</p>
             `
             break
         case "input":
-            document.getElementById("display").innerHTML = `
-            <p id="p1">Do Something</p>
-            <textarea id="inputClasses" name="Text1" cols="40" rows="5"></textarea>
-            <br><br>
-            <button type="button" onclick="submitClasses()" value="Display">Submit</button>
-            <button type="button" onclick="localStorage.clear()" value="Display">Clear Local Storage</button>
-            <button type="button" onclick="testFunction()" value="Display">Test Button</button>
-            <br><br>
-            <button type="button" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
-            `
+            showInput()
             break
         case "render":
             renderBackground()
@@ -40,6 +32,20 @@ function menubar(option)
 /************
 INPUT CLASSES
 ************/
+
+function showInput() {
+    document.getElementById("display").innerHTML = `
+    <p id="p1">Do Something</p>
+    <textarea id="inputClasses" name="Text1" cols="40" rows="5"></textarea>
+    <br><br>
+    <button type="button" onclick="submitClasses()" value="Display">Submit</button>
+    <button type="button" onclick="localStorage.clear()" value="Display">Clear Local Storage</button>
+    <button type="button" onclick="testFunction()" value="Display">Test Button</button>
+    <br><br>
+    <button type="button" onclick="upload('everything')">Import Everything</button>
+    <button type="button" onclick="download('everything')">Export Everything</button>
+    `
+}
 
 function submitClasses()
 {
@@ -93,9 +99,9 @@ function submitClasses()
 
             // WRITE TIME
             timeDay = columns[1].split("; ")[0].split(' ')
-            //if (!data["class"][name]["section"][section].hasOwnProperty("time")) {
+            if (!data["class"][name]["section"][section].hasOwnProperty("time")) {
                 data["class"][name]["section"][section]["time"] = []
-            //}
+            }
             if (timeDay.length <= 1) {
                 data["class"][name]["section"][section]["time"].push("online")
 
@@ -123,7 +129,10 @@ function submitClasses()
                 }
                 for (let j = 0 ; j < dayArray.length ; j++) {
                     timeNum = DoW.indexOf(dayArray[j]).toString()
-                    data["class"][name]["section"][section]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime])
+                    if ((JSON.stringify(data["class"][name]["section"][section]["time"]).indexOf(JSON.stringify([timeNum + "." + startTime,timeNum + "." + endTime])) >= 0)) {
+                    } else {
+                        data["class"][name]["section"][section]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime])
+                    }
                 }
             }
 
@@ -134,7 +143,6 @@ function submitClasses()
 
 
     localStorage.setItem("data",JSON.stringify(data))
-    console.log(JSON.stringify(data))
     document.getElementById("p1").innerHTML = "Classes Inputed"
 
 }
@@ -240,13 +248,19 @@ MANAGE CLASSES
 
 function manageClasses() {
     data = JSON.parse(localStorage.getItem("data"))
-    let displayThis = ""
+    let displayThis = `
+    <div class="wrapper">
+    <button type="button" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
+    <div class="item" style="width:20px;"></div>
+    <label id="p1"></label>
+    </div>
+    `
     let professors = []
     const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
     classes = Object.keys(data.class)
     for (let i = 0 ; i < classes.length ; i++) {
-        displayThis += `<h1>${classes[i]}</h1>`
+        displayThis += `<h1 style="margin-bottom:5px">${classes[i]}</h1><button type="button" style="margin-bottom:10px" onclick="deleteClass('${classes[i]}')" value="Display">Delete This Class</button>`
         sections = Object.keys(data["class"][classes[i]]["section"])
 
         displayThis += `
@@ -295,16 +309,24 @@ function manageClasses() {
                 displayThisScore += `<label style="color:${scoreColor}">${theScore}</label><br>`
             }
             
+            if (sectionInfo.override == 1) {
+                overrideColor = "Green"
+            } else if (sectionInfo.override == 0) {
+                overrideColor = "Red"
+            } else {
+                overrideColor = ""
+            }
+
             displayThis += `
             <div class="wrapper">
             <div class="item" style="width:100px;"><label>${sections[j]}</label></div>
 
             <div class="item" style="width:70px;"><label style="color:${(sectionInfo.open == 1) ? "Green" : "Red"}">${(sectionInfo.open == 1) ? "Open" : "Closed"}</label></div>
 
-            <div class="item" style="width:100px;"><select id="dropdown" onchange="changeClassOption('override','${[classes[i]]}','${[sections[j]]}',this)">
-                <option value="1" ${(sectionInfo.override == -1) ? "selected" : ""}></option>
-                <option value="2" ${(sectionInfo.override == 1) ? "selected" : ""}>Enable</option>
-                <option value="3" ${(sectionInfo.override == 0) ? "selected" : ""}>Disable</option>
+            <div class="item" style="width:100px;"><select id="dropdown" style="color:${overrideColor}" onchange="changeClassOption('override','${[classes[i]]}','${[sections[j]]}',this)">
+                <option value="-1" ${(sectionInfo.override == -1) ? "selected" : ""}></option>
+                <option style="color:green" value="1" ${(sectionInfo.override == 1) ? "selected" : ""}>Enable</option>
+                <option style="color:red" value="0" ${(sectionInfo.override == 0) ? "selected" : ""}>Disable</option>
             </select></div>
 
             <div class="item" style="width:275px;"><label>${displayThisTime}</label></div>
@@ -330,19 +352,10 @@ function changeClassOption(type, thisClass, thisSection, value) {
 
     switch (type) {
         case "override":
-            switch (value.value) {
-                case "1":
-                    data["class"][thisClass]["section"][thisSection]["override"] = -1
-                    break
-                case "2":
-                    data["class"][thisClass]["section"][thisSection]["override"] = 1
-                    break
-                case "3":
-                    data["class"][thisClass]["section"][thisSection]["override"] = 0
-                    break
-                default:
-                    break
-            }
+                    data["class"][thisClass]["section"][thisSection]["override"] = value.value
+                    localStorage.setItem("data",JSON.stringify(data))
+                    menubar('classes')
+                    return
             break
         default:
             break
@@ -361,6 +374,18 @@ function changeClassOption(type, thisClass, thisSection, value) {
 
     localStorage.setItem("data",JSON.stringify(data))
     return
+}
+
+function deleteClass(thisClass) {
+    data = JSON.parse(localStorage.getItem("data"))
+
+    if (confirm("Are you sure you want to delete " + thisClass + "?")) {
+        delete data["class"][thisClass]
+    }
+
+    localStorage.setItem("data",JSON.stringify(data))
+
+    menubar('classes')
 }
 
 /***************
@@ -402,7 +427,7 @@ function renderBackground()
 
     //Prepare DIV's in display html
     document.getElementById("display").innerHTML = `
-    <p id="p1">Page 0</p>
+    <p id="p1">${"Page " + data["render"]["current"] + " / " + (data["schedule"].length-1)}</p>
     <div id="controls"><button onClick="scheduleAdv(-1)">Back</button><button onClick="scheduleAdv(1)">Forward</button></div><br>
 
     <div class="grid-container" style="display: grid;grid-template-columns: 40px auto;">
@@ -411,8 +436,8 @@ function renderBackground()
         <div class="grid-item" id="sideTime" style="position:relative;text-align-last: right;"></div>
         <div class="grid-item" style="position:relative;height:${height}px;"><div id="background"></div><div id="content"></div></div>
     </div>
-
     </div>`
+
 
     //Edit Background
     for (let i = 0; i < (Math.ceil(totalTime)) ; i++) {
@@ -453,11 +478,10 @@ function renderSchedule()
     } else {
         columnFraction = 100/5
     }
-    let colors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#8B00FF", "#FF00FF", "#FF1493", "#FF69B4", "#FFC0CB", "#FFE4E1", "#FFEBCD", "#FFFACD", "#F0FFF0", "#E0FFFF", "#ADD8E6", "#87CEFA", "#B0E0E6", "#F0F8FF"]
+    let colors = ["#E0BBE4", "#957DAD", "#D291BC", "#FEC8D8", "#FFDFD3", "#CCF1FF", "#E0D7FF", "#FFCCE1", "#D7EEFF", "#FAFFC7", "#B4CFEC", "#F9E4AD", "#F6A6FF", "#A7FFEB", "#F8B195", "#A8E6CF", "#FFEFD5", "#F0E68C", "#FFB6C1", "#ADD8E6"]
 
 
     //Add Content Squares
-    console.log(data["schedule"],data["render"]["current"])
     for (let i = 0; i < data["schedule"][data["render"]["current"]].length; i++) {
         thisSection = data["schedule"][data["render"]["current"]][i]
         thisClass = thisSection.substring (0, thisSection.indexOf("-"))
@@ -472,15 +496,8 @@ function renderSchedule()
             endMinutes = htm(thisEndTime.substring(0,2)) + parseInt(thisEndTime.substring(2))
 
             displayContent = displayContent + `<div style="position:absolute;left:${Math.round(thisDay*columnFraction+columnPad)}%;top:${(startMinutes-htm(startTime))*timeScale}px;right:${Math.round(100-((thisDay+1)*columnFraction-columnPad))}%;height:${(endMinutes-startMinutes)*timeScale}px;background:${colors[i]}">${thisSection}</div>`
-
-            //<p class="timeLabel" style="top:${(startMinutes-htm(startTime))*timeScale}px;left:${thisDay*columnFraction+columnPad}%">${thisSection}</p>
-
-            //console.log(Math.round((thisDay+1)*columnFraction+columnPad))
-            //console.log(thisDay, startMinutes, thisEndTime)
         }
 
-
-        //console.log(thisSection, thisClass, JSON.stringify(thisTime))
     }
 
     document.getElementById("content").innerHTML = displayContent
@@ -501,7 +518,7 @@ function scheduleAdv(moveByThis) {
     }
 
 
-    document.getElementById("p1").innerHTML = "Page " + data["render"]["current"]
+    document.getElementById("p1").innerHTML = "Page " + data["render"]["current"] + " / " + (data["schedule"].length-1)
 
 
     localStorage.setItem("data",JSON.stringify(data))
@@ -529,8 +546,6 @@ function displaySettings() {
 
 function changeSetting(name, value) {
     data = JSON.parse(localStorage.getItem("data"))
-
-    console.log(name, value)
 
     switch(name) {
         case "weekends":
@@ -581,7 +596,6 @@ function changeProfessorOption(option, name, value) {
     switch (option) {
         case "overallScore":
             data["professor"][name]["score"] = value.value
-            console.log(value.value)
             break
         default:
     }
@@ -602,6 +616,13 @@ function download(what) {
             var a = document.createElement("a");
             a.href = URL.createObjectURL(new Blob([json], {type:"application/json"}));
             a.download = "Class Scheduler - Professors.json";
+            a.click();
+            break
+        case "everything":
+            var json = `{"type":"everything","data":${JSON.stringify(data)}}`
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(new Blob([json], {type:"application/json"}));
+            a.download = "Class Scheduler - All Data.json";
             a.click();
             break
         default:
@@ -628,10 +649,36 @@ function upload(what) {
                 if (newdata["type"] != "professor") {
                     alert("Invalid File")
                 } else {
-                    professors = 
-                    data["professor"] = newdata["data"]
+                    professors = Object.keys(newdata["data"])
+                    for (i = 0; i < professors.length; i++) {
+                        if (data["professor"].hasOwnProperty(professors[i])) {
+                            data["professor"][professors[i]]["score"] = newdata["data"][professors[i]]["score"]
+                        }
+                    }
+
                     localStorage.setItem("data",JSON.stringify(data))
                     menubar('professors')
+                }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+            break
+        case "everything":
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function (event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+                reader.onload = function () {
+                var newdata = JSON.parse(reader.result);
+                // do something with the data
+                if (newdata["type"] != "everything") {
+                    alert("Invalid File")
+                } else {
+                    data = newdata["data"]
+                    localStorage.setItem("data",JSON.stringify(data))
                 }
                 };
                 reader.readAsText(file);
@@ -650,9 +697,7 @@ function testFunction()
 
     console.log(JSON.stringify(data))
 
-
     localStorage.setItem("data",JSON.stringify(data))
-    //console.log(localStorage.getItem("data"))
 }
 
 function checkRangeOverlap(ranges) {
