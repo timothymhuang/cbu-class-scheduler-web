@@ -73,7 +73,7 @@ function submitClasses()
     for (let i = 0 ; i < input.length ; i++) {
         // WRITE CLASS NAME AND SECTION NAME
         if (input[i].includes("Open") || input[i].includes("Closed") || input[i].includes("Reopened")) {
-            columns = input[i].split("\t").filter(function(item){return item != ""})
+            columns = input[i].split("\t").filter(function(item){return item != ""}).filter(function(item){return item != "view note"})
 
             section = columns[0]
             name = section.substring(0,section.indexOf("-"))
@@ -182,7 +182,10 @@ async function generateSchedules()
         for (let j = 0; j < sectionlist.length; j++) {
             open = data["class"][classlist[i]]["section"][sectionlist[j]]["open"]
             override = data["class"][classlist[i]]["section"][sectionlist[j]]["override"]
-            if (override == 1 || (override != 0 && open == 1)) {
+            if (override == 2) {
+                process[classlist[i]]["list"] = [sectionlist[j]]
+                break
+            } else if (override == 1 || (override != 0 && open == 1)) {
                 process[classlist[i]]["list"].push(sectionlist[j])
             }
         }
@@ -313,6 +316,8 @@ function manageClasses() {
                 overrideColor = "Green"
             } else if (sectionInfo.override == 0) {
                 overrideColor = "Red"
+            } else if (sectionInfo.override == 2) {
+                overrideColor = "#FFAA00"
             } else {
                 overrideColor = ""
             }
@@ -327,6 +332,7 @@ function manageClasses() {
                 <option value="-1" ${(sectionInfo.override == -1) ? "selected" : ""}></option>
                 <option style="color:green" value="1" ${(sectionInfo.override == 1) ? "selected" : ""}>Enable</option>
                 <option style="color:red" value="0" ${(sectionInfo.override == 0) ? "selected" : ""}>Disable</option>
+                <option style="color:#FFAA00" value="2" ${(sectionInfo.override == 2) ? "selected" : ""}>SOLO</option>
             </select></div>
 
             <div class="item" style="width:275px;"><label>${displayThisTime}</label></div>
