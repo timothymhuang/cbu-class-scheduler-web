@@ -79,6 +79,7 @@ function submitClasses()
             name = section.substring(0,section.indexOf("-"))
 
             if (!data.class.hasOwnProperty(name)) {data["class"][name] = {}}
+            if (!data["class"][name].hasOwnProperty("enable")) {data["class"][name]["enable"] = 1}
             if (!data["class"][name].hasOwnProperty("section")) {data["class"][name]["section"] = {}}
             if (!data["class"][name]["section"].hasOwnProperty(section)) {data["class"][name]["section"][section] = {}}
 
@@ -174,27 +175,33 @@ async function generateSchedules()
 
     // Generate Dictionary of Classes and Counters
     for (let i = 0; i < classlist.length; i++) {
-        process[classlist[i]] = {}
-        process[classlist[i]]["count"] = 0
-        process[classlist[i]]["max"] = -1
-        process[classlist[i]]["list"] = []
-        sectionlist = Object.keys(data["class"][classlist[i]]["section"])
-        for (let j = 0; j < sectionlist.length; j++) {
-            open = data["class"][classlist[i]]["section"][sectionlist[j]]["open"]
-            override = data["class"][classlist[i]]["section"][sectionlist[j]]["override"]
-            if (override == 2) {
-                process[classlist[i]]["list"] = [sectionlist[j]]
-                break
-            } else if (override == 1 || (override != 0 && open == 1)) {
-                process[classlist[i]]["list"].push(sectionlist[j])
-            }
-        }
-        process[classlist[i]]["max"] = process[classlist[i]]["list"].length-1
-        if (process[classlist[i]]["max"] == -1) {
-            log += classlist[i] + " excluded because no sections are available.<br>"
-            console.log(classlist[i] + " excluded because no sections are available.")
-            delete process[classlist[i]]
+        if (data["class"][classlist[i]]["enable"] == 0) {
+            log += classlist[i] + " excluded because it is disabled.<br>"
+            console.log(classlist[i] + " excluded because it is disabled.")
             delete classlist[i]
+        } else {
+            process[classlist[i]] = {}
+            process[classlist[i]]["count"] = 0
+            process[classlist[i]]["max"] = -1
+            process[classlist[i]]["list"] = []
+            sectionlist = Object.keys(data["class"][classlist[i]]["section"])
+            for (let j = 0; j < sectionlist.length; j++) {
+                open = data["class"][classlist[i]]["section"][sectionlist[j]]["open"]
+                override = data["class"][classlist[i]]["section"][sectionlist[j]]["override"]
+                if (override == 2) {
+                    process[classlist[i]]["list"] = [sectionlist[j]]
+                    break
+                } else if (override == 1 || (override != 0 && open == 1)) {
+                    process[classlist[i]]["list"].push(sectionlist[j])
+                }
+            }
+            process[classlist[i]]["max"] = process[classlist[i]]["list"].length-1
+            if (process[classlist[i]]["max"] == -1) {
+                log += classlist[i] + " excluded because no sections are available.<br>"
+                console.log(classlist[i] + " excluded because no sections are available.")
+                delete process[classlist[i]]
+                delete classlist[i]
+            }
         }
     }
     classlist = classlist.filter(function(item) {
@@ -263,7 +270,21 @@ function manageClasses() {
 
     classes = Object.keys(data.class)
     for (let i = 0 ; i < classes.length ; i++) {
-        displayThis += `<h1 style="margin-bottom:5px">${classes[i]}</h1><button type="button" style="margin-bottom:10px" onclick="deleteClass('${classes[i]}')" value="Display">Delete This Class</button>`
+
+        if (data["class"][classes[i]]["enable"] == 1) {
+            overrideAllColor = "Green"
+        } else if (data["class"][classes[i]]["enable"] == 0) {
+            overrideAllColor = "#FFAA00"
+        } else {
+            overrideAllColor = ""
+        }
+        displayThis += `<h1 style="margin-bottom:5px">${classes[i]}</h1>
+        <select style="margin-bottom:5px; color:${overrideAllColor}" id="dropdown" onchange="changeClassOption('overrideAll', '${classes[i]}', null, this)">
+                <option style="color:green" value="1" ${(data["class"][classes[i]]["enable"] == 1) ? "selected" : ""}>Enable</option>
+                <option style="color:#FFAA00" value="0" ${(data["class"][classes[i]]["enable"] == 0) ? "selected" : ""}>Disable</option>
+                <option style="color:red" value="-1">Delete</option>
+        </select>
+            `
         sections = Object.keys(data["class"][classes[i]]["section"])
 
         displayThis += `
@@ -358,10 +379,23 @@ function changeClassOption(type, thisClass, thisSection, value) {
 
     switch (type) {
         case "override":
-                    data["class"][thisClass]["section"][thisSection]["override"] = value.value
-                    localStorage.setItem("data",JSON.stringify(data))
-                    menubar('classes')
-                    return
+            data["class"][thisClass]["section"][thisSection]["override"] = value.value
+            console.log(`${thisSection}, part of ${thisClass}, is ${value.value}`)
+            localStorage.setItem("data",JSON.stringify(data))
+            menubar('classes')
+            break
+        case "overrideAll":
+            if (value.value == -1) {
+                deleteClass(thisClass)
+            } else if (value.value == 0) {
+                data["class"][thisClass]["enable"] = 0
+                console.log(`${thisClass} is disabled.`)
+            } else if (value.value == 1) {
+                data["class"][thisClass]["enable"] = 1
+                console.log(`${thisClass} is enabled.`)
+            }
+            localStorage.setItem("data",JSON.stringify(data))
+            menubar('classes')
             break
         default:
             break
