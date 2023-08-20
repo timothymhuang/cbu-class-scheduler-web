@@ -174,7 +174,9 @@ async function generateSchedules()
     let log = ""
 
     // Generate Dictionary of Classes and Counters
+    // for each class in the list
     for (let i = 0; i < classlist.length; i++) {
+        // if it is disabled, exclude this class
         if (data["class"][classlist[i]]["enable"] == 0) {
             log += classlist[i] + " excluded because it is disabled.<br>"
             console.log(classlist[i] + " excluded because it is disabled.")
@@ -183,19 +185,28 @@ async function generateSchedules()
             process[classlist[i]] = {}
             process[classlist[i]]["count"] = 0
             process[classlist[i]]["max"] = -1
+            process[classlist[i]]["solo"] = 0
             process[classlist[i]]["list"] = []
             sectionlist = Object.keys(data["class"][classlist[i]]["section"])
             for (let j = 0; j < sectionlist.length; j++) {
                 open = data["class"][classlist[i]]["section"][sectionlist[j]]["open"]
                 override = data["class"][classlist[i]]["section"][sectionlist[j]]["override"]
-                if (override == 2) {
+                if (override == 2) { //SOLO is selected
+                    process[classlist[i]]["solo"] = 1
                     process[classlist[i]]["list"] = [sectionlist[j]]
+                    for (let k = j+1; k < sectionlist.length-j; k++) {
+                        override = data["class"][classlist[i]]["section"][sectionlist[k]]["override"]
+                        if (override == 2) {
+                            process[classlist[i]]["list"].push(sectionlist[k])
+                        }
+                    }
                     break
                 } else if (override == 1 || (override != 0 && open == 1)) {
                     process[classlist[i]]["list"].push(sectionlist[j])
                 }
             }
             process[classlist[i]]["max"] = process[classlist[i]]["list"].length-1
+            // If there are no sections open, exclude this class.
             if (process[classlist[i]]["max"] == -1) {
                 log += classlist[i] + " excluded because no sections are available.<br>"
                 console.log(classlist[i] + " excluded because no sections are available.")
@@ -208,6 +219,8 @@ async function generateSchedules()
         return item != undefined
     });
 
+    download("this",process)
+
     data["schedule"] = []
     run = 1
     while (run) {
@@ -215,10 +228,20 @@ async function generateSchedules()
         theseTimes = []
         theseClasses = []
         for (let l = 0; l < classlist.length; l++) {
-            thisTime = data["class"][classlist[l]]["section"][process[classlist[l]]["list"][process[classlist[l]]["count"]]]["time"]
-            theseClasses.push(process[classlist[l]]["list"][process[classlist[l]]["count"]])
-            for (let m = 0; m < thisTime.length; m++) {
-                theseTimes.push(thisTime[m])
+            if (process[classlist[l]]["solo"] == 1) {
+                for (let o = 0; o < process[classlist[l]]["list"].length ; o++) {
+                    thisTime = data["class"][classlist[l]]["section"][process[classlist[l]]["list"][o]]["time"]
+                    theseClasses.push(process[classlist[l]]["list"][o])
+                    for (let m = 0; m < thisTime.length; m++) {
+                        theseTimes.push(thisTime[m])
+                    }
+                }
+            } else {
+                thisTime = data["class"][classlist[l]]["section"][process[classlist[l]]["list"][process[classlist[l]]["count"]]]["time"]
+                theseClasses.push(process[classlist[l]]["list"][process[classlist[l]]["count"]])
+                for (let m = 0; m < thisTime.length; m++) {
+                    theseTimes.push(thisTime[m])
+                }
             }
         }
 
@@ -235,7 +258,9 @@ async function generateSchedules()
                 run = 0
                 break
             }
-            if (process[classlist[incThis]]["count"] >= process[classlist[incThis]]["max"]) {
+            if (process[classlist[incThis]]["solo"] == 1) {
+                incThis++
+            } else if (process[classlist[incThis]]["count"] >= process[classlist[incThis]]["max"]) {
                 process[classlist[incThis]]["count"] = 0
                 incThis++
             } else {
@@ -248,7 +273,7 @@ async function generateSchedules()
     }
 
     localStorage.setItem("data",JSON.stringify(data))
-    log = "<b>Schedules Generated</b><br>" + log
+    log = `<b>${data["schedule"].length} Schedules Generated</b><br>${log}`
     return log
 }
 
@@ -647,7 +672,7 @@ function changeProfessorOption(option, name, value) {
 Other Functions
 **************/
 
-function download(what) {
+function download(what, payload) {
     data = JSON.parse(localStorage.getItem("data"))
 
     switch (what) {
@@ -663,6 +688,13 @@ function download(what) {
             var a = document.createElement("a");
             a.href = URL.createObjectURL(new Blob([json], {type:"application/json"}));
             a.download = "Class Scheduler - All Data.json";
+            a.click();
+            break
+        case "this":
+            var json = `{"type":"test","data":${JSON.stringify(payload)}}`
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(new Blob([json], {type:"application/json"}));
+            a.download = "Class Scheduler - Test.json";
             a.click();
             break
         default:

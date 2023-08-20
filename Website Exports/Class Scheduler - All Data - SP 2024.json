@@ -589,120 +589,6 @@
                     }
                 }
             },
-            "EGR182": {
-                "enable": 1,
-                "section": {
-                    "EGR182-A": {
-                        "open": 0,
-                        "professors": [
-                            "Gallegos, Humberto Adrian",
-                            "Wood, Brian Dean"
-                        ],
-                        "time": [
-                            [
-                                "1.1400",
-                                "1.1530"
-                            ],
-                            [
-                                "3.1400",
-                                "3.1530"
-                            ],
-                            [
-                                "0.1600",
-                                "0.1730"
-                            ]
-                        ],
-                        "override": -1
-                    },
-                    "EGR182-B": {
-                        "open": 0,
-                        "professors": [
-                            "Gallegos, Humberto Adrian",
-                            "Wood, Brian Dean"
-                        ],
-                        "time": [
-                            [
-                                "1.1400",
-                                "1.1530"
-                            ],
-                            [
-                                "3.1400",
-                                "3.1530"
-                            ],
-                            [
-                                "0.1800",
-                                "0.1930"
-                            ]
-                        ],
-                        "override": -1
-                    },
-                    "EGR182-C": {
-                        "open": 1,
-                        "professors": [
-                            "Zhang, Jun",
-                            "Donaldson, Anthony L."
-                        ],
-                        "time": [
-                            [
-                                "1.1215",
-                                "1.1345"
-                            ],
-                            [
-                                "3.1215",
-                                "3.1345"
-                            ],
-                            [
-                                "0.1315",
-                                "0.1445"
-                            ]
-                        ],
-                        "override": -1
-                    },
-                    "EGR182-D": {
-                        "open": 0,
-                        "professors": [
-                            "Zhang, Jun",
-                            "STAFF, STAFF"
-                        ],
-                        "time": [
-                            [
-                                "1.1215",
-                                "1.1345"
-                            ],
-                            [
-                                "3.1215",
-                                "3.1345"
-                            ],
-                            [
-                                "2.1315",
-                                "2.1445"
-                            ]
-                        ],
-                        "override": -1
-                    },
-                    "EGR182-E": {
-                        "open": 0,
-                        "professors": [
-                            "Gallegos, Humberto Adrian"
-                        ],
-                        "time": [
-                            [
-                                "1.1030",
-                                "1.1200"
-                            ],
-                            [
-                                "3.1030",
-                                "3.1200"
-                            ],
-                            [
-                                "4.1245",
-                                "4.1415"
-                            ]
-                        ],
-                        "override": "1"
-                    }
-                }
-            },
             "ENG123": {
                 "enable": 1,
                 "section": {
@@ -1327,10 +1213,10 @@
                     }
                 }
             },
-            "GST050A": {
+            "GST050": {
                 "enable": 1,
                 "section": {
-                    "GST050A-A": {
+                    "GST050-A": {
                         "open": 1,
                         "professors": [
                             "Vowell, Andy B."
@@ -1342,13 +1228,8 @@
                             ]
                         ],
                         "override": -1
-                    }
-                }
-            },
-            "GST050B": {
-                "enable": 1,
-                "section": {
-                    "GST050B-B": {
+                    },
+                    "GST050-B": {
                         "open": 1,
                         "professors": [
                             "Vowell, Andy B."
