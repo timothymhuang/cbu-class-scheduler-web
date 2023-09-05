@@ -1,5 +1,6 @@
 function menubar(option)
 {
+    document.getElementById("navbar").innerHTML = prepNavbar(option)
     switch(option) {
         case "home":
             document.getElementById("display").innerHTML = `
@@ -8,19 +9,19 @@ function menubar(option)
             `
             break
         case "input":
-            showInput()
+            pageInput()
             break
         case "render":
-            renderBackground()
+            pageRenderBackground()
             break
         case "classes":
-            manageClasses()
+            pageManageClasses()
             break
         case "settings":
-            displaySettings()
+            pageSettings()
             break
         case "professors":
-            manageProfessors()
+            pageProfessors()
             break
         default:
             document.getElementById("display").innerHTML = `
@@ -29,12 +30,23 @@ function menubar(option)
     }
 }
 
+function prepNavbar(option) {
+    return `
+    <button ${(option == "home") ? 'class="thisPage"' : ''} type="button" onclick="menubar('home')">Home</button>
+    <button ${(option == "input") ? 'class="thisPage"' : ''} type="button" onclick="menubar('input')">Input Classes</button>
+    <button ${(option == "classes") ? 'class="thisPage"' : ''} type="button" onclick="menubar('classes')">Manage Classes</button>
+    <button ${(option == "render") ? 'class="thisPage"' : ''} type="button" onclick="menubar('render')">Render Schedules</button>
+    <button ${(option == "settings") ? 'class="thisPage"' : ''} type="button" onclick="menubar('settings')">Settings</button>
+    <button ${(option == "professors") ? 'class="thisPage"' : ''} type="button" onclick="menubar('professors')">Manage Professors</button>`
+}
+
 /************
 INPUT CLASSES
 ************/
 
-function showInput() {
+function pageInput() {
     document.getElementById("display").innerHTML = `
+    <p>Start Here</p>
     <p id="p1">Do Something</p>
     <textarea id="inputClasses" name="Text1" cols="40" rows="5"></textarea>
     <br><br>
@@ -281,9 +293,10 @@ async function generateSchedules()
 MANAGE CLASSES
 *************/
 
-function manageClasses() {
+function pageManageClasses() {
     data = JSON.parse(localStorage.getItem("data"))
     let displayThis = `
+    <div class="pageManageClasses">
     <div class="wrapper">
     <button type="button" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
     <div class="item" style="width:20px;"></div>
@@ -392,6 +405,7 @@ function manageClasses() {
             `
         }
     }
+    displayThis += "</div> <!--Final Closing Div Tag-->"
 
 
     document.getElementById("display").innerHTML = displayThis
@@ -457,7 +471,7 @@ function deleteClass(thisClass) {
 RENDER SCHEDULES
 ***************/
 
-function renderBackground()
+function pageRenderBackground()
 {
     data = JSON.parse(localStorage.getItem("data"))
 
@@ -492,7 +506,7 @@ function renderBackground()
 
     //Prepare DIV's in display html
     document.getElementById("display").innerHTML = `
-    <p id="p1">${"Page " + data["render"]["current"] + " / " + (data["schedule"].length-1)}</p>
+    <p id="p1">${"Page " + (data["render"]["current"]+1) + " / " + (data["schedule"].length)}</p>
     <div id="controls"><button onClick="scheduleAdv(-1)">Back</button><button onClick="scheduleAdv(1)">Forward</button></div><br>
 
     <div class="grid-container" style="display: grid;grid-template-columns: 40px auto;">
@@ -583,7 +597,7 @@ function scheduleAdv(moveByThis) {
     }
 
 
-    document.getElementById("p1").innerHTML = "Page " + data["render"]["current"] + " / " + (data["schedule"].length-1)
+    document.getElementById("p1").innerHTML = "Page " + (data["render"]["current"]+1) + " / " + (data["schedule"].length)
 
 
     localStorage.setItem("data",JSON.stringify(data))
@@ -595,7 +609,7 @@ function scheduleAdv(moveByThis) {
 SETTINGS
 *******/
 
-function displaySettings() {
+function pageSettings() {
     data = JSON.parse(localStorage.getItem("data"))
 
     if (!data["render"].hasOwnProperty("weekends")) {data["render"]["weekends"] = 0}
@@ -626,7 +640,7 @@ function changeSetting(name, value) {
 MANAGE PROFESSORS
 ****************/
 
-function manageProfessors() {
+function pageProfessors() {
     data = JSON.parse(localStorage.getItem("data"))
     let displayThis = ""
 
