@@ -4,9 +4,10 @@ function menubar(option)
     switch(option) {
         case "home":
             document.getElementById("display").innerHTML = `
+            <div class="margins">
             <h1>Class Scheduler</h1>
             <p>Created by Timothy Huang. All rights reserved.</p>
-            `
+            </div>`
             break
         case "input":
             pageInput()
@@ -46,6 +47,7 @@ INPUT CLASSES
 
 function pageInput() {
     document.getElementById("display").innerHTML = `
+    <div class="margins">
     <p>Start Here</p>
     <p id="p1">Do Something</p>
     <textarea id="inputClasses" name="Text1" cols="40" rows="5"></textarea>
@@ -56,10 +58,11 @@ function pageInput() {
     <br><br>
     <button type="button" onclick="upload('everything')">Import Everything</button>
     <button type="button" onclick="download('everything')">Export Everything</button>
+    </div>
     `
 }
 
-function submitClasses()
+function submitClassesOld()
 {
     let input = document.getElementById("inputClasses").value.split("\n")
     document.getElementById("inputClasses").value = ""
@@ -158,6 +161,46 @@ function submitClasses()
     localStorage.setItem("data",JSON.stringify(data))
     document.getElementById("p1").innerHTML = "Classes Inputed"
 
+}
+
+function submitClasses() {
+    // Prepare variables
+    let input = document.getElementById("inputClasses").value.split("\n")
+    document.getElementById("inputClasses").value = ""
+    const DoW = ["M","T","W","R","F"]
+    if (localStorage.getItem("data") == null) {
+        localStorage.setItem("data","{}")
+    }
+    data = JSON.parse(localStorage.getItem("data"))
+    if (!data.hasOwnProperty("class")) {
+        data["class"] = {}
+    }
+    let columns
+    let section
+    let name
+    let note
+    let status
+    let test
+
+    // Start Processing
+    for (let i = 0 ; i < input.length ; i++) {
+        if (!input[i].includes("\t")) {continue}
+        columns = input[i].split("\t")
+        if (columns[0] == '') {
+            columns.shift()
+        }
+
+        if ((input[i].includes("Open") || input[i].includes("Closed") || input[i].includes("Reopened"))) {
+            section = columns[0]
+            name = columns[1]
+            note = columns[2]
+            seats = columns[3]
+            status = columns[4]
+            test = columns[5]
+            console.log(columns.length,section,name,note,seats,status,test)
+        }
+
+    }
 }
 
 async function callGenerateSchedules()
@@ -296,7 +339,7 @@ MANAGE CLASSES
 function pageManageClasses() {
     data = JSON.parse(localStorage.getItem("data"))
     let displayThis = `
-    <div class="pageManageClasses">
+    <div class="margins">
     <div class="wrapper">
     <button type="button" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
     <div class="item" style="width:20px;"></div>
@@ -506,6 +549,7 @@ function pageRenderBackground()
 
     //Prepare DIV's in display html
     document.getElementById("display").innerHTML = `
+    <div class="margins">
     <p id="p1">${"Page " + (data["render"]["current"]+1) + " / " + (data["schedule"].length)}</p>
     <div id="controls"><button onClick="scheduleAdv(-1)">Back</button><button onClick="scheduleAdv(1)">Forward</button></div><br>
 
@@ -514,6 +558,7 @@ function pageRenderBackground()
         <div class="grid-item" id="dayLabel"><p>test</p></div>
         <div class="grid-item" id="sideTime" style="position:relative;text-align-last: right;"></div>
         <div class="grid-item" style="position:relative;height:${height}px;"><div id="background"></div><div id="content"></div></div>
+    </div>
     </div>
     </div>`
 
@@ -615,9 +660,11 @@ function pageSettings() {
     if (!data["render"].hasOwnProperty("weekends")) {data["render"]["weekends"] = 0}
 
     document.getElementById("display").innerHTML = `
+    <div class="margins">
     <h1>Settings</h1>
     <input type="checkbox" id="weekend" onclick="changeSetting('weekends', this.checked)" ${(data["render"]["weekends"]) ? 'checked' : ''}>
     <label for="weekend">Include Weekends</label>
+    </div>
     `
 
     localStorage.setItem("data",JSON.stringify(data))
@@ -645,6 +692,7 @@ function pageProfessors() {
     let displayThis = ""
 
     displayThis += `
+    <div class="margins">
     <button type="button" onclick="upload('professors')">Import Professor Scores</button>
     <button type="button" onclick="download('professors')">Export Professor Scores</button>
     <div class="wrapper">
@@ -663,6 +711,8 @@ function pageProfessors() {
         </div>
         `
     }
+
+    displayThis += `</div>`
 
     document.getElementById("display").innerHTML = displayThis
 
