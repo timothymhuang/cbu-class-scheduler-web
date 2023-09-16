@@ -181,16 +181,18 @@ function submitClasses() {
     let note
     let status
     let test
+    let professor
+    
 
     // Start Processing
     for (let i = 0 ; i < input.length ; i++) {
-        if (!input[i].includes("\t")) {continue}
-        columns = input[i].split("\t")
-        if (columns[0] == '') {
-            columns.shift()
-        }
+        if (!input[i].includes("\t") && !input[i].includes(' / ')) {continue}
 
         if ((input[i].includes("Open") || input[i].includes("Closed") || input[i].includes("Reopened"))) {
+            columns = input[i].split("\t")
+            while(columns[0] == '') {
+                columns.shift()
+            }
             section = columns[0]
             name = columns[1]
             note = columns[2]
@@ -198,6 +200,11 @@ function submitClasses() {
             status = columns[4]
             test = columns[5]
             console.log(columns.length,section,name,note,seats,status,test)
+        } else if (input[i].includes(" / ")) {
+            columns = input[i].split(" / ")
+            professor = columns[0]
+
+
         }
 
     }
