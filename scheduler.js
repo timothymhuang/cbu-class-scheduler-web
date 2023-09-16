@@ -164,9 +164,18 @@ function submitClassesOld()
 }
 
 function submitClasses() {
-    // Prepare variables
+    // Prepare Storage
     let input = document.getElementById("inputClasses").value.split("\n")
     document.getElementById("inputClasses").value = ""
+    if (localStorage.getItem("data") == null) {
+        localStorage.setItem("data","{}")
+    }
+    data = JSON.parse(localStorage.getItem("data"))
+    if (!data.hasOwnProperty("class")) {
+        data["class"] = {}
+    }
+
+    // Prepare variables
     const DoW = ["M","T","W","R","F"]
     if (localStorage.getItem("data") == null) {
         localStorage.setItem("data","{}")
@@ -182,13 +191,21 @@ function submitClasses() {
     let status
     let test
     let professor
+    let dayTime
+    let location
+    let type
+    let units
+    let startDate
+    let endDate
     
 
     // Start Processing
     for (let i = 0 ; i < input.length ; i++) {
         if (!input[i].includes("\t") && !input[i].includes(' / ')) {continue}
 
-        if ((input[i].includes("Open") || input[i].includes("Closed") || input[i].includes("Reopened"))) {
+        if (input[i].includes("End Date")) {
+            continue
+        } else if ((input[i].includes("Open") || input[i].includes("Closed") || input[i].includes("Reopened"))) {
             columns = input[i].split("\t")
             while(columns[0] == '') {
                 columns.shift()
@@ -199,15 +216,81 @@ function submitClasses() {
             seats = columns[3]
             status = columns[4]
             test = columns[5]
-            console.log(columns.length,section,name,note,seats,status,test)
+
+            code = section.substring(0,section.indexOf("-"))
+
+            if (!data.class.hasOwnProperty(code)) {data["class"][code] = {}}
+            if (!data["class"][code].hasOwnProperty("enable")) {data["class"][code]["enable"] = 1}
+            if (!data["class"][code].hasOwnProperty("section")) {data["class"][code]["section"] = {}}
+            if (!data["class"][code]["section"].hasOwnProperty(section)) {data["class"][code]["section"][section] = {}}
+            data["class"][code]["section"][section]["open"] = ((columns[3] == "Closed") ? 0 : 1)
+
         } else if (input[i].includes(" / ")) {
-            columns = input[i].split(" / ")
+            columns = input[i].split(/ \/ |; /)
             professor = columns[0]
+            dayTime = columns[1]
+            location = columns[2]
+            type = columns[3]
 
+            // WRITE PROFESSOR NAME
+            if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {data["class"][code]["section"][section]["professors"] = []}
+            if (!data["class"][code]["section"][section]["professors"].includes(professor)) {
+                data["class"][code]["section"][section]["professors"].push(professor)
+            }
+            if (!data.hasOwnProperty("professor")) {data["professor"] = {}}
+            if (!data["professor"].hasOwnProperty(professor)) {data["professor"][professor] = {}}
+            if (!data["professor"][professor].hasOwnProperty("score")) {data["professor"][professor]["score"] = -1}
 
+            // WRITE TIME
+            timeDay = dayTime.split(' ')
+            if (!data["class"][code]["section"][section].hasOwnProperty("time")) {
+                data["class"][code]["section"][section]["time"] = []
+            }
+            if (timeDay.length <= 1) {
+                data["class"][code]["section"][section]["time"].push("online")
+
+                // AUTO DISABLE ONLINE CLASSES
+                if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
+                    data["class"][code]["section"][section]["override"] = 0
+                }
+            } else {
+                // DO NOT OVERRIDE CLASSES WITH TIME
+                if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
+                    data["class"][code]["section"][section]["override"] = -1
+                }
+
+                dayArray = timeDay[0].split("")
+                timeArray = timeDay[1].split('-')
+                startTime = timeArray[0].substring(0,2) + timeArray[0].substring(3,5)
+                endTime = timeArray[1].substring(0,2) + timeArray[1].substring(3,5)
+                if (timeArray[1].substring(5,6) == "P") {
+                    if (parseInt(endTime) < 1200) {
+                        endTime = (parseInt(endTime) + 1200).toString().padStart(4,"0")
+                    }
+                    if (timeArray[0].substring(5,6) != "A" && parseInt(startTime) < 1200) {
+                        startTime = (parseInt(startTime) + 1200).toString().padStart(4, "0")
+                    }
+                }
+                for (let j = 0 ; j < dayArray.length ; j++) {
+                    timeNum = DoW.indexOf(dayArray[j]).toString()
+                    if ((JSON.stringify(data["class"][code]["section"][section]["time"]).indexOf(JSON.stringify([timeNum + "." + startTime,timeNum + "." + endTime])) >= 0)) {
+                    } else {
+                        data["class"][code]["section"][section]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime])
+                    }
+                }
+            }
+
+        } else if (input[i].includes("\t")) {
+            columns = input[i].split("\t")
+            units = columns[0]
+            startDate = columns[1]
+            endDate = columns[2]
         }
 
     }
+
+    localStorage.setItem("data",JSON.stringify(data))
+    document.getElementById("p1").innerHTML = "Classes Inputed"
 }
 
 async function callGenerateSchedules()
@@ -281,7 +364,7 @@ async function generateSchedules()
         return item != undefined
     });
 
-    download("this",process)
+    //download("this",process)
 
     data["schedule"] = []
     run = 1
@@ -344,7 +427,14 @@ MANAGE CLASSES
 *************/
 
 function pageManageClasses() {
+    if (localStorage.getItem("data") == null) {
+        localStorage.setItem("data","{}")
+    }
     data = JSON.parse(localStorage.getItem("data"))
+    if (!data.hasOwnProperty("class")) {
+        data["class"] = {}
+    }
+
     let displayThis = `
     <div class="margins">
     <div class="wrapper">
@@ -523,7 +613,14 @@ RENDER SCHEDULES
 
 function pageRenderBackground()
 {
+    if (localStorage.getItem("data") == null) {
+        localStorage.setItem("data","{}")
+    }
     data = JSON.parse(localStorage.getItem("data"))
+    if (!data.hasOwnProperty("schedule")) {
+        data["schedule"] = [[]]
+    }
+    
 
     if (!data.hasOwnProperty("render")) {data["render"] = {}}
     data["render"]["current"] = 0
@@ -662,7 +759,13 @@ SETTINGS
 *******/
 
 function pageSettings() {
+    if (localStorage.getItem("data") == null) {
+        localStorage.setItem("data","{}")
+    }
     data = JSON.parse(localStorage.getItem("data"))
+    if (!data.hasOwnProperty("render")) {
+        data["render"] = {}
+    }
 
     if (!data["render"].hasOwnProperty("weekends")) {data["render"]["weekends"] = 0}
 
@@ -695,7 +798,14 @@ MANAGE PROFESSORS
 ****************/
 
 function pageProfessors() {
+    if (localStorage.getItem("data") == null) {
+        localStorage.setItem("data","{}")
+    }
     data = JSON.parse(localStorage.getItem("data"))
+    if (!data.hasOwnProperty("professor")) {
+        data["professor"] = {}
+    }
+
     let displayThis = ""
 
     displayThis += `
@@ -711,9 +821,11 @@ function pageProfessors() {
 
     professor = Object.keys(data["professor"])
     for (let i = 0 ; i < professor.length ; i++) {
+        lastname = professor[i].split(", ")[0]
+        firstname = professor[i].split(", ")[1].split(" ")[0]
         displayThis += `
         <div class="wrapper">
-        <div class="item" style="width:200px"><label>${professor[i]}</label></div>
+        <div class="item" style="width:200px"><a href="https://www.ratemyprofessors.com/search/professors/145?q=${firstname} ${lastname}" target="_blank">${professor[i]}</a></div>
         <div class="item" style="width:50px"><input type="text" value="${data['professor'][professor[i]]['score']}" style="width:50px" onchange="changeProfessorOption('overallScore','${professor[i]}',this)"></div>
         </div>
         `
@@ -838,7 +950,8 @@ function testFunction()
 {
     data = JSON.parse(localStorage.getItem("data"))
 
-    console.log(JSON.stringify(data))
+    var name = "codemzy";$.get('https://www.freecodecamp.com/' + name, function(response) {  console.log(response);});
+
 
     localStorage.setItem("data",JSON.stringify(data))
 }
