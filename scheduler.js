@@ -436,12 +436,13 @@ function pageManageClasses() {
     }
 
     let displayThis = `
-    <div class="margins">
-    <div class="wrapper">
+    <div style="height:20px"></div>
+    <div class="wrapper secondarybar">
     <button type="button" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
     <div class="item" style="width:20px;"></div>
     <label id="p1"></label>
     </div>
+    <div class="margins">
     `
     let professors = []
     const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
