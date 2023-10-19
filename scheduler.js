@@ -3,11 +3,7 @@ function menubar(option)
     document.getElementById("navbar").innerHTML = prepNavbar(option)
     switch(option) {
         case "home":
-            document.getElementById("display").innerHTML = `
-            <div class="margins">
-            <h1>Class Scheduler</h1>
-            <p>Created by Timothy Huang. All rights reserved.</p>
-            </div>`
+            pageHome()
             break
         case "input":
             pageInput()
@@ -36,9 +32,17 @@ function prepNavbar(option) {
     <button ${(option == "home") ? 'class="thisPage"' : ''} type="button" onclick="menubar('home')">Home</button>
     <button ${(option == "input") ? 'class="thisPage"' : ''} type="button" onclick="menubar('input')">Input Classes</button>
     <button ${(option == "classes") ? 'class="thisPage"' : ''} type="button" onclick="menubar('classes')">Manage Classes</button>
-    <button ${(option == "render") ? 'class="thisPage"' : ''} type="button" onclick="menubar('render')">Render Schedules</button>
+    <button ${(option == "render") ? 'class="thisPage"' : ''} type="button" onclick="menubar('render')">View Schedules</button>
     <button ${(option == "settings") ? 'class="thisPage"' : ''} type="button" onclick="menubar('settings')">Settings</button>
     <button ${(option == "professors") ? 'class="thisPage"' : ''} type="button" onclick="menubar('professors')">Manage Professors</button>`
+}
+
+function pageHome() {
+    document.getElementById("display").innerHTML = `
+    <div class="margins">
+    <h1>Class Scheduler</h1>
+    <p>Created by Timothy Huang. All rights reserved.</p>
+    </div>`
 }
 
 /************
@@ -223,7 +227,7 @@ function submitClasses() {
             if (!data["class"][code].hasOwnProperty("enable")) {data["class"][code]["enable"] = 1}
             if (!data["class"][code].hasOwnProperty("section")) {data["class"][code]["section"] = {}}
             if (!data["class"][code]["section"].hasOwnProperty(section)) {data["class"][code]["section"][section] = {}}
-            data["class"][code]["section"][section]["open"] = ((columns[3] == "Closed") ? 0 : 1)
+            data["class"][code]["section"][section]["open"] = ((columns[4] == "Closed") ? 0 : 1)
 
         } else if (input[i].includes(" / ")) {
             columns = input[i].split(/ \/ |; /)
@@ -436,7 +440,7 @@ function pageManageClasses() {
     }
 
     let displayThis = `
-    <div style="height:20px"></div>
+    <div style="height:25px"></div>
     <div class="wrapper secondarybar">
     <button type="button" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
     <div class="item" style="width:20px;"></div>
