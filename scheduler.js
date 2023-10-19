@@ -40,8 +40,8 @@ function prepNavbar(option) {
 function pageHome() {
     document.getElementById("display").innerHTML = `
     <div class="margins">
-    <h1>Class Scheduler</h1>
-    <p>Created by Timothy Huang. All rights reserved.</p>
+    <h1>CBU Class Scheduler</h1>
+    <p>Created by Timothy Huang</p>
     </div>`
 }
 
