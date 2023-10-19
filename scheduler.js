@@ -32,7 +32,7 @@ function prepNavbar(option) {
     <button ${(option == "home") ? 'class="thisPage"' : ''} type="button" onclick="menubar('home')">Home</button>
     <button ${(option == "input") ? 'class="thisPage"' : ''} type="button" onclick="menubar('input')">Input Classes</button>
     <button ${(option == "classes") ? 'class="thisPage"' : ''} type="button" onclick="menubar('classes')">Manage Classes</button>
-    <button ${(option == "render") ? 'class="thisPage"' : ''} type="button" onclick="menubar('render')">Render Schedules</button>
+    <button ${(option == "render") ? 'class="thisPage"' : ''} type="button" onclick="menubar('render')">View Schedules</button>
     <button ${(option == "settings") ? 'class="thisPage"' : ''} type="button" onclick="menubar('settings')">Settings</button>
     <button ${(option == "professors") ? 'class="thisPage"' : ''} type="button" onclick="menubar('professors')">Manage Professors</button>`
 }
@@ -227,7 +227,7 @@ function submitClasses() {
             if (!data["class"][code].hasOwnProperty("enable")) {data["class"][code]["enable"] = 1}
             if (!data["class"][code].hasOwnProperty("section")) {data["class"][code]["section"] = {}}
             if (!data["class"][code]["section"].hasOwnProperty(section)) {data["class"][code]["section"][section] = {}}
-            data["class"][code]["section"][section]["open"] = ((columns[3] == "Closed") ? 0 : 1)
+            data["class"][code]["section"][section]["open"] = ((columns[4] == "Closed") ? 0 : 1)
 
         } else if (input[i].includes(" / ")) {
             columns = input[i].split(/ \/ |; /)
