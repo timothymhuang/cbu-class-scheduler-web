@@ -955,8 +955,11 @@ function testFunction()
 {
     data = JSON.parse(localStorage.getItem("data"))
 
-    var name = "codemzy";$.get('https://www.freecodecamp.com/' + name, function(response) {  console.log(response);});
+    let input = document.getElementById("inputClasses").value.split("\n")
+    document.getElementById("inputClasses").value = ""
 
+    
+    
 
     localStorage.setItem("data",JSON.stringify(data))
 }
