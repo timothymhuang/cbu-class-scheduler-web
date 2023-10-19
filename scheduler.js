@@ -3,11 +3,7 @@ function menubar(option)
     document.getElementById("navbar").innerHTML = prepNavbar(option)
     switch(option) {
         case "home":
-            document.getElementById("display").innerHTML = `
-            <div class="margins">
-            <h1>Class Scheduler</h1>
-            <p>Created by Timothy Huang. All rights reserved.</p>
-            </div>`
+            pageHome()
             break
         case "input":
             pageInput()
@@ -39,6 +35,14 @@ function prepNavbar(option) {
     <button ${(option == "render") ? 'class="thisPage"' : ''} type="button" onclick="menubar('render')">Render Schedules</button>
     <button ${(option == "settings") ? 'class="thisPage"' : ''} type="button" onclick="menubar('settings')">Settings</button>
     <button ${(option == "professors") ? 'class="thisPage"' : ''} type="button" onclick="menubar('professors')">Manage Professors</button>`
+}
+
+function pageHome() {
+    document.getElementById("display").innerHTML = `
+    <div class="margins">
+    <h1>Class Scheduler</h1>
+    <p>Created by Timothy Huang. All rights reserved.</p>
+    </div>`
 }
 
 /************
@@ -436,7 +440,7 @@ function pageManageClasses() {
     }
 
     let displayThis = `
-    <div style="height:20px"></div>
+    <div style="height:25px"></div>
     <div class="wrapper secondarybar">
     <button type="button" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
     <div class="item" style="width:20px;"></div>
