@@ -1,0 +1,62 @@
+<html>
+<head>
+  <style>
+    #green-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      display: none;
+      z-index: 9999;
+    }
+    #green-screen img {
+      width: 50%;
+      height: auto;
+      margin: 10px;
+    }
+    #green-screen p {
+      font-size: 24px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <button id="toggle-button">Toggle Green Screen</button>
+  <div id="green-screen">
+    <img src="https://example.com/image1.jpg" alt="Image 1">
+    <img src="https://example.com/image2.jpg" alt="Image 2">
+    <p>This is some text on the green screen.</p>
+  </div>
+  <script>
+    // Get the button and the green screen elements
+    var button = document.getElementById("toggle-button");
+    var greenScreen = document.getElementById("green-screen");
+
+    // Add a click event listener to the button
+    button.addEventListener("click", function() {
+      // Toggle the display of the green screen
+      if (greenScreen.style.display === "none") {
+        greenScreen.style.display = "block";
+      } else {
+        greenScreen.style.display = "none";
+      }
+    });
+
+    // Add a click event listener to the green screen
+    greenScreen.addEventListener("click", function() {
+      // Hide the green screen
+      greenScreen.style.display = "none";
+    });
+
+    // Add a keydown event listener to the document
+    document.addEventListener("keydown", function(event) {
+      // If the escape key is pressed, hide the green screen
+      if (event.key === "Escape") {
+        greenScreen.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
