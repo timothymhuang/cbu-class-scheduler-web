@@ -46,14 +46,45 @@ function prepNavbar(option) {
     <button ${(option == "classes") ? 'class="thisPage"' : ''} type="button" onclick="menubar('classes')">Manage Classes</button>
     <button ${(option == "render") ? 'class="thisPage"' : ''} type="button" onclick="menubar('render')">View Schedules</button>
     <button ${(option == "settings") ? 'class="thisPage"' : ''} type="button" onclick="menubar('settings')">Settings</button>
-    <button ${(option == "professors") ? 'class="thisPage"' : ''} type="button" onclick="menubar('professors')">Manage Professors</button>`
+    <!--<button ${(option == "professors") ? 'class="thisPage"' : ''} type="button" onclick="menubar('professors')">Manage Professors</button>-->`
 }
 
 function pageHome() {
     document.getElementById("display").innerHTML = `
     <div class="margins">
-    <h1>CBU Class Scheduler</h1>
-    <p>Created by Timothy Huang</p>
+      <h1>Class Scheduler</h1>
+      <p>Created by Timothy Huang.</p>
+      <p>This program is in development and probably has a lot of bugs.</p>
+      <br>
+      <p>This program looks through all the classes you need to take and creates every possible schedule, allowing you to look through them and choose the best one. You still need to know what classes you need to take and be familiar with how to register for classes normally. You can refresh yourself by watching these videos on <a href="https://youtu.be/VYoQPnrwxAk" target="_blank">Adding Classes</a>, <a href="https://youtu.be/Ny3le5uxQec" target="_blank">Dropping Classes</a>, and <a href="https://youtu.be/7KrpukYLkvU" target="_blank">Swapping Classes</a>.</p>
+      <h2>Instructions</h2>
+      <h3>1 - Inputting Classes</h3>
+      <ol>
+        <li>Go to the <a href="https://insidecbu.calbaptist.edu/ICS/Academics/Student_Course_Registration.jnz?portlet=Add%2fDrop_Courses" target="_blank">InsideCBU Add/Drop Courses Page</a>. You need to be signed in.</li>
+        <li>Make sure the Term selected is the proper term (e.g. SP2024).</li>
+        <li>In course search, search for the course code that you want to register for.</li>
+        <li>On the page with the list of courses, if there is a "Show All Button", click on it.</li>
+        <li>Press [CTRL/CMD] + [A] to select all the text on the page, and then [CTRL/CMD] + [C] to copy it.</li>
+        <li>Go back to the CBU Class Scheduler. Click on the "Input Classes" tab.</li>
+        <li>Click inside the text box, then press [CTRL/CMD] + [V] to paste the text you copied earlier.</li>
+        <li>Press "Submit."</li>
+        <li>Repeat these steps for each class you want to register for.</li>
+      </ol>
+      <h3>2 - Managing Classes</h3>
+      <ol>
+        <li>On this website, click on the "Manage Classes" tab.</li>
+        <li>On this page, you will find a list of all possible class sections separated by headings. There is a dropdown under each heading. By default, all the classes are set to "Enable," but you can disable the class to prevent it from being used in your schedule, or delete it.</li>
+        <li>Under each heading is the list of possible sections. It shows the course code, the status, the time, and the professors along with their score, if found (this feature is buggy).</li>
+        <li>If a class status is "Closed," it will not be included in any schedules. If a class status is "Open," it will be included in scheduling (if it fits in a schedule).</li>
+        <li>You can override this using the dropdown. "Enable" will include it in scheduling (for example, if you are currently registered for that section). "Disable" will stop it from being included in scheduling (for example, if you hate 7am classes). "SOLO" will force that specific class to be chosen. If multiple sections under the same class have "SOLO" selected, then both those sections will exist simultaneously in your schedule.</li>
+      </ol>
+      <h3>3 - Viewing Schedules</h3>
+      <ol>
+        <li>While still in the "Manage Classes" tab, click on "Generate Schedules."</li>
+        <li>Click on the "View  Schedules" tab.</li>
+        <liv>Click the "Back" and "Forward" buttons to view all the schedules.</liv>
+      </ol>
+      <p></p>
     </div>`
 }
 
@@ -64,16 +95,17 @@ INPUT CLASSES
 function pageInput() {
     document.getElementById("display").innerHTML = `
     <div class="margins">
-    <p>Start Here</p>
-    <p id="p1">Do Something</p>
+    <p id="p1">Paste Class List Below</p>
     <textarea id="inputClasses" name="Text1" cols="40" rows="5"></textarea>
     <br><br>
     <button type="button" onclick="submitClasses()" value="Display">Submit</button>
-    <button type="button" onclick="localStorage.clear()" value="Display">Clear Local Storage</button>
-    <button type="button" onclick="testFunction()" value="Display">Test Button</button>
-    <br><br>
+    <button type="button" onclick="resetEverything()" value="Display">Reset Everything</button>
+    <div style="padding-top: 15px"></div>
+    <p>Developer Use:</p>
     <button type="button" onclick="upload('everything')">Import Everything</button>
     <button type="button" onclick="download('everything')">Export Everything</button>
+    <br>
+    <button type="button" onclick="testFunction()" value="Display">Test Button</button>
     </div>
     `
 }
@@ -307,6 +339,12 @@ function submitClasses() {
 
     localStorage.setItem("data",JSON.stringify(data))
     document.getElementById("p1").innerHTML = "Classes Inputed"
+}
+
+function resetEverything() {
+    if (confirm("Are you sure you want to delete everything?")) {
+        localStorage.clear()
+    }
 }
 
 async function callGenerateSchedules()
