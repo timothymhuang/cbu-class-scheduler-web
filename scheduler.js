@@ -52,7 +52,7 @@ function prepNavbar(option) {
 function pageHome() {
     document.getElementById("display").innerHTML = `
     <div class="margins">
-      <h1>Class Scheduler</h1>
+      <h1>CBU Class Scheduler</h1>
       <p>Created by Timothy Huang.</p>
       <p>This program is in development and probably has a lot of bugs.</p>
       <br>
