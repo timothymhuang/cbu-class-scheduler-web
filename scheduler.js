@@ -1,3 +1,15 @@
+let rmp = {};
+fetch('./rmp.json') // The URL of the JSON file
+  .then((response) => response.json()) // Parse the response as JSON
+  .then((data) => {
+    rmp = data
+  })
+  .catch((error) => {
+    console.error(error);
+});
+
+
+
 function menubar(option)
 {
     document.getElementById("navbar").innerHTML = prepNavbar(option)
@@ -505,13 +517,23 @@ function pageManageClasses() {
             displayThisScore = ""
             for (l = 0; l < professors.length ; l++) {
                 displayThisProfessors += `${professors[l]}<br>`
-                theScore = data["professor"][professors[l]]["score"]
+                lastname = professors[l].split(", ")[0]
+                firstname = professors[l].split(", ")[1].split(" ")[0]
+                if (rmp.hasOwnProperty(`${firstname} ${lastname}`)) {
+                    theScore = rmp[`${firstname} ${lastname}`]["quality"]
+                } else {
+                    theScore = 0
+                }
+                
+                //theScore = data["professor"][professors[l]]["score"]
                 if (theScore >= 4) {
                     scoreColor = "#009000"
                 } else if (theScore >= 3) {
                     scoreColor = "#FF8000"
-                } else {
+                } else if (theScore >= 1) {
                     scoreColor = "#FF0000"
+                } else {
+                    scoreColor = "#000000"
                 }
                 displayThisScore += `<label style="color:${scoreColor}">${theScore}</label><br>`
             }
@@ -953,6 +975,12 @@ function upload(what) {
 
 function testFunction()
 {
+    console.log(rmp)
+
+    return
+    var mydata = JSON.parse(rmp);
+    console.log(mydata)
+    return
     data = JSON.parse(localStorage.getItem("data"))
 
     let input = document.getElementById("inputClasses").value.split("\n")
