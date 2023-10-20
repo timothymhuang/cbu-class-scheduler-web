@@ -89,6 +89,18 @@
     padding-bottom: 5px;
 }
 
+ol {
+    padding-left: 25px;
+}
+
+h2 {
+    padding-top: 10px;
+}
+
+h3 {
+    padding-top: 10px;
+}
+
 /*
 .container {
     width: 150px;
