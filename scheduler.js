@@ -12,7 +12,9 @@ fetch('./rmp.json') // The URL of the JSON file
 
 function menubar(option)
 {
-    document.getElementById("navbar").innerHTML = prepNavbar(option)
+    if (option != "donate") {
+        document.getElementById("navbar").innerHTML = prepNavbar(option)
+    }
     switch(option) {
         case "home":
             pageHome()
@@ -31,6 +33,9 @@ function menubar(option)
             break
         case "professors":
             pageProfessors()
+            break
+        case "donate":
+            window.open("https://www.paypal.com/donate/?business=9ZCUEUSNY5B7Y&no_recurring=0&item_name=Hi%21+The+CBU+Class+Scheduler+was+made+entirely+by+me.+I%27m+just+a+poor+college+student+that+would+love+your+support.+Thank+you%21&currency_code=USD")
             break
         default:
             document.getElementById("display").innerHTML = `
@@ -56,14 +61,6 @@ function pageHome() {
         <h1>CBU Class Scheduler</h1>
         <p>Created by Timothy Huang.</p>
         <p>This program is in development and probably has a lot of bugs. It is in no way affiliated with or endorsed by California Baptist University.</p>
-        <form action="https://www.paypal.com/donate" method="post" target="_top">
-            <input type="hidden" name="business" value="9ZCUEUSNY5B7Y" />
-            <input type="hidden" name="no_recurring" value="0" />
-            <input type="hidden" name="item_name" value="Hi! The CBU Class Scheduler was made entirely by me. I'm just a poor college student that would love your support. Thank you!" />
-            <input type="hidden" name="currency_code" value="USD" />
-            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-        </form>
         <br>
         <p>This program looks through all the classes you need to take and creates every possible schedule, allowing you to look through them and choose the best one. You still need to know what classes you need to take and be familiar with how to register for classes normally. You can refresh yourself by watching these videos on <a href="https://youtu.be/VYoQPnrwxAk" target="_blank">Adding Classes</a>, <a href="https://youtu.be/Ny3le5uxQec" target="_blank">Dropping Classes</a>, and <a href="https://youtu.be/7KrpukYLkvU" target="_blank">Swapping Classes</a>.</p>
         <h2>Instructions</h2>

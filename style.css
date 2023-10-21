@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+p {
+    font-size: 16px;
+}
+
 .minorLine {
     position: absolute;
     width: 100%;
@@ -135,6 +139,25 @@ h3 {
   -webkit-transform: scale(1.15); /* Safari and Chrome */
 
 }
+
+.button {
+    background-color: #005774;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.paypal {
+    background-color: #ffc439;
+    color: black;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
 
 /*
 .container {
