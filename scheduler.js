@@ -35,7 +35,7 @@ function menubar(option)
             pageProfessors()
             break
         case "donate":
-            window.open("https://www.paypal.com/donate/?business=9ZCUEUSNY5B7Y&no_recurring=0&item_name=Hi%21+The+CBU+Class+Scheduler+was+made+entirely+by+me.+I%27m+just+a+poor+college+student+that+would+love+your+support.+Thank+you%21&currency_code=USD")
+            window.open("https://www.paypal.com/donate/?business=9ZCUEUSNY5B7Y&no_recurring=0&item_name=Hi%21+The+CBU+Class+Scheduler+was+made+entirely+by+me,+a+poor+college+student+that+would+appreciate+your+support.+Thank+you%21&currency_code=USD")
             break
         default:
             document.getElementById("display").innerHTML = `
@@ -124,7 +124,7 @@ function pageHome() {
             <div style="padding-left: 10px;"></div>
             <div class="column">
                 <img src="assets/tut.10.png" style="max-width:100%">
-                <p>10. Click on [View Schedules] on the top. Use the [Back] and [Forward] buttons to view your possible schedules.</p>
+                <p>10. Click on [View Schedules] on the top. Use the [Back] and [Forward] buttons or arrow keys to view your possible schedules.</p>
             </div>
         </div>
     </div>`
@@ -139,15 +139,13 @@ function pageInput() {
     <div class="margins">
     <p id="p1">Paste Class List Below</p>
     <textarea id="inputClasses" name="Text1" cols="40" rows="5"></textarea>
-    <br><br>
-    <button type="button" onclick="submitClasses()" value="Display">Submit</button>
-    <button type="button" onclick="resetEverything()" value="Display">Reset Everything</button>
-    <div style="padding-top: 15px"></div>
-    <p>Developer Use:</p>
-    <button type="button" onclick="upload('everything')">Import Everything</button>
-    <button type="button" onclick="download('everything')">Export Everything</button>
     <br>
-    <button type="button" onclick="testFunction()" value="Display">Test Button</button>
+    <button type="button" class="btn-sm" onclick="submitClasses()" value="Display">Submit</button>
+    <button type="button" class="btn-sm" onclick="resetEverything()" value="Display">Reset Everything</button>
+    <div style="padding-top: 15px"></div>
+    <p>Backup your work, or transfer it to another device:</p>
+    <button type="button" class="btn-sm" onclick="upload('everything')">Import Everything</button>
+    <button type="button" class="btn-sm" onclick="download('everything')">Export Everything</button>
     </div>
     `
 }
@@ -532,11 +530,11 @@ function pageManageClasses() {
     }
 
     let displayThis = `
-    <div style="height:25px"></div>
+    <div style="height:35px"></div>
     <div class="wrapper secondarybar">
-    <button type="button" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
-    <div class="item" style="width:20px;"></div>
-    <label id="p1"></label>
+        <button type="button" class="btn-sm" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
+        <div class="item" style="width:20px;"></div>
+        <label id="p1"></label>
     </div>
     <div class="margins">
     `
@@ -760,17 +758,28 @@ function pageRenderBackground()
 
     //Prepare DIV's in display html
     document.getElementById("display").innerHTML = `
+    <div style="height:35px"></div>
+    <div class="wrapper secondarybar">
+        <div class="item" style="width:10px;"></div>
+        <button class="btn-sm" onClick="scheduleAdv(-1)">Back</button>
+        <div class="item" style="width:10px;"></div>
+        <button class="btn-sm" onClick="scheduleAdv(1)">Forward</button>
+        <div class="item" style="width:10px;"></div>
+        <p id="p1" style="font-size: 20px;">${"Page " + (data["render"]["current"]+1) + " / " + (data["schedule"].length)}</p>
+        <div class="item" style="width:20px;"></div>
+        <label id="p1"></label>
+    </div>
     <div class="margins">
-    <p id="p1">${"Page " + (data["render"]["current"]+1) + " / " + (data["schedule"].length)}</p>
-    <div id="controls"><button onClick="scheduleAdv(-1)">Back</button><button onClick="scheduleAdv(1)">Forward</button></div><br>
 
-    <div class="grid-container" style="display: grid;grid-template-columns: 40px auto;">
-        <div class="grid-item" style="height: 10px;"></div>
-        <div class="grid-item" id="dayLabel"><p>test</p></div>
-        <div class="grid-item" id="sideTime" style="position:relative;text-align-last: right;"></div>
-        <div class="grid-item" style="position:relative;height:${height}px;"><div id="background"></div><div id="content"></div></div>
-    </div>
-    </div>
+        <div style="padding-top: 10px"></div>
+
+        <div class="grid-container" style="display: grid;grid-template-columns: 40px auto;">
+            <div class="grid-item" style="height: 10px;"></div>
+            <div class="grid-item" id="dayLabel"><p>test</p></div>
+            <div class="grid-item" id="sideTime" style="position:relative;text-align-last: right;"></div>
+            <div class="grid-item" style="position:relative;height:${height}px;"><div id="background"></div><div id="content"></div></div>
+        </div>
+        </div>
     </div>`
 
 
@@ -859,6 +868,21 @@ function scheduleAdv(moveByThis) {
     localStorage.setItem("data",JSON.stringify(data))
 
     renderSchedule()
+}
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '37') {
+        scheduleAdv(-1)
+    }
+    else if (e.keyCode == '39') {
+        scheduleAdv(1)
+    }
+
 }
 
 /*******
