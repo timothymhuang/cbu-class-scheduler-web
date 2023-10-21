@@ -46,81 +46,90 @@ function prepNavbar(option) {
     <button ${(option == "classes") ? 'class="thisPage"' : ''} type="button" onclick="menubar('classes')">Manage Classes</button>
     <button ${(option == "render") ? 'class="thisPage"' : ''} type="button" onclick="menubar('render')">View Schedules</button>
     <button ${(option == "settings") ? 'class="thisPage"' : ''} type="button" onclick="menubar('settings')">Settings</button>
+    <button ${(option == "donate") ? 'class="thisPage"' : ''} type="button" onclick="menubar('donate')"><b>Donate<b></button>
     <!--<button ${(option == "professors") ? 'class="thisPage"' : ''} type="button" onclick="menubar('professors')">Manage Professors</button>-->`
 }
 
 function pageHome() {
     document.getElementById("display").innerHTML = `
     <div class="margins">
-      <h1>CBU Class Scheduler</h1>
-      <p>Created by Timothy Huang.</p>
-      <p>This program is in development and probably has a lot of bugs. It is in no way affiliated with or endorsed by California Baptist University.</p>
-      <br>
-      <p>This program looks through all the classes you need to take and creates every possible schedule, allowing you to look through them and choose the best one. You still need to know what classes you need to take and be familiar with how to register for classes normally. You can refresh yourself by watching these videos on <a href="https://youtu.be/VYoQPnrwxAk" target="_blank">Adding Classes</a>, <a href="https://youtu.be/Ny3le5uxQec" target="_blank">Dropping Classes</a>, and <a href="https://youtu.be/7KrpukYLkvU" target="_blank">Swapping Classes</a>.</p>
-      <h2>Instructions</h2>
-      <div class="row" style="max-width: 1500px;">
-        <div class="column">
-          <img src="assets/tut.1.png" style="max-width:100%">
-          <p>1. Go to <a href="https://insidecbu.calbaptist.edu/ICS/" target="_blank">InsideCBU</a> and click [Add / Drop Courses].</p>
+        <h1>CBU Class Scheduler</h1>
+        <p>Created by Timothy Huang.</p>
+        <p>This program is in development and probably has a lot of bugs. It is in no way affiliated with or endorsed by California Baptist University.</p>
+        <form action="https://www.paypal.com/donate" method="post" target="_top">
+            <input type="hidden" name="business" value="9ZCUEUSNY5B7Y" />
+            <input type="hidden" name="no_recurring" value="0" />
+            <input type="hidden" name="item_name" value="Hi! The CBU Class Scheduler was made entirely by me. I'm just a poor college student that would love your support. Thank you!" />
+            <input type="hidden" name="currency_code" value="USD" />
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+        <br>
+        <p>This program looks through all the classes you need to take and creates every possible schedule, allowing you to look through them and choose the best one. You still need to know what classes you need to take and be familiar with how to register for classes normally. You can refresh yourself by watching these videos on <a href="https://youtu.be/VYoQPnrwxAk" target="_blank">Adding Classes</a>, <a href="https://youtu.be/Ny3le5uxQec" target="_blank">Dropping Classes</a>, and <a href="https://youtu.be/7KrpukYLkvU" target="_blank">Swapping Classes</a>.</p>
+        <h2>Instructions</h2>
+        <div class="row" style="max-width: 1500px;">
+            <div class="column">
+                <img src="assets/tut.1.png" style="max-width:100%">
+                <p>1. Go to <a href="https://insidecbu.calbaptist.edu/ICS/" target="_blank">InsideCBU</a> and click [Add / Drop Courses].</p>
+            </div>
+            <div style="padding-left: 10px;"></div>
+            <div class="column">
+                <img src="assets/tut.2.png" style="max-width:100%">
+                <p>2. Set the [Term] to the correct semeseter (e.g. SP 2024).</p>
+            </div>
         </div>
-        <div style="padding-left: 10px;"></div>
-        <div class="column">
-          <img src="assets/tut.2.png" style="max-width:100%">
-          <p>2. Set the [Term] to the correct semeseter (e.g. SP 2024).</p>
+        <div style="padding-top: 10px;"></div>
+        <div class="row" style="max-width: 1500px;">
+            <div class="column">
+                <img src="assets/tut.3.png" style="max-width:100%">
+                <p>3. Enter the Course Code for the course you want to register for, then click [Search].</p>
+            </div>
+            <div style="padding-left: 10px;"></div>
+            <div class="column">
+                <img src="assets/tut.4.png" style="max-width:100%">
+                <p>4. If there is a show all button, press it.</p>
+            </div>
         </div>
-      </div>
-      <div style="padding-top: 10px;"></div>
-      <div class="row" style="max-width: 1500px;">
-        <div class="column">
-          <img src="assets/tut.3.png" style="max-width:100%">
-          <p>3. Enter the Course Code for the course you want to register for, then click [Search].</p>
+        <div style="padding-top: 10px;"></div>
+        <div class="row" style="max-width: 1500px;">
+            <div class="column">
+                <img src="assets/tut.5.png" style="max-width:100%">
+                <p>5. Press [CTRL/CMD] + [A] to select all the text on the page, then [CTRL/CMD] + [C] to copy all the text. It doesn't matter that other random text is included, it will automatically be filtered out.</p>
+            </div>
+            <div style="padding-left: 10px;"></div>
+            <div class="column">
+                <img src="assets/tut.6.png" style="max-width:100%">
+                <p>6. Go back to the CBU Class Scheduler. Switch to the [Input Classes] tab (on the top) and click inside the text box. Press [CTRL/CMD] + [V] to paste all the text. Then press [Submit].</p>
+                <p>Repeat these steps for each class you want to register for. (Note: All information is stored locally on your browser.)</p>
+            </div>
         </div>
-        <div style="padding-left: 10px;"></div>
-        <div class="column">
-          <img src="assets/tut.4.png" style="max-width:100%">
-          <p>4. If there is a show all button, press it.</p>
+        <div style="padding-top: 10px;"></div>
+        <div class="row" style="max-width: 1500px;">
+            <div class="column">
+                <img src="assets/tut.7.png" style="max-width:100%">
+                <p>7. Switch to the [Manage Classes] tab. Scroll down to check that all your classes are here. If you accidentally added an extra class, click the dropdown under the class code heading, then select [Delete].</p>
+                <p>If you are already registered for a section, but there are no seats left in that section, the scheduler won't include it in the schedules it generates. To make sure it does include it, click on the override drowpdown next to that section, then click [Enable].</p>
+                <p>You can also click [SOLO] in the override dropdown. This will force that specific class to be used, which is useful, for example, if you want to be in the same section as your friend.</p>
+            </div>
+            <div style="padding-left: 10px;"></div>
+            <div class="column">
+                <img src="assets/tut.8.png" style="max-width:100%">
+                <p>8. Click on [Generate Schedules] on the top. The website will tell you how many possible schedules it generated.</p>
+            </div>
         </div>
-      </div>
-      <div style="padding-top: 10px;"></div>
-      <div class="row" style="max-width: 1500px;">
-        <div class="column">
-          <img src="assets/tut.5.png" style="max-width:100%">
-          <p>5. Press [CTRL/CMD] + [A] to select all the text on the page, then [CTRL/CMD] + [C] to copy all the text. It doesn't matter that other random text is included, it will automatically be filtered out.</p>
+        <div style="padding-top: 10px;"></div>
+        <div class="row" style="max-width: 1500px;">
+            <div class="column">
+                <img src="assets/tut.9.png" style="max-width:100%">
+                <p>9. If you have a lot of possible schedules, try disabling classes that you don't want to take.</p>
+                <p>The time of the class is listed, so if you don't want to take a 7 a.m. class, disable it. The Rate My Professors score is also displayed (if found, this feature is still buggy).</p>
+            </div>
+            <div style="padding-left: 10px;"></div>
+            <div class="column">
+                <img src="assets/tut.10.png" style="max-width:100%">
+                <p>10. Click on [View Schedules] on the top. Use the [Back] and [Forward] buttons to view your possible schedules.</p>
+            </div>
         </div>
-        <div style="padding-left: 10px;"></div>
-        <div class="column">
-          <img src="assets/tut.6.png" style="max-width:100%">
-          <p>6. Go back to the CBU Class Scheduler. Switch to the [Input Classes] tab (on the top) and click inside the text box. Press [CTRL/CMD] + [V] to paste all the text. Then press [Submit].</p>
-          <p>Repeat these steps for each class you want to register for. (Note: All information is stored locally on your browser.)</p>
-        </div>
-      </div>
-      <div style="padding-top: 10px;"></div>
-      <div class="row" style="max-width: 1500px;">
-        <div class="column">
-          <img src="assets/tut.7.png" style="max-width:100%">
-          <p>7. Switch to the [Manage Classes] tab. Scroll down to check that all your classes are here. If you accidentally added an extra class, click the dropdown under the class code heading, then select [Delete].</p>
-          <p>If you are already registered for a section, but there are no seats left in that section, the scheduler won't include it in the schedules it generates. To make sure it does include it, click on the override drowpdown next to that section, then click [Enable].</p>
-          <p>You can also click [SOLO] in the override dropdown. This will force that specific class to be used, which is useful, for example, if you want to be in the same section as your friend.</p>
-        </div>
-        <div style="padding-left: 10px;"></div>
-        <div class="column">
-          <img src="assets/tut.8.png" style="max-width:100%">
-          <p>8. Click on [Generate Schedules] on the top. The website will tell you how many possible schedules it generated.</p>
-        </div>
-      </div>
-      <div style="padding-top: 10px;"></div>
-      <div class="row" style="max-width: 1500px;">
-        <div class="column">
-          <img src="assets/tut.9.png" style="max-width:100%">
-          <p>9. If you have a lot of possible schedules, try disabling classes that you don't want to take.</p>
-          <p>The time of the class is listed, so if you don't want to take a 7 a.m. class, disable it. The Rate My Professors score is also displayed (if found, this feature is still buggy).</p>
-        </div>
-        <div style="padding-left: 10px;"></div>
-        <div class="column">
-          <img src="assets/tut.10.png" style="max-width:100%">
-          <p>10. Click on [View Schedules] on the top. Use the [Back] and [Forward] buttons to view your possible schedules.</p>
-        </div>
-      </div>
     </div>`
 }
 
