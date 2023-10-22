@@ -1,3 +1,4 @@
+//Load the local rate my professors database.
 let rmp = {};
 fetch('./rmp.json') // The URL of the JSON file
   .then((response) => response.json()) // Parse the response as JSON
@@ -8,8 +9,7 @@ fetch('./rmp.json') // The URL of the JSON file
     console.error(error);
 });
 
-
-
+//When menubar button clicked, do something
 function menubar(option)
 {
     if (option != "donate") {
@@ -44,6 +44,7 @@ function menubar(option)
     }
 }
 
+//Render the menubar with proper shading, every time option is clicked.
 function prepNavbar(option) {
     return `
     <button ${(option == "home") ? 'class="thisPage"' : ''} type="button" onclick="menubar('home')">Home</button>
@@ -55,6 +56,7 @@ function prepNavbar(option) {
     <!--<button ${(option == "professors") ? 'class="thisPage"' : ''} type="button" onclick="menubar('professors')">Manage Professors</button>-->`
 }
 
+//Render home page
 function pageHome() {
     document.getElementById("display").innerHTML = `
     <div class="margins">
@@ -134,6 +136,7 @@ function pageHome() {
 INPUT CLASSES
 ************/
 
+//Render input page
 function pageInput() {
     document.getElementById("display").innerHTML = `
     <div class="margins">
@@ -148,107 +151,6 @@ function pageInput() {
     <button type="button" class="btn-sm" onclick="download('everything')">Export Everything</button>
     </div>
     `
-}
-
-function submitClassesOld()
-{
-    let input = document.getElementById("inputClasses").value.split("\n")
-    document.getElementById("inputClasses").value = ""
-    const DoW = ["M","T","W","R","F"]
-    let columns
-    let section
-    let name
-    let timeDay
-    let dayArray
-    let timeArray
-    let startTime
-    let endTime
-    let timeNum
-    
-    if (localStorage.getItem("data") == null) {
-        localStorage.setItem("data","{}")
-    }
-    data = JSON.parse(localStorage.getItem("data"))
-    if (!data.hasOwnProperty("class")) {
-        data["class"] = {}
-    }
-
-    for (let i = 0 ; i < input.length ; i++) {
-        // WRITE CLASS NAME AND SECTION NAME
-        if (input[i].includes("Open") || input[i].includes("Closed") || input[i].includes("Reopened")) {
-            columns = input[i].split("\t").filter(function(item){return item != ""}).filter(function(item){return item != "view note"})
-
-            section = columns[0]
-            name = section.substring(0,section.indexOf("-"))
-
-            if (!data.class.hasOwnProperty(name)) {data["class"][name] = {}}
-            if (!data["class"][name].hasOwnProperty("enable")) {data["class"][name]["enable"] = 1}
-            if (!data["class"][name].hasOwnProperty("section")) {data["class"][name]["section"] = {}}
-            if (!data["class"][name]["section"].hasOwnProperty(section)) {data["class"][name]["section"][section] = {}}
-
-            data["class"][name]["section"][section]["open"] = ((columns[3] == "Closed") ? 0 : 1)
-
-
-        } else if (input[i].includes(" / ")) {
-            columns = input[i].split(" / ")
-
-            // WRITE PROFESSOR NAME
-            if (!data["class"][name]["section"][section].hasOwnProperty("professors")) {data["class"][name]["section"][section]["professors"] = []}
-            if (!data["class"][name]["section"][section]["professors"].includes(columns[0])) {
-                data["class"][name]["section"][section]["professors"].push(columns[0])
-            }
-            if (!data.hasOwnProperty("professor")) {data["professor"] = {}}
-            if (!data["professor"].hasOwnProperty(columns[0])) {data["professor"][columns[0]] = {}}
-            if (!data["professor"][columns[0]].hasOwnProperty("score")) {data["professor"][columns[0]]["score"] = -1}
-
-            // WRITE TIME
-            timeDay = columns[1].split("; ")[0].split(' ')
-            if (!data["class"][name]["section"][section].hasOwnProperty("time")) {
-                data["class"][name]["section"][section]["time"] = []
-            }
-            if (timeDay.length <= 1) {
-                data["class"][name]["section"][section]["time"].push("online")
-
-                // AUTO DISABLE ONLINE CLASSES
-                if (!data["class"][name]["section"][section].hasOwnProperty("override")) {
-                    data["class"][name]["section"][section]["override"] = 0
-                }
-            } else {
-                // DO NOT OVERRIDE CLASSES WITH TIME
-                if (!data["class"][name]["section"][section].hasOwnProperty("override")) {
-                    data["class"][name]["section"][section]["override"] = -1
-                }
-
-                dayArray = timeDay[0].split("")
-                timeArray = timeDay[1].split('-')
-                startTime = timeArray[0].substring(0,2) + timeArray[0].substring(3,5)
-                endTime = timeArray[1].substring(0,2) + timeArray[1].substring(3,5)
-                if (timeArray[1].substring(5,6) == "P") {
-                    if (parseInt(endTime) < 1200) {
-                        endTime = (parseInt(endTime) + 1200).toString().padStart(4,"0")
-                    }
-                    if (timeArray[0].substring(5,6) != "A" && parseInt(startTime) < 1200) {
-                        startTime = (parseInt(startTime) + 1200).toString().padStart(4, "0")
-                    }
-                }
-                for (let j = 0 ; j < dayArray.length ; j++) {
-                    timeNum = DoW.indexOf(dayArray[j]).toString()
-                    if ((JSON.stringify(data["class"][name]["section"][section]["time"]).indexOf(JSON.stringify([timeNum + "." + startTime,timeNum + "." + endTime])) >= 0)) {
-                    } else {
-                        data["class"][name]["section"][section]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime])
-                    }
-                }
-            }
-
-
-        }
-    }
-
-
-
-    localStorage.setItem("data",JSON.stringify(data))
-    document.getElementById("p1").innerHTML = "Classes Inputed"
-
 }
 
 function submitClasses() {
@@ -288,9 +190,13 @@ function submitClasses() {
     
 
     // Start Processing
+
+    // "input" is a list with the use inputted text split by \n
     for (let i = 0 ; i < input.length ; i++) {
+        // Each important lines has tab character or " / " so ignore this line if it doesn't.
         if (!input[i].includes("\t") && !input[i].includes(' / ')) {continue}
 
+        // The top row is not important but has tab characters, so ignore it.
         if (input[i].includes("End Date")) {
             continue
         } else if ((input[i].includes("Open") || input[i].includes("Closed") || input[i].includes("Reopened"))) {
@@ -301,7 +207,8 @@ function submitClasses() {
             section = columns[0]
             name = columns[1]
             note = columns[2]
-            seats = columns[3]
+            seatsOpen = columns[3].split(" ∕ ")[0]
+            seatsTotal = columns[3].split(" ∕ ")[1]
             status = columns[4]
             test = columns[5]
 
@@ -311,7 +218,9 @@ function submitClasses() {
             if (!data["class"][code].hasOwnProperty("enable")) {data["class"][code]["enable"] = 1}
             if (!data["class"][code].hasOwnProperty("section")) {data["class"][code]["section"] = {}}
             if (!data["class"][code]["section"].hasOwnProperty(section)) {data["class"][code]["section"][section] = {}}
-            data["class"][code]["section"][section]["open"] = ((columns[4] == "Closed") ? 0 : 1)
+            data["class"][code]["section"][section]["open"] = ((status == "Closed") ? 0 : 1)
+            data["class"][code]["section"][section]["seatsOpen"] = seatsOpen
+            data["class"][code]["section"][section]["seatsTotal"] = seatsTotal
 
         } else if (input[i].includes(" / ")) {
             columns = input[i].split(/ \/ |; /)
@@ -325,9 +234,12 @@ function submitClasses() {
             if (!data["class"][code]["section"][section]["professors"].includes(professor)) {
                 data["class"][code]["section"][section]["professors"].push(professor)
             }
+
+            /* We are not storing professors like this anymore
             if (!data.hasOwnProperty("professor")) {data["professor"] = {}}
             if (!data["professor"].hasOwnProperty(professor)) {data["professor"][professor] = {}}
             if (!data["professor"][professor].hasOwnProperty("score")) {data["professor"][professor]["score"] = -1}
+            */
 
             // WRITE TIME
             timeDay = dayTime.split(' ')
