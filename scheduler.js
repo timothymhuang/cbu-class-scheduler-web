@@ -222,6 +222,10 @@ function submitClasses() {
             data["class"][code]["section"][section]["seatsOpen"] = seatsOpen
             data["class"][code]["section"][section]["seatsTotal"] = seatsTotal
 
+            //Prep Professor, Time
+            if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {data["class"][code]["section"][section]["professors"] = []}
+            if (!data["class"][code]["section"][section].hasOwnProperty("time")) {data["class"][code]["section"][section]["time"] = []}
+
         } else if (input[i].includes(" / ")) {
             columns = input[i].split(/ \/ |; /)
             professor = columns[0]
