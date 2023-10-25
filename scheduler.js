@@ -9,6 +9,8 @@ fetch('./rmp.json') // The URL of the JSON file
     console.error(error);
 });
 
+let currentPage = -1
+
 //When menubar button clicked, do something
 function menubar(option)
 {
@@ -18,18 +20,23 @@ function menubar(option)
     switch(option) {
         case "home":
             pageHome()
+            currentPage = 0
             break
         case "input":
             pageInput()
+            currentPage = 1
             break
         case "render":
             pageRenderBackground()
+            currentPage = 3
             break
         case "classes":
             pageManageClasses()
+            currentPage = 2
             break
         case "settings":
             pageSettings()
+            currentPage = 4
             break
         case "professors":
             pageProfessors()
@@ -212,6 +219,20 @@ function submitClasses() {
             status = columns[4]
             test = columns[5]
 
+            if (!/[A-Za-z0-9]+-[A-Za-z0-9]+/i.test(section)) {
+                console.log(`Improper Format: "${section}" is not section.`)
+                continue
+            } else if (!/[0-9]+/i.test(seatsOpen)) {
+                console.log(`Improper Format: "${seatsOpen}" is not seatsOpen.`)
+                continue
+            } else if (!/[0-9]+/i.test(seatsTotal)) {
+                console.log(`Improper Format: "${seatsTotal}" is not seatsTotal.`)
+                continue
+            } else if (!/^(open|closed|reopened)$/i.test(status)) {
+                console.log(`Improper Format: "${status}" is not status.`)
+                continue
+            }
+
             code = section.substring(0,section.indexOf("-"))
 
             if (!data.class.hasOwnProperty(code)) {data["class"][code] = {}}
@@ -233,17 +254,21 @@ function submitClasses() {
             location = columns[2]
             type = columns[3]
 
-            // WRITE PROFESSOR NAME
-            if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {data["class"][code]["section"][section]["professors"] = []}
-            if (!data["class"][code]["section"][section]["professors"].includes(professor)) {
-                data["class"][code]["section"][section]["professors"].push(professor)
-            }
+            if (!/[\s\S]+,[\s\S]+/i.test(professor)) {
+                // WRITE PROFESSOR NAME
+                if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {data["class"][code]["section"][section]["professors"] = []}
+                if (!data["class"][code]["section"][section]["professors"].includes(professor)) {
+                    data["class"][code]["section"][section]["professors"].push(professor)
+                }
 
-            /* We are not storing professors like this anymore
-            if (!data.hasOwnProperty("professor")) {data["professor"] = {}}
-            if (!data["professor"].hasOwnProperty(professor)) {data["professor"][professor] = {}}
-            if (!data["professor"][professor].hasOwnProperty("score")) {data["professor"][professor]["score"] = -1}
-            */
+                /* We are not storing professors like this anymore
+                if (!data.hasOwnProperty("professor")) {data["professor"] = {}}
+                if (!data["professor"].hasOwnProperty(professor)) {data["professor"][professor] = {}}
+                if (!data["professor"][professor].hasOwnProperty("score")) {data["professor"][professor]["score"] = -1}
+                */
+            } else {
+                console.log(`Improper Format: "${professor}" is not professor.`)
+            }
 
             // WRITE TIME
             timeDay = dayTime.split(' ')
@@ -484,6 +509,7 @@ function pageManageClasses() {
         <div class="item" style="width:275px;"><label><b>Time</b></label></div>
         <div class="item" style="width:50px;"><label><b>Score</b></label></div>
         <div class="item" style="width:200px;"><label><b>Professor</b></label></div>
+        <div class="item" style="width:100px;"><label><b>Seats</b></label></div>
         </div>
         <div class="manageClassItem"></div>
         `
@@ -560,6 +586,8 @@ function pageManageClasses() {
             <div class="item" style="width:50px;">${displayThisScore}</div>
 
             <div class="item" style="width:200px;"><label>${displayThisProfessors}</label></div>
+
+            <div class="item" style="width:100px;"><label>${((sectionInfo.seatsOpen != null) ? sectionInfo.seatsOpen : '')}</label></div>
 
             </div>
             <div class="manageClassItem"></div>
@@ -651,7 +679,7 @@ function pageRenderBackground()
     //Each pixel verticaly is 1 minute unless adjusted by timeScale.
     data["render"]["columnWidth"] = 100
     data["render"]["columnPad"] = 1
-    data["render"]["timeScale"] = 0.5
+    data["render"]["timeScale"] = 0.6
     if (!data["render"].hasOwnProperty("weekends")) {data["render"]["weekends"] = 0}
 
     let weekends = data["render"]["weekends"]
@@ -745,7 +773,9 @@ function renderSchedule()
     for (let i = 0; i < data["schedule"][data["render"]["current"]].length; i++) {
         thisSection = data["schedule"][data["render"]["current"]][i]
         thisClass = thisSection.substring (0, thisSection.indexOf("-"))
-        thisTime = data["class"][thisClass]["section"][thisSection]["time"]
+        sectionInfo = data["class"][thisClass]["section"][thisSection]
+        thisTime = sectionInfo["time"]
+
         for (let j = 0; j < thisTime.length; j++) {
             if (thisTime[j] == ["online"]) {break}
             thisDay = parseInt(thisTime[j][0].substring(0, thisTime[j][0].indexOf(".")))
@@ -755,7 +785,16 @@ function renderSchedule()
             startMinutes = htm(thisStartTime.substring(0,2)) + parseInt(thisStartTime.substring(2))
             endMinutes = htm(thisEndTime.substring(0,2)) + parseInt(thisEndTime.substring(2))
 
-            displayContent = displayContent + `<div style="position:absolute;left:${Math.round(thisDay*columnFraction+columnPad)}%;top:${(startMinutes-htm(startTime))*timeScale}px;right:${Math.round(100-((thisDay+1)*columnFraction-columnPad))}%;height:${(endMinutes-startMinutes)*timeScale}px;background:${colors[i]}">${thisSection}</div>`
+            displayThisProfessors = ""
+            for (let k = 0; k < sectionInfo["professors"].length; k++) {
+                if (k != 0) {
+                    displayThisProfessors += ", "
+                }
+                displayThisProfessors += sectionInfo["professors"][k].substring(0,sectionInfo["professors"][k].indexOf(","))
+            }
+
+            displayContent = displayContent + `<div style="position:absolute;left:${Math.round(thisDay*columnFraction+columnPad)}%;top:${(startMinutes-htm(startTime))*timeScale}px;right:${Math.round(100-((thisDay+1)*columnFraction-columnPad))}%;height:${(endMinutes-startMinutes)*timeScale}px;background:${colors[i]}">${thisSection}${((sectionInfo["open"] == 0) ? ' | Full':'')}<br>${displayThisProfessors}</div>`
+            console.log(sectionInfo["open"])
         }
 
     }
@@ -789,6 +828,8 @@ function scheduleAdv(moveByThis) {
 document.onkeydown = checkKey;
 
 function checkKey(e) {
+
+    if (currentPage != 3) {return}
 
     e = e || window.event;
 
