@@ -254,7 +254,7 @@ function submitClasses() {
             location = columns[2]
             type = columns[3]
 
-            if (!/[\s\S]+,[\s\S]+/i.test(professor)) {
+            if (/[\s\S]+,[\s\S]+/i.test(professor)) {
                 // WRITE PROFESSOR NAME
                 if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {data["class"][code]["section"][section]["professors"] = []}
                 if (!data["class"][code]["section"][section]["professors"].includes(professor)) {
@@ -271,11 +271,45 @@ function submitClasses() {
             }
 
             // WRITE TIME
-            timeDay = dayTime.split(' ')
-            if (!data["class"][code]["section"][section].hasOwnProperty("time")) {
-                data["class"][code]["section"][section]["time"] = []
-            }
-            if (timeDay.length <= 1) {
+            if (/[A-Za-z0-9]+\s+[A-Za-z0-9]+:[A-Za-z0-9]+-[A-Za-z0-9]+:[A-Za-z0-9]+/i.test(dayTime)) {
+                timeDay = dayTime.split(' ')
+                if (!data["class"][code]["section"][section].hasOwnProperty("time")) {
+                    data["class"][code]["section"][section]["time"] = []
+                }
+                if (timeDay.length <= 1) {
+                    data["class"][code]["section"][section]["time"].push("online")
+
+                    // AUTO DISABLE ONLINE CLASSES
+                    if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
+                        data["class"][code]["section"][section]["override"] = 0
+                    }
+                } else {
+                    // DO NOT OVERRIDE CLASSES WITH TIME
+                    if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
+                        data["class"][code]["section"][section]["override"] = -1
+                    }
+
+                    dayArray = timeDay[0].split("")
+                    timeArray = timeDay[1].split('-')
+                    startTime = timeArray[0].substring(0,2) + timeArray[0].substring(3,5)
+                    endTime = timeArray[1].substring(0,2) + timeArray[1].substring(3,5)
+                    if (timeArray[1].substring(5,6) == "P") {
+                        if (parseInt(endTime) < 1200) {
+                            endTime = (parseInt(endTime) + 1200).toString().padStart(4,"0")
+                        }
+                        if (timeArray[0].substring(5,6) != "A" && parseInt(startTime) < 1200) {
+                            startTime = (parseInt(startTime) + 1200).toString().padStart(4, "0")
+                        }
+                    }
+                    for (let j = 0 ; j < dayArray.length ; j++) {
+                        timeNum = DoW.indexOf(dayArray[j]).toString()
+                        if ((JSON.stringify(data["class"][code]["section"][section]["time"]).indexOf(JSON.stringify([timeNum + "." + startTime,timeNum + "." + endTime])) >= 0)) {
+                        } else {
+                            data["class"][code]["section"][section]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime])
+                        }
+                    }
+                }
+            } else if (dayTime == "00:00-00:00AM") {
                 data["class"][code]["section"][section]["time"].push("online")
 
                 // AUTO DISABLE ONLINE CLASSES
@@ -283,30 +317,7 @@ function submitClasses() {
                     data["class"][code]["section"][section]["override"] = 0
                 }
             } else {
-                // DO NOT OVERRIDE CLASSES WITH TIME
-                if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
-                    data["class"][code]["section"][section]["override"] = -1
-                }
-
-                dayArray = timeDay[0].split("")
-                timeArray = timeDay[1].split('-')
-                startTime = timeArray[0].substring(0,2) + timeArray[0].substring(3,5)
-                endTime = timeArray[1].substring(0,2) + timeArray[1].substring(3,5)
-                if (timeArray[1].substring(5,6) == "P") {
-                    if (parseInt(endTime) < 1200) {
-                        endTime = (parseInt(endTime) + 1200).toString().padStart(4,"0")
-                    }
-                    if (timeArray[0].substring(5,6) != "A" && parseInt(startTime) < 1200) {
-                        startTime = (parseInt(startTime) + 1200).toString().padStart(4, "0")
-                    }
-                }
-                for (let j = 0 ; j < dayArray.length ; j++) {
-                    timeNum = DoW.indexOf(dayArray[j]).toString()
-                    if ((JSON.stringify(data["class"][code]["section"][section]["time"]).indexOf(JSON.stringify([timeNum + "." + startTime,timeNum + "." + endTime])) >= 0)) {
-                    } else {
-                        data["class"][code]["section"][section]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime])
-                    }
-                }
+                console.log(`Improper Format: "${dayTime}" is not dayTime.`)
             }
 
         } else if (input[i].includes("\t")) {
