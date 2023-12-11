@@ -145,6 +145,9 @@ INPUT CLASSES
 
 //Render input page
 function pageInput() {
+    data = JSON.parse(localStorage.getItem("data"))
+    if (!data.hasOwnProperty("settings")) {data["settings"] = {}}
+    if (!data["settings"].hasOwnProperty("inputFilter")) {data["settings"]["inputFilter"] = []}
     document.getElementById("display").innerHTML = `
     <div class="margins">
     <p id="p1">Paste Class List Below</p>
@@ -152,12 +155,16 @@ function pageInput() {
     <br>
     <button type="button" class="btn-sm" onclick="submitClasses()" value="Display">Submit</button>
     <button type="button" class="btn-sm" onclick="resetEverything()" value="Display">Reset Everything</button>
+    <div style="padding-top: 5px"></div>
+    <p id="p1">Filter List (Optional, only classes in this list will be accepted)</p>
+    <textarea id="filterList" name="Text2" cols="6" rows="10" onChange="updateFilterList(this.value)">${data["settings"]["inputFilter"].join("\n")}</textarea>
     <div style="padding-top: 15px"></div>
     <p>Backup your work, or transfer it to another device:</p>
     <button type="button" class="btn-sm" onclick="upload('everything')">Import Everything</button>
     <button type="button" class="btn-sm" onclick="download('everything')">Export Everything</button>
     </div>
     `
+    localStorage.setItem("data",JSON.stringify(data))
 }
 
 function submitClasses() {
@@ -171,6 +178,9 @@ function submitClasses() {
     if (!data.hasOwnProperty("class")) {
         data["class"] = {}
     }
+    if (!data.hasOwnProperty("settings")) {data["settings"] = {}}
+    if (!data["settings"].hasOwnProperty("inputFilter")) {data["settings"]["inputFilter"] = []}
+
 
     // Prepare variables
     const DoW = ["M","T","W","R","F"]
@@ -186,7 +196,6 @@ function submitClasses() {
     let name
     let note
     let status
-    let test
     let professor
     let dayTime
     let location
@@ -194,6 +203,7 @@ function submitClasses() {
     let units
     let startDate
     let endDate
+    let iterator
     
 
     // Start Processing
@@ -217,7 +227,6 @@ function submitClasses() {
             seatsOpen = columns[3].split(" ∕ ")[0]
             seatsTotal = columns[3].split(" ∕ ")[1]
             status = columns[4]
-            test = columns[5]
 
             if (!/[A-Za-z0-9]+-[A-Za-z0-9]+/i.test(section)) {
                 console.log(`Improper Format: "${section}" is not section.`)
@@ -243,9 +252,13 @@ function submitClasses() {
             data["class"][code]["section"][section]["seatsOpen"] = seatsOpen
             data["class"][code]["section"][section]["seatsTotal"] = seatsTotal
 
-            //Prep Professor, Time
-            if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {data["class"][code]["section"][section]["professors"] = []}
-            if (!data["class"][code]["section"][section].hasOwnProperty("time")) {data["class"][code]["section"][section]["time"] = []}
+            //Prep variables for next section
+            data["class"][code]["section"][section]["professors"] = []
+            data["class"][code]["section"][section]["time"] = []
+            data["class"][code]["section"][section]["location"] = []
+            data["class"][code]["section"][section]["meetings"] = []
+            iterator = 0
+            
 
         } else if (input[i].includes(" / ")) {
             columns = input[i].split(/ \/ |; /)
@@ -254,21 +267,8 @@ function submitClasses() {
             location = columns[2]
             type = columns[3]
 
-            if (/[\s\S]+,[\s\S]+/i.test(professor)) {
-                // WRITE PROFESSOR NAME
-                if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {data["class"][code]["section"][section]["professors"] = []}
-                if (!data["class"][code]["section"][section]["professors"].includes(professor)) {
-                    data["class"][code]["section"][section]["professors"].push(professor)
-                }
-
-                /* We are not storing professors like this anymore
-                if (!data.hasOwnProperty("professor")) {data["professor"] = {}}
-                if (!data["professor"].hasOwnProperty(professor)) {data["professor"][professor] = {}}
-                if (!data["professor"][professor].hasOwnProperty("score")) {data["professor"][professor]["score"] = -1}
-                */
-            } else {
-                console.log(`Improper Format: "${professor}" is not professor.`)
-            }
+            data["class"][code]["section"][section]["meetings"].push({"time":[]})
+            console.log(data)
 
             // WRITE TIME
             if (/[A-Za-z0-9]+\s+[A-Za-z0-9]+:[A-Za-z0-9]+-[A-Za-z0-9]+:[A-Za-z0-9]+/i.test(dayTime)) {
@@ -276,8 +276,12 @@ function submitClasses() {
                 if (!data["class"][code]["section"][section].hasOwnProperty("time")) {
                     data["class"][code]["section"][section]["time"] = []
                 }
+                if (!data["class"][code]["section"][section]["meetings"][iterator].hasOwnProperty("time")) {
+                    data["class"][code]["section"][section]["meetings"][iterator]["time"] = []
+                }
                 if (timeDay.length <= 1) {
                     data["class"][code]["section"][section]["time"].push("online")
+                    data["class"][code]["section"][section]["meetings"][iterator]["time"].push("online")
 
                     // AUTO DISABLE ONLINE CLASSES
                     if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
@@ -306,6 +310,7 @@ function submitClasses() {
                         if ((JSON.stringify(data["class"][code]["section"][section]["time"]).indexOf(JSON.stringify([timeNum + "." + startTime,timeNum + "." + endTime])) >= 0)) {
                         } else {
                             data["class"][code]["section"][section]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime])
+                            data["class"][code]["section"][section]["meetings"][iterator]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime])
                         }
                     }
                 }
@@ -320,6 +325,25 @@ function submitClasses() {
                 console.log(`Improper Format: "${dayTime}" is not dayTime.`)
             }
 
+            if (/[\s\S]+,[\s\S]+/i.test(professor)) {
+                // WRITE PROFESSOR NAME
+                if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {data["class"][code]["section"][section]["professors"] = []}
+                if (!data["class"][code]["section"][section]["professors"].includes(professor)) {
+                    data["class"][code]["section"][section]["professors"].push(professor)
+                }
+
+                /* We are not storing professors like this anymore
+                if (!data.hasOwnProperty("professor")) {data["professor"] = {}}
+                if (!data["professor"].hasOwnProperty(professor)) {data["professor"][professor] = {}}
+                if (!data["professor"][professor].hasOwnProperty("score")) {data["professor"][professor]["score"] = -1}
+                */
+            } else {
+                console.log(`Improper Format: "${professor}" is not professor.`)
+            }
+
+            data["class"][code]["section"][section]["location"].push(location)
+            //console.log(section, location)
+            iterator++
         } else if (input[i].includes("\t")) {
             columns = input[i].split("\t")
             units = columns[0]
@@ -337,6 +361,14 @@ function resetEverything() {
     if (confirm("Are you sure you want to delete everything?")) {
         localStorage.clear()
     }
+}
+
+function updateFilterList(input) {
+    data = JSON.parse(localStorage.getItem("data"))
+    if (!data.hasOwnProperty("settings")) {data["settings"] = {}}
+    data["settings"]["inputFilter"] = input.split("\n")
+    localStorage.setItem("data",JSON.stringify(data))
+
 }
 
 async function callGenerateSchedules()
@@ -370,7 +402,6 @@ async function generateSchedules()
         // if it is disabled, exclude this class
         if (data["class"][classlist[i]]["enable"] == 0) {
             log += classlist[i] + " excluded because it is disabled.<br>"
-            console.log(classlist[i] + " excluded because it is disabled.")
             delete classlist[i]
         } else {
             process[classlist[i]] = {}
@@ -400,7 +431,6 @@ async function generateSchedules()
             // If there are no sections open, exclude this class.
             if (process[classlist[i]]["max"] == -1) {
                 log += classlist[i] + " excluded because no sections are available.<br>"
-                console.log(classlist[i] + " excluded because no sections are available.")
                 delete process[classlist[i]]
                 delete classlist[i]
             }
@@ -619,7 +649,6 @@ function changeClassOption(type, thisClass, thisSection, value) {
     switch (type) {
         case "override":
             data["class"][thisClass]["section"][thisSection]["override"] = value.value
-            console.log(`${thisSection}, part of ${thisClass}, is ${value.value}`)
             localStorage.setItem("data",JSON.stringify(data))
             menubar('classes')
             break
@@ -628,10 +657,8 @@ function changeClassOption(type, thisClass, thisSection, value) {
                 deleteClass(thisClass)
             } else if (value.value == 0) {
                 data["class"][thisClass]["enable"] = 0
-                console.log(`${thisClass} is disabled.`)
             } else if (value.value == 1) {
                 data["class"][thisClass]["enable"] = 1
-                console.log(`${thisClass} is enabled.`)
             }
             localStorage.setItem("data",JSON.stringify(data))
             menubar('classes')
@@ -805,7 +832,6 @@ function renderSchedule()
             }
 
             displayContent = displayContent + `<div style="position:absolute;left:${Math.round(thisDay*columnFraction+columnPad)}%;top:${(startMinutes-htm(startTime))*timeScale}px;right:${Math.round(100-((thisDay+1)*columnFraction-columnPad))}%;height:${(endMinutes-startMinutes)*timeScale}px;background:${colors[i]}">${thisSection}${((sectionInfo["open"] == 0) ? ' | Full':'')}<br>${displayThisProfessors}</div>`
-            console.log(sectionInfo["open"])
         }
 
     }
