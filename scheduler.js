@@ -416,6 +416,9 @@ function resetEverything() {
 }
 
 function updateFilterList(input) {
+    if (localStorage.getItem("data") == null) {
+        localStorage.setItem("data","{}")
+    }
     data = JSON.parse(localStorage.getItem("data"))
     if (!data.hasOwnProperty("settings")) {data["settings"] = {}}
     data["settings"]["inputFilter"] = input.toUpperCase().split("\n")
