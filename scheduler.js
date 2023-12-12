@@ -72,7 +72,7 @@ function pageHome() {
         <p>This program is in development and probably has a lot of bugs. It is in no way affiliated with or endorsed by California Baptist University.</p>
         <br>
         <p>This program looks through all the classes you need to take and creates every possible schedule, allowing you to look through them and choose the best one. You still need to know what classes you need to take and be familiar with how to register for classes normally. You can refresh yourself by watching these videos on <a href="https://youtu.be/VYoQPnrwxAk" target="_blank">Adding Classes</a>, <a href="https://youtu.be/Ny3le5uxQec" target="_blank">Dropping Classes</a>, and <a href="https://youtu.be/7KrpukYLkvU" target="_blank">Swapping Classes</a>.</p>
-        <h2>Instructions</h2>
+        <h2>General Instructions</h2>
         <div class="row" style="max-width: 1500px;">
             <div class="column">
                 <img src="assets/tut.1.png" style="max-width:100%">
@@ -136,6 +136,18 @@ function pageHome() {
                 <p>10. Click on [View Schedules] on the top. Use the [Back] and [Forward] buttons or arrow keys to view your possible schedules.</p>
             </div>
         </div>
+        <h2>Bulk Input Instructions</h2>
+        <div class="row" style="max-width: 1500px;">
+        <div class="column">
+            <img src="assets/tut.11.png" style="max-width:100%">
+            <p>It may get tedious to transfer every class over to the class scheduler. To make this easier, you can add multiple classes at once. To do this, search for something broader for your classes on InsideCBU. For example, search "EGR" if you are taking multiple classes that start with "EGR." Then  [CTRL/CMD] + [A] and [CTRL/CMD] + [C] like normal.</p>
+        </div>
+        <div style="padding-left: 10px;"></div>
+        <div class="column">
+            <img src="assets/tut.12.png" style="max-width:100%">
+            <p>Before you paste the class list into the class scheduler, write a filter list that contains all the classes you are trying to take. This will ensure that only these classes make it into your schedule, no matter what you may have copied from InsideCBU.</p>
+        </div>
+    </div>
     </div>`
 }
 
@@ -145,19 +157,22 @@ INPUT CLASSES
 
 //Render input page
 function pageInput() {
+    if (localStorage.getItem("data") == null) {
+        localStorage.setItem("data","{}")
+    }
     data = JSON.parse(localStorage.getItem("data"))
     if (!data.hasOwnProperty("settings")) {data["settings"] = {}}
     if (!data["settings"].hasOwnProperty("inputFilter")) {data["settings"]["inputFilter"] = []}
     document.getElementById("display").innerHTML = `
     <div class="margins">
     <p id="p1">Paste Class List Below</p>
-    <textarea id="inputClasses" name="Text1" cols="40" rows="5"></textarea>
+    <textarea id="inputClasses" name="Text1" cols="40" rows="5" style="padding: 5px;"></textarea>
     <br>
     <button type="button" class="btn-sm" onclick="submitClasses()" value="Display">Submit</button>
     <button type="button" class="btn-sm" onclick="resetEverything()" value="Display">Reset Everything</button>
     <div style="padding-top: 5px"></div>
     <p id="p1">Filter List (Optional, only classes in this list will be accepted)</p>
-    <textarea id="filterList" name="Text2" cols="6" rows="10" onChange="updateFilterList(this.value)">${data["settings"]["inputFilter"].join("\n")}</textarea>
+    <textarea id="filterList" name="Text2" cols="6" rows="10" style="padding: 5px;" onChange="updateFilterList(this.value)">${data["settings"]["inputFilter"].join("\n")}</textarea>
     <div style="padding-top: 15px"></div>
     <p>Backup your work, or transfer it to another device:</p>
     <button type="button" class="btn-sm" onclick="upload('everything')">Import Everything</button>
@@ -181,6 +196,8 @@ function submitClasses() {
     if (!data.hasOwnProperty("settings")) {data["settings"] = {}}
     if (!data["settings"].hasOwnProperty("inputFilter")) {data["settings"]["inputFilter"] = []}
 
+    localStorage.setItem("data",JSON.stringify(data))
+    data = JSON.parse(localStorage.getItem("data"))
 
     // Prepare variables
     const DoW = ["M","T","W","R","F"]
@@ -204,6 +221,9 @@ function submitClasses() {
     let startDate
     let endDate
     let iterator
+
+    let logIgnore = []
+    let logSuccess = []
     
 
     // Start Processing
@@ -243,6 +263,13 @@ function submitClasses() {
             }
 
             code = section.substring(0,section.indexOf("-"))
+            if (!data["settings"]["inputFilter"].includes(code) && data["settings"]["inputFilter"].length != 0) {
+                if (!logIgnore.includes(code)) {
+                    logIgnore.push(code)
+                }
+                console.log(data["settings"]["inputFilter"].join() + " does not include " + code)
+                continue
+            }
 
             if (!data.class.hasOwnProperty(code)) {data["class"][code] = {}}
             if (!data["class"][code].hasOwnProperty("enable")) {data["class"][code]["enable"] = 1}
@@ -261,6 +288,13 @@ function submitClasses() {
             
 
         } else if (input[i].includes(" / ")) {
+            if (!data["settings"]["inputFilter"].includes(code) && data["settings"]["inputFilter"].length != 0) {
+                if (!logIgnore.includes(code)) {
+                    logIgnore.push(code)
+                }
+                console.log(data["settings"]["inputFilter"].join() + " does not include " + code)
+                continue
+            }
             columns = input[i].split(/ \/ |; /)
             professor = columns[0]
             dayTime = columns[1]
@@ -314,12 +348,20 @@ function submitClasses() {
                         }
                     }
                 }
+
+                if (!logSuccess.includes(code)) {
+                    logSuccess.push(code)
+                }
             } else if (dayTime == "00:00-00:00AM") {
                 data["class"][code]["section"][section]["time"].push("online")
 
                 // AUTO DISABLE ONLINE CLASSES
                 if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
                     data["class"][code]["section"][section]["override"] = 0
+                }
+
+                if (!logSuccess.includes(code)) {
+                    logSuccess.push(code)
                 }
             } else {
                 console.log(`Improper Format: "${dayTime}" is not dayTime.`)
@@ -328,9 +370,9 @@ function submitClasses() {
             if (/[\s\S]+,[\s\S]+/i.test(professor)) {
                 // WRITE PROFESSOR NAME
                 if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {data["class"][code]["section"][section]["professors"] = []}
-                if (!data["class"][code]["section"][section]["professors"].includes(professor)) {
+                //if (!data["class"][code]["section"][section]["professors"].includes(professor)) {
                     data["class"][code]["section"][section]["professors"].push(professor)
-                }
+                //}
 
                 /* We are not storing professors like this anymore
                 if (!data.hasOwnProperty("professor")) {data["professor"] = {}}
@@ -345,6 +387,10 @@ function submitClasses() {
             //console.log(section, location)
             iterator++
         } else if (input[i].includes("\t")) {
+            if (!data["settings"]["inputFilter"].includes(code) && data["settings"]["inputFilter"].length != 0) {
+                console.log(data["settings"]["inputFilter"].join() + " does not include " + code)
+                continue
+            }
             columns = input[i].split("\t")
             units = columns[0]
             startDate = columns[1]
@@ -354,26 +400,41 @@ function submitClasses() {
     }
 
     localStorage.setItem("data",JSON.stringify(data))
-    document.getElementById("p1").innerHTML = "Classes Inputed"
+    if (logIgnore.length > 3) {
+        tempLen = logIgnore.length-3
+        logIgnore = logIgnore.splice(0,3)
+        logIgnore.push("plus " + tempLen + " more")
+    }
+    document.getElementById("p1").innerHTML = ((logSuccess.length != 0) ? "Classes Added: <b>" + logSuccess.join(", ") + "</b> " : "") + ((logIgnore.length != 0) ? "Classes Filtered Out: " + logIgnore.join(", ") : "") + ((logSuccess.length == 0 && logIgnore.length == 0) ? "Nothing to do with your input." : "")
 }
 
 function resetEverything() {
     if (confirm("Are you sure you want to delete everything?")) {
         localStorage.clear()
+        document.getElementById("filterList").value = ""
     }
 }
 
 function updateFilterList(input) {
     data = JSON.parse(localStorage.getItem("data"))
     if (!data.hasOwnProperty("settings")) {data["settings"] = {}}
-    data["settings"]["inputFilter"] = input.split("\n")
+    data["settings"]["inputFilter"] = input.toUpperCase().split("\n")
+    if (isWhitespaceOrEmpty(data["settings"]["inputFilter"])) {
+        data["settings"]["inputFilter"] = []
+    }
     localStorage.setItem("data",JSON.stringify(data))
 
 }
 
+function prepCallGenerateSchedules() {
+    document.getElementById("p1").innerHTML = "Generating schedules, please wait. The website may appear to be frozen."
+    setTimeout(function() {
+        callGenerateSchedules()
+      }, 0);
+}
+
 async function callGenerateSchedules()
 {
-    document.getElementById("p1").innerHTML = "Please Wait"
     try {
         let result = await generateSchedules()
         document.getElementById("p1").innerHTML = result
@@ -383,7 +444,7 @@ async function callGenerateSchedules()
     }
 }
 
-async function generateSchedules()
+function generateSchedules()
 {
     data = JSON.parse(localStorage.getItem("data"))
     let sectionlist
@@ -395,6 +456,8 @@ async function generateSchedules()
     let theseTimes
     let theseClasses
     let log = ""
+
+    let totalSections = 0
 
     // Generate Dictionary of Classes and Counters
     // for each class in the list
@@ -428,6 +491,7 @@ async function generateSchedules()
                 }
             }
             process[classlist[i]]["max"] = process[classlist[i]]["list"].length-1
+            totalSections += process[classlist[i]]["list"].length
             // If there are no sections open, exclude this class.
             if (process[classlist[i]]["max"] == -1) {
                 log += classlist[i] + " excluded because no sections are available.<br>"
@@ -442,60 +506,64 @@ async function generateSchedules()
 
     //download("this",process)
 
-    data["schedule"] = []
-    run = 1
-    while (run) {
-        // Check Schedule Overlap
-        theseTimes = []
-        theseClasses = []
-        for (let l = 0; l < classlist.length; l++) {
-            if (process[classlist[l]]["solo"] == 1) {
-                for (let o = 0; o < process[classlist[l]]["list"].length ; o++) {
-                    thisTime = data["class"][classlist[l]]["section"][process[classlist[l]]["list"][o]]["time"]
-                    theseClasses.push(process[classlist[l]]["list"][o])
+    if (((totalSections >= 50) ? confirm("There are a lot of available sections, so it might take a little longer than normal to process. Are you sure you want to continue?") : true)) {
+        data["schedule"] = []
+        run = 1
+        while (run) {
+            // Check Schedule Overlap
+            theseTimes = []
+            theseClasses = []
+            for (let l = 0; l < classlist.length; l++) {
+                if (process[classlist[l]]["solo"] == 1) {
+                    for (let o = 0; o < process[classlist[l]]["list"].length ; o++) {
+                        thisTime = data["class"][classlist[l]]["section"][process[classlist[l]]["list"][o]]["time"]
+                        theseClasses.push(process[classlist[l]]["list"][o])
+                        for (let m = 0; m < thisTime.length; m++) {
+                            theseTimes.push(thisTime[m])
+                        }
+                    }
+                } else {
+                    thisTime = data["class"][classlist[l]]["section"][process[classlist[l]]["list"][process[classlist[l]]["count"]]]["time"]
+                    theseClasses.push(process[classlist[l]]["list"][process[classlist[l]]["count"]])
                     for (let m = 0; m < thisTime.length; m++) {
                         theseTimes.push(thisTime[m])
                     }
                 }
-            } else {
-                thisTime = data["class"][classlist[l]]["section"][process[classlist[l]]["list"][process[classlist[l]]["count"]]]["time"]
-                theseClasses.push(process[classlist[l]]["list"][process[classlist[l]]["count"]])
-                for (let m = 0; m < thisTime.length; m++) {
-                    theseTimes.push(thisTime[m])
+            }
+
+            if (!checkRangeOverlap(theseTimes)) {
+                data["schedule"].push(theseClasses)
+            }
+
+
+
+            // Increment the Counters
+            incThis = 0
+            while (1) {
+                if (incThis >= classlist.length) {
+                    run = 0
+                    break
                 }
-            }
-        }
+                if (process[classlist[incThis]]["solo"] == 1) {
+                    incThis++
+                } else if (process[classlist[incThis]]["count"] >= process[classlist[incThis]]["max"]) {
+                    process[classlist[incThis]]["count"] = 0
+                    incThis++
+                } else {
+                    process[classlist[incThis]]["count"]++
+                    break
+                }
 
-        if (!checkRangeOverlap(theseTimes)) {
-            data["schedule"].push(theseClasses)
-        }
-
-
-
-        // Increment the Counters
-        incThis = 0
-        while (1) {
-            if (incThis >= classlist.length) {
-                run = 0
-                break
-            }
-            if (process[classlist[incThis]]["solo"] == 1) {
-                incThis++
-            } else if (process[classlist[incThis]]["count"] >= process[classlist[incThis]]["max"]) {
-                process[classlist[incThis]]["count"] = 0
-                incThis++
-            } else {
-                process[classlist[incThis]]["count"]++
-                break
             }
 
         }
 
+        localStorage.setItem("data",JSON.stringify(data))
+        log = `<b>${data["schedule"].length} Schedules Generated</b><br>${log}`
+        return log
+    } else {
+        return ""
     }
-
-    localStorage.setItem("data",JSON.stringify(data))
-    log = `<b>${data["schedule"].length} Schedules Generated</b><br>${log}`
-    return log
 }
 
 /*************
@@ -514,7 +582,7 @@ function pageManageClasses() {
     let displayThis = `
     <div style="height:35px"></div>
     <div class="wrapper secondarybar">
-        <button type="button" class="btn-sm" onclick="callGenerateSchedules()" value="Display">Generate Schedules</button>
+        <button type="button" class="btn-sm" onclick="prepCallGenerateSchedules()" value="Display">Generate Schedules</button>
         <div class="item" style="width:20px;"></div>
         <label id="p1"></label>
     </div>
@@ -1133,4 +1201,18 @@ function beautifyTime(time) {
     } else {
         return hours + ":" + minutes + " AM"
     }
-} 
+}
+
+function isWhitespaceOrEmpty(array) {
+    // Check if the array is empty
+    if (array.length === 0) {
+      return true;
+    }
+    // Check if every element is a whitespace or an empty string
+    return array.every(function(element) {
+      // Convert the element to a string and trim it
+      var str = String(element).trim();
+      // Return true if the string is empty
+      return str.length === 0;
+    });
+  }
