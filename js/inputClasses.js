@@ -1,32 +1,20 @@
-
+import {
+    addKeys,
+    getData,
+    setData
+} from './helpers.js'
 
 export function submitClasses() {
-    if (localStorage.getItem("data") == null) {
-        localStorage.setItem("data","{}")
-    }
-    let data = JSON.parse(localStorage.getItem("data"))
+    let data = getData()
 
     // Prepare Storage
     let input = document.getElementById("inputClasses").value.split("\n")
     document.getElementById("inputClasses").value = ""
 
-    addKeys(data,[["class","{}"],["settings","{}"],["inputFilter","[]"]])
-
-    /*
-    if (!data.hasOwnProperty("settings")) {data["settings"] = {}}
-    if (!data["settings"].hasOwnProperty("inputFilter")) {data["settings"]["inputFilter"] = []}
-    */
-
-    localStorage.setItem("data",JSON.stringify(data))
-    data = JSON.parse(localStorage.getItem("data"))
+    data = addKeys(data, [["settings", {}],["inputFilter", []]])
 
     // Prepare variables
     const DoW = ["M","T","W","R","F"]
-    if (localStorage.getItem("data") == null) {
-        localStorage.setItem("data","{}")
-    }
-    data = JSON.parse(localStorage.getItem("data"))
-
     let columns
     let section
     let name
@@ -43,7 +31,6 @@ export function submitClasses() {
     let code
     let seatsOpen
     let seatsTotal
-
     let logIgnore = []
     let logSuccess = []
     
@@ -93,17 +80,8 @@ export function submitClasses() {
                 continue
             }
 
-            
-            /*
-            if (!data.class.hasOwnProperty(code)) {data["class"][code] = {}}
-            if (!data["class"][code].hasOwnProperty("enable")) {data["class"][code]["enable"] = 1}
-            if (!data["class"][code].hasOwnProperty("section")) {data["class"][code]["section"] = {}}
-            if (!data["class"][code]["section"].hasOwnProperty(section)) {data["class"][code]["section"][section] = {}}
-            */
-            
-
-            data = addKeys(data,[["class","{}"],[code,"{}"],["enable",1]])
-            data = addKeys(data,[["class","{}"],[code,"{}"],["section","{}"],[section,"{}"]])
+            data = addKeys(data, [["class", {}], [code, {}],["enable",1]])
+            data = addKeys(data, [["class", {}], [code, {}],["section", {}], [section, {}]])
 
             data["class"][code]["section"][section]["open"] = ((status == "Closed") ? 0 : 1)
             data["class"][code]["section"][section]["seatsOpen"] = seatsOpen
@@ -202,16 +180,11 @@ export function submitClasses() {
 
             if (/[\s\S]+,[\s\S]+/i.test(professor)) {
                 // WRITE PROFESSOR NAME
-                if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {data["class"][code]["section"][section]["professors"] = []}
-                //if (!data["class"][code]["section"][section]["professors"].includes(professor)) {
-                    data["class"][code]["section"][section]["professors"].push(professor)
-                //}
+                if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {
+                    data["class"][code]["section"][section]["professors"] = []
+                }
+                data["class"][code]["section"][section]["professors"].push(professor)
 
-                /* We are not storing professors like this anymore
-                if (!data.hasOwnProperty("professor")) {data["professor"] = {}}
-                if (!data["professor"].hasOwnProperty(professor)) {data["professor"][professor] = {}}
-                if (!data["professor"][professor].hasOwnProperty("score")) {data["professor"][professor]["score"] = -1}
-                */
             } else {
                 console.log(`Improper Format: "${professor}" is not professor.`)
             }
@@ -233,24 +206,13 @@ export function submitClasses() {
 
     }
 
-    localStorage.setItem("data",JSON.stringify(data))
     if (logIgnore.length > 3) {
         tempLen = logIgnore.length-3
         logIgnore = logIgnore.splice(0,3)
         logIgnore.push("plus " + tempLen + " more")
     }
     document.getElementById("p1").innerHTML = ((logSuccess.length != 0) ? "Classes Added: <b>" + logSuccess.join(", ") + "</b> " : "") + ((logIgnore.length != 0) ? "Classes Filtered Out: " + logIgnore.join(", ") : "") + ((logSuccess.length == 0 && logIgnore.length == 0) ? "Nothing to do with your input." : "")
+
+    setData(data)
 }
 window.submitClasses = submitClasses;
-
-
-function addKeys(obj, arr) {
-    let keyList = "";
-    for (let i = 0; i < arr.length; i++) {
-        if (!eval("obj" + keyList + ".hasOwnProperty(\"" + arr[i][0] + "\")")) {
-        keyList += "[\"" + arr[i][0] + "\"]"
-        eval("obj" + keyList + " = " + arr[i][1])
-        }
-    }
-    return obj;
-}

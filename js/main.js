@@ -12,10 +12,6 @@ import {
     addKeys
 } from './helpers.js'
 
-import {
-    submitClasses
-} from './inputClasses.js'
-
 //Load the local rate my professors database.
 let rmp = {};
 fetch('../rmp.json') // The URL of the JSON file
@@ -26,7 +22,6 @@ fetch('../rmp.json') // The URL of the JSON file
   .catch((error) => {
     console.error(error);
 });
-
 
 let currentPage = -1
 
@@ -140,13 +135,13 @@ window.prepCallGenerateSchedules = prepCallGenerateSchedules;
 
 async function callGenerateSchedules()
 {
-    //try {
+    try {
         let result = await generateSchedules()
         document.getElementById("p1").innerHTML = result
-    //}
-    //catch(err) {
-        //document.getElementById("p1").innerHTML = "ERROR: " + err
-    //}
+    }
+    catch(err) {
+        document.getElementById("p1").innerHTML = "ERROR: " + err
+    }
 }
 
 function generateSchedules()

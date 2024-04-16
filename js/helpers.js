@@ -1,3 +1,15 @@
+export function getData() {
+    if (localStorage.getItem("data") == null) {
+        localStorage.setItem("data","{}")
+    }
+    let theData = JSON.parse(localStorage.getItem("data"))
+    return theData
+}
+
+export function setData(theData) {
+    localStorage.setItem("data",JSON.stringify(theData))
+}
+
 export function isWhitespaceOrEmpty(array) {
     // Check if the array is empty
     if (array.length === 0) {
@@ -50,12 +62,13 @@ export function mth(minutes) {
     return minutes/60
 }
 
-export function addKeys(obj, arr) {
-    let keyList = "";
-    for (let i = 0; i < arr.length; i++) {
-        if (!eval("obj" + keyList + ".hasOwnProperty(\"" + arr[i][0] + "\")")) {
-        keyList += "[\"" + arr[i][0] + "\"]"
-        eval("obj" + keyList + " = " + arr[i][1])
+export function addKeys(json, arr) {
+    let keyList = ""
+    for (let i = 0 ; i < arr.length ; i++) {
+        if (!eval("json" + keyList + ".hasOwnProperty(arr[i][0])")) {
+            eval("json" + keyList + "[arr[i][0]] = arr[i][1]")
         }
+        keyList += "[\"" + arr[i][0] + "\"]"
     }
+    return json;
 }
