@@ -49,3 +49,13 @@ export function htm(hours) {
 export function mth(minutes) {
     return minutes/60
 }
+
+export function addKeys(obj, arr) {
+    let keyList = "";
+    for (let i = 0; i < arr.length; i++) {
+        if (!eval("obj" + keyList + ".hasOwnProperty(\"" + arr[i][0] + "\")")) {
+        keyList += "[\"" + arr[i][0] + "\"]"
+        eval("obj" + keyList + " = " + arr[i][1])
+        }
+    }
+}
