@@ -1,6 +1,6 @@
 //Load the local rate my professors database.
 let rmp = {};
-fetch('./rmp.json') // The URL of the JSON file
+fetch('../rmp.json') // The URL of the JSON file
   .then((response) => response.json()) // Parse the response as JSON
   .then((data) => {
     rmp = data
@@ -8,6 +8,19 @@ fetch('./rmp.json') // The URL of the JSON file
   .catch((error) => {
     console.error(error);
 });
+
+import {
+    htmlHomePage,
+    htmlInputPage
+} from './html.js'
+
+import {
+    isWhitespaceOrEmpty,
+    readSingleFile,
+    beautifyTime,
+    htm,
+    mth
+} from './helpers.js'
 
 let currentPage = -1
 
@@ -50,6 +63,7 @@ function menubar(option)
             `
     }
 }
+window.menubar = menubar;
 
 //Render the menubar with proper shading, every time option is clicked.
 function prepNavbar(option) {
@@ -65,121 +79,25 @@ function prepNavbar(option) {
 
 //Render home page
 function pageHome() {
-    document.getElementById("display").innerHTML = `
-    <div class="margins">
-        <h1>CBU Class Scheduler</h1>
-        <p>Created by Timothy Huang.</p>
-        <p>This program is in development and probably has a lot of bugs. It is in no way affiliated with or endorsed by California Baptist University.</p>
-        <br>
-        <p>This program looks through all the classes you need to take and creates every possible schedule, allowing you to look through them and choose the best one. You still need to know what classes you need to take and be familiar with how to register for classes normally. You can refresh yourself by watching these videos on <a href="https://youtu.be/VYoQPnrwxAk" target="_blank">Adding Classes</a>, <a href="https://youtu.be/Ny3le5uxQec" target="_blank">Dropping Classes</a>, and <a href="https://youtu.be/7KrpukYLkvU" target="_blank">Swapping Classes</a>.</p>
-        <h2>General Instructions</h2>
-        <div class="row" style="max-width: 1500px;">
-            <div class="column">
-                <img src="assets/tut.1.png" style="max-width:100%">
-                <p>1. Go to <a href="https://insidecbu.calbaptist.edu/ICS/" target="_blank">InsideCBU</a> and click [Add / Drop Courses].</p>
-            </div>
-            <div style="padding-left: 10px;"></div>
-            <div class="column">
-                <img src="assets/tut.2.png" style="max-width:100%">
-                <p>2. Set the [Term] to the correct semeseter (e.g. SP 2024).</p>
-            </div>
-        </div>
-        <div style="padding-top: 10px;"></div>
-        <div class="row" style="max-width: 1500px;">
-            <div class="column">
-                <img src="assets/tut.3.png" style="max-width:100%">
-                <p>3. Enter the Course Code for the course you want to register for, then click [Search].</p>
-            </div>
-            <div style="padding-left: 10px;"></div>
-            <div class="column">
-                <img src="assets/tut.4.png" style="max-width:100%">
-                <p>4. If there is a show all button, press it.</p>
-            </div>
-        </div>
-        <div style="padding-top: 10px;"></div>
-        <div class="row" style="max-width: 1500px;">
-            <div class="column">
-                <img src="assets/tut.5.png" style="max-width:100%">
-                <p>5. Press [CTRL/CMD] + [A] to select all the text on the page, then [CTRL/CMD] + [C] to copy all the text. It doesn't matter that other random text is included, it will automatically be filtered out.</p>
-            </div>
-            <div style="padding-left: 10px;"></div>
-            <div class="column">
-                <img src="assets/tut.6.png" style="max-width:100%">
-                <p>6. Go back to the CBU Class Scheduler. Switch to the [Input Classes] tab (on the top) and click inside the text box. Press [CTRL/CMD] + [V] to paste all the text. Then press [Submit].</p>
-                <p>Repeat these steps for each class you want to register for. (Note: All information is stored locally on your browser.)</p>
-            </div>
-        </div>
-        <div style="padding-top: 10px;"></div>
-        <div class="row" style="max-width: 1500px;">
-            <div class="column">
-                <img src="assets/tut.7.png" style="max-width:100%">
-                <p>7. Switch to the [Manage Classes] tab. Scroll down to check that all your classes are here. If you accidentally added an extra class, click the dropdown under the class code heading, then select [Delete].</p>
-                <p>If you are already registered for a section, but there are no seats left in that section, the scheduler won't include it in the schedules it generates. To make sure it does include it, click on the override drowpdown next to that section, then click [Enable].</p>
-                <p>You can also click [SOLO] in the override dropdown. This will force that specific class to be used, which is useful, for example, if you want to be in the same section as your friend.</p>
-            </div>
-            <div style="padding-left: 10px;"></div>
-            <div class="column">
-                <img src="assets/tut.8.png" style="max-width:100%">
-                <p>8. Click on [Generate Schedules] on the top. The website will tell you how many possible schedules it generated.</p>
-            </div>
-        </div>
-        <div style="padding-top: 10px;"></div>
-        <div class="row" style="max-width: 1500px;">
-            <div class="column">
-                <img src="assets/tut.9.png" style="max-width:100%">
-                <p>9. If you have a lot of possible schedules, try disabling classes that you don't want to take.</p>
-                <p>The time of the class is listed, so if you don't want to take a 7 a.m. class, disable it. The Rate My Professors score is also displayed (if found, this feature is still buggy).</p>
-            </div>
-            <div style="padding-left: 10px;"></div>
-            <div class="column">
-                <img src="assets/tut.10.png" style="max-width:100%">
-                <p>10. Click on [View Schedules] on the top. Use the [Back] and [Forward] buttons or arrow keys to view your possible schedules.</p>
-            </div>
-        </div>
-        <h2>Bulk Input Instructions</h2>
-        <div class="row" style="max-width: 1500px;">
-        <div class="column">
-            <img src="assets/tut.11.png" style="max-width:100%">
-            <p>It may get tedious to transfer every class over to the class scheduler. To make this easier, you can add multiple classes at once. To do this, search for something broader for your classes on InsideCBU. For example, search "EGR" if you are taking multiple classes that start with "EGR." Then  [CTRL/CMD] + [A] and [CTRL/CMD] + [C] like normal.</p>
-        </div>
-        <div style="padding-left: 10px;"></div>
-        <div class="column">
-            <img src="assets/tut.12.png" style="max-width:100%">
-            <p>Before you paste the class list into the class scheduler, write a filter list that contains all the classes you are trying to take. This will ensure that only these classes make it into your schedule, no matter what you may have copied from InsideCBU.</p>
-        </div>
-    </div>
-    </div>`
-    console.log(readFile("/html/home.html"))
+    document.getElementById("display").innerHTML = htmlHomePage;
+    //console.log(readFile("/html/home.html"))
 }
 
 /************
 INPUT CLASSES
 ************/
 
-//Render input page
+//Render input pages
 function pageInput() {
     if (localStorage.getItem("data") == null) {
         localStorage.setItem("data","{}")
     }
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
+
     if (!data.hasOwnProperty("settings")) {data["settings"] = {}}
     if (!data["settings"].hasOwnProperty("inputFilter")) {data["settings"]["inputFilter"] = []}
-    document.getElementById("display").innerHTML = `
-    <div class="margins">
-    <p id="p1">Paste Class List Below</p>
-    <textarea id="inputClasses" name="Text1" cols="40" rows="5" style="padding: 5px;"></textarea>
-    <br>
-    <button type="button" class="btn-sm" onclick="submitClasses()" value="Display">Submit</button>
-    <button type="button" class="btn-sm" onclick="resetEverything()" value="Display">Reset Everything</button>
-    <div style="padding-top: 5px"></div>
-    <p id="p1">Filter List (Optional, only classes in this list will be accepted)</p>
-    <textarea id="filterList" name="Text2" cols="6" rows="10" style="padding: 5px;" onChange="updateFilterList(this.value)">${data["settings"]["inputFilter"].join("\n")}</textarea>
-    <div style="padding-top: 15px"></div>
-    <p>Backup your work, or transfer it to another device:</p>
-    <button type="button" class="btn-sm" onclick="upload('everything')">Import Everything</button>
-    <button type="button" class="btn-sm" onclick="download('everything')">Export Everything</button>
-    </div>
-    `
+    document.getElementById("display").innerHTML = htmlInputPage
+    document.getElementById("filterList").innerHTML = data["settings"]["inputFilter"].join("\n")
     localStorage.setItem("data",JSON.stringify(data))
 }
 
@@ -190,7 +108,7 @@ function submitClasses() {
     if (localStorage.getItem("data") == null) {
         localStorage.setItem("data","{}")
     }
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
     if (!data.hasOwnProperty("class")) {
         data["class"] = {}
     }
@@ -222,6 +140,9 @@ function submitClasses() {
     let startDate
     let endDate
     let iterator
+    let code
+    let seatsOpen
+    let seatsTotal
 
     let logIgnore = []
     let logSuccess = []
@@ -276,6 +197,7 @@ function submitClasses() {
             if (!data["class"][code].hasOwnProperty("enable")) {data["class"][code]["enable"] = 1}
             if (!data["class"][code].hasOwnProperty("section")) {data["class"][code]["section"] = {}}
             if (!data["class"][code]["section"].hasOwnProperty(section)) {data["class"][code]["section"][section] = {}}
+
             data["class"][code]["section"][section]["open"] = ((status == "Closed") ? 0 : 1)
             data["class"][code]["section"][section]["seatsOpen"] = seatsOpen
             data["class"][code]["section"][section]["seatsTotal"] = seatsTotal
@@ -296,18 +218,21 @@ function submitClasses() {
                 console.log(data["settings"]["inputFilter"].join() + " does not include " + code)
                 continue
             }
-            columns = input[i].split(/ \/ |; /)
-            professor = columns[0]
-            dayTime = columns[1]
-            location = columns[2]
-            type = columns[3]
+            let columns = input[i].split(/ \/ |; /)
+            let professor = columns[0]
+            let dayTime = columns[1]
+            let location = columns[2]
+            let type = columns[3]
+            
+            if (!data["class"][code]["section"].hasOwnProperty(section)) {data["class"][code]["section"][section] = {}}
+            if (!data["class"][code]["section"][section].hasOwnProperty("meetings")) {data["class"][code]["section"][section]["meetings"] = []}
 
             data["class"][code]["section"][section]["meetings"].push({"time":[]})
             console.log(data)
 
             // WRITE TIME
             if (/[A-Za-z0-9]+\s+[A-Za-z0-9]+:[A-Za-z0-9]+-[A-Za-z0-9]+:[A-Za-z0-9]+/i.test(dayTime)) {
-                timeDay = dayTime.split(' ')
+                let timeDay = dayTime.split(' ')
                 if (!data["class"][code]["section"][section].hasOwnProperty("time")) {
                     data["class"][code]["section"][section]["time"] = []
                 }
@@ -328,10 +253,10 @@ function submitClasses() {
                         data["class"][code]["section"][section]["override"] = -1
                     }
 
-                    dayArray = timeDay[0].split("")
-                    timeArray = timeDay[1].split('-')
-                    startTime = timeArray[0].substring(0,2) + timeArray[0].substring(3,5)
-                    endTime = timeArray[1].substring(0,2) + timeArray[1].substring(3,5)
+                    let dayArray = timeDay[0].split("")
+                    let timeArray = timeDay[1].split('-')
+                    let startTime = timeArray[0].substring(0,2) + timeArray[0].substring(3,5)
+                    let endTime = timeArray[1].substring(0,2) + timeArray[1].substring(3,5)
                     if (timeArray[1].substring(5,6) == "P") {
                         if (parseInt(endTime) < 1200) {
                             endTime = (parseInt(endTime) + 1200).toString().padStart(4,"0")
@@ -341,7 +266,7 @@ function submitClasses() {
                         }
                     }
                     for (let j = 0 ; j < dayArray.length ; j++) {
-                        timeNum = DoW.indexOf(dayArray[j]).toString()
+                        let timeNum = DoW.indexOf(dayArray[j]).toString()
                         if ((JSON.stringify(data["class"][code]["section"][section]["time"]).indexOf(JSON.stringify([timeNum + "." + startTime,timeNum + "." + endTime])) >= 0)) {
                         } else {
                             data["class"][code]["section"][section]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime])
@@ -383,7 +308,8 @@ function submitClasses() {
             } else {
                 console.log(`Improper Format: "${professor}" is not professor.`)
             }
-
+            
+            if (!data["class"][code]["section"][section].hasOwnProperty("location")) {data["class"][code]["section"][section]["location"] = []}
             data["class"][code]["section"][section]["location"].push(location)
             //console.log(section, location)
             iterator++
@@ -408,6 +334,7 @@ function submitClasses() {
     }
     document.getElementById("p1").innerHTML = ((logSuccess.length != 0) ? "Classes Added: <b>" + logSuccess.join(", ") + "</b> " : "") + ((logIgnore.length != 0) ? "Classes Filtered Out: " + logIgnore.join(", ") : "") + ((logSuccess.length == 0 && logIgnore.length == 0) ? "Nothing to do with your input." : "")
 }
+window.submitClasses = submitClasses;
 
 function resetEverything() {
     if (confirm("Are you sure you want to delete everything?")) {
@@ -415,12 +342,13 @@ function resetEverything() {
         document.getElementById("filterList").value = ""
     }
 }
+window.resetEverything = resetEverything;
 
 function updateFilterList(input) {
     if (localStorage.getItem("data") == null) {
         localStorage.setItem("data","{}")
     }
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
     if (!data.hasOwnProperty("settings")) {data["settings"] = {}}
     data["settings"]["inputFilter"] = input.toUpperCase().split("\n")
     if (isWhitespaceOrEmpty(data["settings"]["inputFilter"])) {
@@ -429,6 +357,7 @@ function updateFilterList(input) {
     localStorage.setItem("data",JSON.stringify(data))
 
 }
+window.updateFilterList = updateFilterList;
 
 function prepCallGenerateSchedules() {
     document.getElementById("p1").innerHTML = "Generating schedules, please wait. The website may appear to be frozen."
@@ -436,21 +365,22 @@ function prepCallGenerateSchedules() {
         callGenerateSchedules()
       }, 0);
 }
+window.prepCallGenerateSchedules = prepCallGenerateSchedules;
 
 async function callGenerateSchedules()
 {
-    try {
+    //try {
         let result = await generateSchedules()
         document.getElementById("p1").innerHTML = result
-    }
-    catch(err) {
-        document.getElementById("p1").innerHTML = "ERROR: " + err
-    }
+    //}
+    //catch(err) {
+        //document.getElementById("p1").innerHTML = "ERROR: " + err
+    //}
 }
 
 function generateSchedules()
 {
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
     let sectionlist
     let process = {}
     let open
@@ -460,6 +390,8 @@ function generateSchedules()
     let theseTimes
     let theseClasses
     let log = ""
+    let incThis
+    let thisTime
 
     let totalSections = 0
 
@@ -578,7 +510,8 @@ function pageManageClasses() {
     if (localStorage.getItem("data") == null) {
         localStorage.setItem("data","{}")
     }
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"));
+
     if (!data.hasOwnProperty("class")) {
         data["class"] = {}
     }
@@ -595,7 +528,26 @@ function pageManageClasses() {
     let professors = []
     const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
-    classes = Object.keys(data.class)
+    let classes = Object.keys(data.class)
+
+    let overrideAllColor
+    let sections
+    let sectionInfo
+    let thisSection
+    let thisClass
+    let thisTime
+    let displayThisTime
+    let thisDay
+    let thisStartTime
+    let thisEndTime
+    let displayThisProfessors
+    let displayThisScore
+    let scoreColor
+    let lastname
+    let firstname
+    let theScore
+    let overrideColor
+
     for (let i = 0 ; i < classes.length ; i++) {
 
         if (data["class"][classes[i]]["enable"] == 1) {
@@ -648,7 +600,7 @@ function pageManageClasses() {
             professors = data["class"][thisClass]["section"][thisSection]["professors"]
             displayThisProfessors = ""
             displayThisScore = ""
-            for (l = 0; l < professors.length ; l++) {
+            for (let l = 0; l < professors.length ; l++) {
                 displayThisProfessors += `${professors[l]}<br>`
                 lastname = professors[l].split(", ")[0]
                 firstname = professors[l].split(", ")[1].split(" ")[0]
@@ -716,7 +668,7 @@ function pageManageClasses() {
 }
 
 function changeClassOption(type, thisClass, thisSection, value) {
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
 
     switch (type) {
         case "override":
@@ -753,9 +705,10 @@ function changeClassOption(type, thisClass, thisSection, value) {
     localStorage.setItem("data",JSON.stringify(data))
     return
 }
+window.changeClassOption = changeClassOption;
 
 function deleteClass(thisClass) {
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
 
     if (confirm("Are you sure you want to delete " + thisClass + "?")) {
         delete data["class"][thisClass]
@@ -775,7 +728,7 @@ function pageRenderBackground()
     if (localStorage.getItem("data") == null) {
         localStorage.setItem("data","{}")
     }
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
     if (!data.hasOwnProperty("schedule")) {
         data["schedule"] = [[]]
     }
@@ -860,7 +813,7 @@ function pageRenderBackground()
 
 function renderSchedule()
 {
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
 
     let startTime = data["render"]["startTime"]
     let endTime = data["render"]["endTime"]
@@ -870,6 +823,16 @@ function renderSchedule()
     let weekends = data["render"]["weekends"]
     let displayContent = ""
     let columnFraction = 0
+    let thisTime
+    let thisSection
+    let thisClass
+    let sectionInfo
+    let thisDay
+    let thisStartTime
+    let thisEndTime
+    let startMinutes
+    let endMinutes
+    let displayThisProfessors
 
     if (weekends) {
         columnFraction = 100/7
@@ -915,9 +878,9 @@ function renderSchedule()
 
 
 function scheduleAdv(moveByThis) {
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
 
-    temp = data["render"]["current"]
+    let temp = data["render"]["current"]
 
     data["render"]["current"] = data["render"]["current"] + moveByThis
 
@@ -959,7 +922,7 @@ function pageSettings() {
     if (localStorage.getItem("data") == null) {
         localStorage.setItem("data","{}")
     }
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
     if (!data.hasOwnProperty("render")) {
         data["render"] = {}
     }
@@ -978,7 +941,7 @@ function pageSettings() {
 }
 
 function changeSetting(name, value) {
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
 
     switch(name) {
         case "weekends":
@@ -989,6 +952,7 @@ function changeSetting(name, value) {
 
     localStorage.setItem("data",JSON.stringify(data))
 }
+window.changeSetting = changeSetting;
 
 /****************
 MANAGE PROFESSORS
@@ -998,7 +962,7 @@ function pageProfessors() {
     if (localStorage.getItem("data") == null) {
         localStorage.setItem("data","{}")
     }
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
     if (!data.hasOwnProperty("professor")) {
         data["professor"] = {}
     }
@@ -1036,7 +1000,7 @@ function pageProfessors() {
 }
 
 function changeProfessorOption(option, name, value) {
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
 
     switch (option) {
         case "overallScore":
@@ -1053,7 +1017,7 @@ Other Functions
 **************/
 
 function download(what, payload) {
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
 
     switch (what) {
         case "professors":
@@ -1083,9 +1047,10 @@ function download(what, payload) {
 
     localStorage.setItem("data",JSON.stringify(data))
 }
+window.download = download;
 
 function upload(what) {
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
 
     switch (what) {
         case "professors":
@@ -1142,6 +1107,7 @@ function upload(what) {
     }
 
 }
+window.upload = upload;
 
 function testFunction()
 {
@@ -1151,7 +1117,7 @@ function testFunction()
     var mydata = JSON.parse(rmp);
     console.log(mydata)
     return
-    data = JSON.parse(localStorage.getItem("data"))
+    let data = JSON.parse(localStorage.getItem("data"))
 
     let input = document.getElementById("inputClasses").value.split("\n")
     document.getElementById("inputClasses").value = ""
@@ -1183,58 +1149,4 @@ function checkRangeOverlap(ranges) {
     }
     // return false if there is no overlap
     return false;
-}
-
-function htm(hours) {
-    return hours*60
-}
-
-function mth(minutes) {
-    return minutes/60
-}
-
-function beautifyTime(time) {
-    hours = time.substring(0,2)
-    minutes = time.substring(2)
-    if (parseInt(hours) >= 12) {
-        if (parseInt(hours) >= 13) {
-            return (hours-12) + ":" + minutes + " PM"
-        } else {
-            return hours + ":" + minutes + " PM"
-        }
-    } else {
-        return hours + ":" + minutes + " AM"
-    }
-}
-
-function isWhitespaceOrEmpty(array) {
-    // Check if the array is empty
-    if (array.length === 0) {
-      return true;
-    }
-    // Check if every element is a whitespace or an empty string
-    return array.every(function(element) {
-      // Convert the element to a string and trim it
-      var str = String(element).trim();
-      // Return true if the string is empty
-      return str.length === 0;
-    });
-  }
-
-
-
-function readSingleFile(evt) {
-    //Retrieve the first (and only!) File from the FileList object
-    var f = evt.target.files[0];
-
-    if (f) {
-        var r = new FileReader();
-        r.onload = function (e) {
-            var contents = e.target.result;
-            document.getElementById("ReadResult").innerHTML = contents;
-        }
-        r.readAsText(f);
-    } else {
-        alert("Failed to load file");
-    }
 }
