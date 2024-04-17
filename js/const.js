@@ -1,4 +1,8 @@
-export const htmlHomePage = `
+export const DAYS_OF_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+export const SCHEDULE_COLORS = ["#E0BBE4", "#957DAD", "#D291BC", "#FEC8D8", "#FFDFD3", "#CCF1FF", "#E0D7FF", "#FFCCE1", "#D7EEFF", "#FAFFC7", "#B4CFEC", "#F9E4AD", "#F6A6FF", "#A7FFEB", "#F8B195", "#A8E6CF", "#FFEFD5", "#F0E68C", "#FFB6C1", "#ADD8E6"];
+
+export const HTML_HOME_PAGE = `
     <div class="margins">
         <h1>CBU Class Scheduler</h1>
         <p>Created by Timothy Huang.</p>
@@ -82,10 +86,10 @@ export const htmlHomePage = `
         </div>
     </div>
     </div>
-`
+`;
 
-export const htmlInputPage = `
-<div class="margins">
+export const HTML_INPUT_PAGE = `
+    <div class="margins">
     <p id="p1">Paste Class List Below</p>
     <textarea id="inputClasses" name="Text1" cols="40" rows="5" style="padding: 5px;"></textarea>
     <br>
@@ -99,5 +103,40 @@ export const htmlInputPage = `
     <button type="button" class="btn-sm" onclick="upload('everything')">Import Everything</button>
     <button type="button" class="btn-sm" onclick="download('everything')">Export Everything</button>
     </div>
+`;
+
+export const PAYPAL_URL = "https://www.paypal.com/donate/?business=9ZCUEUSNY5B7Y&no_recurring=0&item_name=Hi%21+The+CBU+Class+Scheduler+was+made+entirely+by+me,+a+poor+college+student+that+would+appreciate+your+support.+Thank+you%21&currency_code=USD";
+
+export const HTML_PAGE_MANAGE_HEADER = `
+    <div style="height:35px"></div>
+        <div class="wrapper secondarybar">
+            <button type="button" class="btn-sm" onclick="prepCallGenerateSchedules()" value="Display">Generate Schedules</button>
+            <div class="item" style="width:20px;"></div>
+            <label id="p1"></label>
+        </div>
+    <div class="margins">
 `
 
+export const HTML_PAGE_MANAGE_COLUMNS = `
+    <div class="wrapper">
+    <div class="item" style="width:100px;"><label><b>Section</b></label></div>
+    <div class="item" style="width:70px;"><label><b>Status</b></label></div>
+    <div class="item" style="width:100px;"><label><b>Override</b></label></div>
+    <div class="item" style="width:275px;"><label><b>Time</b></label></div>
+    <div class="item" style="width:50px;"><label><b>Score</b></label></div>
+    <div class="item" style="width:200px;"><label><b>Professor</b></label></div>
+    <div class="item" style="width:100px;"><label><b>Seats</b></label></div>
+    </div>
+    <div class="manageClassItem"></div>
+`;
+
+export const HTML_PAGE_PROFESSORS_HEADER = `
+    <div class="margins">
+    <button type="button" onclick="upload('professors')">Import Professor Scores</button>
+    <button type="button" onclick="download('professors')">Export Professor Scores</button>
+    <div class="wrapper">
+    <div class="item" style="width:200px;"><label><b>Name</b></label></div>
+    <div class="item" style="width:50px;"><label><b>Score</b></label></div>
+    </div>
+    <hr style="height:0px; margin-top:0px">
+`;
