@@ -105,11 +105,11 @@ export function pageManageClasses() {
                 displayThisScore += `<label style="color:${scoreColor}">${theScore}</label><br>`;
             }
             
-            if (sectionInfo.override == 1) {
+            if (sectionInfo["override"] == 1) {
                 overrideColor = "Green";
-            } else if (sectionInfo.override == 0) {
+            } else if (sectionInfo["override"] == 0) {
                 overrideColor = "Red";
-            } else if (sectionInfo.override == 2) {
+            } else if (sectionInfo["override"] == 2) {
                 overrideColor = "#FFAA00";
             } else {
                 overrideColor = "";
@@ -119,13 +119,13 @@ export function pageManageClasses() {
             <div class="wrapper">
             <div class="item" style="width:100px;"><label>${sections[j]}</label></div>
 
-            <div class="item" style="width:70px;"><label style="color:${(sectionInfo.open == 1) ? "Green" : "Red"}">${(sectionInfo.open == 1) ? "Open" : "Closed"}</label></div>
+            <div class="item" style="width:70px;"><label style="color:${(sectionInfo["open"] == 1) ? "Green" : "Red"}">${(sectionInfo["open"] == 1) ? "Open" : "Closed"}</label></div>
 
             <div class="item" style="width:100px;"><select id="dropdown" style="color:${overrideColor}" onchange="changeClassOption('override','${[classes[i]]}','${[sections[j]]}',this)">
-                <option value="-1" ${(sectionInfo.override == -1) ? "selected" : ""}></option>
-                <option style="color:green" value="1" ${(sectionInfo.override == 1) ? "selected" : ""}>Enable</option>
-                <option style="color:red" value="0" ${(sectionInfo.override == 0) ? "selected" : ""}>Disable</option>
-                <option style="color:#FFAA00" value="2" ${(sectionInfo.override == 2) ? "selected" : ""}>SOLO</option>
+                <option value="-1" ${(sectionInfo["override"] == -1) ? "selected" : ""}></option>
+                <option style="color:green" value="1" ${(sectionInfo["override"] == 1) ? "selected" : ""}>Enable</option>
+                <option style="color:red" value="0" ${(sectionInfo["override"] == 0) ? "selected" : ""}>Disable</option>
+                <option style="color:#FFAA00" value="2" ${(sectionInfo["override"] == 2) ? "selected" : ""}>SOLO</option>
             </select></div>
 
             <div class="item" style="width:275px;"><label>${displayThisTime}</label></div>
@@ -134,7 +134,9 @@ export function pageManageClasses() {
 
             <div class="item" style="width:200px;"><label>${displayThisProfessors}</label></div>
 
-            <div class="item" style="width:100px;"><label>${((sectionInfo.seatsOpen != null) ? sectionInfo.seatsOpen : '')}</label></div>
+            <div class="item" style="width:70px;"><label>${((sectionInfo["seatsOpen"] != null) ? sectionInfo["seatsOpen"] : '')}</label></div>
+
+            <div class="item" style="width:200px;"><label>${((sectionInfo["startDate"] != null && sectionInfo["endDate"] != null) ? sectionInfo["startDate"] + " - " + sectionInfo["endDate"] : '')}</label></div>
 
             </div>
             <div class="manageClassItem"></div>

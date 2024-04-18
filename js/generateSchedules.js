@@ -3,6 +3,7 @@ import {
     setData,
     addKeys,
     checkRangeOverlap,
+    largerDate,
 } from './helpers.js';
 
 window.prepCallGenerateSchedules = prepCallGenerateSchedules;
@@ -46,30 +47,28 @@ function generateSchedules()
 
     // Generate Dictionary of Classes and Counters
     // for each class in the list
-    console.log(classlist)
     for (let i = 0; i < classlist.length; i++) {
         sectionlist = Object.keys(data["class"][classlist[i]]["section"]);
-
-        if (i == 0) {
-            startDate = data["class"][classlist[0]]["section"][sectionlist[0]]["startDate"];
-            endDate = data["class"][classlist[0]]["section"][sectionlist[0]]["endDate"];
-            console.log(classlist[0])
-            console.log(startDate)
-            console.log(endDate)
-            console.log("init")
-        } else {
-            console.log(startDate)
-            console.log(data["class"][classlist[i]]["section"][sectionlist[0]]["startDate"])
-            if (startDate != data["class"][classlist[i]]["section"][sectionlist[0]]["startDate"] || endDate != data["class"][classlist[i]]["section"][sectionlist[0]]["endDate"]) {
-                if (!hasDateMismatch) {
-                    log = "Warning: Classes have mismatching start and end dates. Make sure all classes are from the same semester. Click \"Reset Everying\" on the Input Classes page if you need to clear out the old stuff.<br>" + log;
-                    hasDateMismatch = true;
+        for (let j = 0; j < sectionlist.length; j++) {
+            if (data["class"][classlist[i]]["section"][sectionlist[j]]["time"][0] != "online") {
+                if (startDate == "") {
+                    startDate = data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"];
+                    endDate = data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"];
+                } else {
+                    if (largerDate(data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"], startDate) == 0) {
+                        startDate = data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"];
+                    }
+                    if (largerDate(data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"],endDate) == 1) {
+                        endDate = data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"];
+                    }
+                    console.log(startDate,endDate)
                 }
-                console.log("not fine")
-            } else {
-                console.log("Fine")
             }
         }
+    }
+    if (largerDate(startDate,endDate) == 0 && !hasDateMismatch) {
+        log = "Warning: Your class list contains classes that do not overlap. You may have forgotten to clear last semester's classes. Click \"Reset Everything\" to clear your classes and start over. If you are sure your class list is correct, you can ignore this message.<br>" + log;
+        hasDateMismatch = true;
     }
 
     for (let i = 0; i < classlist.length; i++) {

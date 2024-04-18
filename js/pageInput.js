@@ -1,7 +1,8 @@
 import {
     addKeys,
     getData,
-    setData
+    setData,
+    largerDate,
 } from './helpers.js';
 
 import { HTML_INPUT_PAGE } from './const.js';
@@ -47,7 +48,7 @@ export function submitClasses() {
     let seatsTotal;
     let logIgnore = [];
     let logSuccess = [];
-    let multiDateAlertShown = "";
+    let multiDateAlertShown = false;
     
 
     // Start Processing
@@ -106,7 +107,7 @@ export function submitClasses() {
             data["class"][code]["section"][section]["professors"] = [];
             data["class"][code]["section"][section]["time"] = [];
             data["class"][code]["section"][section]["location"] = [];
-            data["class"][code]["section"][section]["meetings"] = [];
+            //data["class"][code]["section"][section]["meetings"] = [];
             iterator = 0;
             
 
@@ -125,9 +126,9 @@ export function submitClasses() {
             let type = columns[3];
             
             if (!data["class"][code]["section"].hasOwnProperty(section)) {data["class"][code]["section"][section] = {};}
-            if (!data["class"][code]["section"][section].hasOwnProperty("meetings")) {data["class"][code]["section"][section]["meetings"] = [];}
+            //if (!data["class"][code]["section"][section].hasOwnProperty("meetings")) {data["class"][code]["section"][section]["meetings"] = [];}
 
-            data["class"][code]["section"][section]["meetings"].push({"time":[]});
+            //data["class"][code]["section"][section]["meetings"].push({"time":[]});
 
             // WRITE TIME
             if (/[A-Za-z0-9]+\s+[A-Za-z0-9]+:[A-Za-z0-9]+-[A-Za-z0-9]+:[A-Za-z0-9]+/i.test(dayTime)) {
@@ -135,12 +136,14 @@ export function submitClasses() {
                 if (!data["class"][code]["section"][section].hasOwnProperty("time")) {
                     data["class"][code]["section"][section]["time"] = [];
                 }
+                /*
                 if (!data["class"][code]["section"][section]["meetings"][iterator].hasOwnProperty("time")) {
                     data["class"][code]["section"][section]["meetings"][iterator]["time"] = [];
                 }
+                */
                 if (timeDay.length <= 1) {
                     data["class"][code]["section"][section]["time"].push("online");
-                    data["class"][code]["section"][section]["meetings"][iterator]["time"].push("online");
+                    //data["class"][code]["section"][section]["meetings"][iterator]["time"].push("online");
 
                     // AUTO DISABLE ONLINE CLASSES
                     if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
@@ -169,7 +172,7 @@ export function submitClasses() {
                         if ((JSON.stringify(data["class"][code]["section"][section]["time"]).indexOf(JSON.stringify([timeNum + "." + startTime,timeNum + "." + endTime])) >= 0)) {
                         } else {
                             data["class"][code]["section"][section]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime]);
-                            data["class"][code]["section"][section]["meetings"][iterator]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime]);
+                            //data["class"][code]["section"][section]["meetings"][iterator]["time"].push([timeNum + "." + startTime,timeNum + "." + endTime]);
                         }
                     }
                 }
@@ -217,24 +220,37 @@ export function submitClasses() {
             startDate = columns[1];
             endDate = columns[2];
 
-            console.log(section, startDate)
-
             data["class"][code]["section"][section]["units"] = units;
             data["class"][code]["section"][section]["startDate"] = startDate;
             data["class"][code]["section"][section]["endDate"] = endDate;
+        }
+    }
 
-            data = addKeys(data, [["settings", {}],["startDate", startDate]]);
-            data = addKeys(data, [["settings", {}],["endDate", endDate]]);
-
-            if ((startDate != data["settings"]["startDate"] || endDate != data["settings"]["endDate"])) {
-                if (multiDateAlertShown != code) {
-                    multiDateAlertShown = code;
-                    alert("The start and end date of the class " + code + " does not match the start and end date of existing classes. If this is because of an online class, please ignore this message. Otherwise, click \"Reset Everything\" before adding your classes.");
+    let classlist = Object.keys(data["class"]);
+    startDate = "";
+    endDate = "";
+    for (let i = 0; i < classlist.length; i++) {
+        sectionlist = Object.keys(data["class"][classlist[i]]["section"]);
+        for (let j = 0; j < sectionlist.length; j++) {
+            if (data["class"][classlist[i]]["section"][sectionlist[j]]["time"][0] != "online") {
+                if (startDate == "") {
+                    startDate = data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"];
+                    endDate = data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"];
+                } else {
+                    if (largerDate(data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"], startDate) == 0) {
+                        startDate = data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"];
+                    }
+                    if (largerDate(data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"],endDate) == 1) {
+                        endDate = data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"];
+                    }
+                    console.log(startDate,endDate)
                 }
             }
-
         }
-
+    }
+    if (largerDate(startDate,endDate) == 0 && !multiDateAlertShown) {
+        alert("Your class list contains classes that do not overlap. You may have forgotten to clear last semester's classes. Click \"Reset Everything\" to clear your classes and start over. If you are sure your class list is correct, you can ignore this message.");
+        multiDateAlertShown = true;
     }
 
     if (logIgnore.length > 3) {
@@ -257,15 +273,21 @@ function resetEverything() {
 
 window.updateFilterList = updateFilterList;
 function updateFilterList(input) {
-    if (localStorage.getItem("data") == null) {
-        localStorage.setItem("data","{}");
-    }
-    let data = JSON.parse(localStorage.getItem("data"));
+    let data = getData();
     if (!data.hasOwnProperty("settings")) {data["settings"] = {};}
     data["settings"]["inputFilter"] = input.toUpperCase().split("\n");
     if (isWhitespaceOrEmpty(data["settings"]["inputFilter"])) {
         data["settings"]["inputFilter"] = [];
     }
-    localStorage.setItem("data",JSON.stringify(data));
+    setData(data);
 
+}
+
+window.addChapel = addChapel;
+function addChapel() {
+    let data = getData();
+    
+    
+
+    setData(data);
 }

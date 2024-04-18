@@ -195,3 +195,19 @@ window.openPaypal = openPaypal;
 export function openPaypal() {
     window.open(PAYPAL_URL, '_blank').focus();
 }
+
+export function largerDate(date1, date2) {
+    const [month1, day1, year1] = date1.split('/');
+    const [month2, day2, year2] = date2.split('/');
+
+    const d1 = new Date(year1, month1 - 1, day1);
+    const d2 = new Date(year2, month2 - 1, day2);
+
+    if (d1 > d2) {
+        return 0;
+    } else if (d1 < d2) {
+        return 1;
+    } else {
+        return -1;
+    }
+}

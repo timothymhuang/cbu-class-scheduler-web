@@ -99,6 +99,8 @@ export const HTML_INPUT_PAGE = `
     <p id="p1">Filter List (Optional, only classes in this list will be accepted)</p>
     <textarea id="filterList" name="Text2" cols="6" rows="10" style="padding: 5px;" onChange="updateFilterList(this.value)"></textarea>
     <div style="padding-top: 15px"></div>
+    <button type="button" class="btn-sm" onclick="addChapel()">Add Chapel to Schedule</button>
+    <div style="padding-top: 15px"></div>
     <p>Backup your work, or transfer it to another device:</p>
     <button type="button" class="btn-sm" onclick="upload('everything')">Import Everything</button>
     <button type="button" class="btn-sm" onclick="download('everything')">Export Everything</button>
@@ -125,7 +127,8 @@ export const HTML_PAGE_MANAGE_COLUMNS = `
     <div class="item" style="width:275px;"><label><b>Time</b></label></div>
     <div class="item" style="width:50px;"><label><b>Score</b></label></div>
     <div class="item" style="width:200px;"><label><b>Professor</b></label></div>
-    <div class="item" style="width:100px;"><label><b>Seats</b></label></div>
+    <div class="item" style="width:70px;"><label><b>Seats</b></label></div>
+    <div class="item" style="width:200px;"><label><b>Date Range</b></label></div>
     </div>
     <div class="manageClassItem"></div>
 `;
