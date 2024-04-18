@@ -11,8 +11,7 @@ import { HTML_INPUT_PAGE } from './const.js';
 export function pageInput() {
     let data = getData();
 
-    if (!data.hasOwnProperty("settings")) {data["settings"] = {};}
-    if (!data["settings"].hasOwnProperty("inputFilter")) {data["settings"]["inputFilter"] = [];}
+    data = addKeys(data, [["settings", {}],["inputFilter", []]]);
     document.getElementById("display").innerHTML = HTML_INPUT_PAGE;
     document.getElementById("filterList").innerHTML = data["settings"]["inputFilter"].join("\n");
     setData(data);
@@ -125,7 +124,8 @@ export function submitClasses() {
             let location = columns[2];
             let type = columns[3];
             
-            if (!data["class"][code]["section"].hasOwnProperty(section)) {data["class"][code]["section"][section] = {};}
+            data = addKeys(data, [["class", {}], [code, {}],["section",{}], [section, {}]]);
+            
             //if (!data["class"][code]["section"][section].hasOwnProperty("meetings")) {data["class"][code]["section"][section]["meetings"] = [];}
 
             //data["class"][code]["section"][section]["meetings"].push({"time":[]});
@@ -133,9 +133,7 @@ export function submitClasses() {
             // WRITE TIME
             if (/[A-Za-z0-9]+\s+[A-Za-z0-9]+:[A-Za-z0-9]+-[A-Za-z0-9]+:[A-Za-z0-9]+/i.test(dayTime)) {
                 let timeDay = dayTime.split(' ');
-                if (!data["class"][code]["section"][section].hasOwnProperty("time")) {
-                    data["class"][code]["section"][section]["time"] = [];
-                }
+                data = addKeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["time",[]]]);
                 /*
                 if (!data["class"][code]["section"][section]["meetings"][iterator].hasOwnProperty("time")) {
                     data["class"][code]["section"][section]["meetings"][iterator]["time"] = [];
@@ -146,14 +144,10 @@ export function submitClasses() {
                     //data["class"][code]["section"][section]["meetings"][iterator]["time"].push("online");
 
                     // AUTO DISABLE ONLINE CLASSES
-                    if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
-                        data["class"][code]["section"][section]["override"] = 0;
-                    }
+                    data = addkeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["override",0]]);
                 } else {
                     // DO NOT OVERRIDE CLASSES WITH TIME
-                    if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
-                        data["class"][code]["section"][section]["override"] = -1;
-                    }
+                    data = addkeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["override",-1]]);
 
                     let dayArray = timeDay[0].split("");
                     let timeArray = timeDay[1].split('-');
@@ -184,9 +178,7 @@ export function submitClasses() {
                 data["class"][code]["section"][section]["time"].push("online");
 
                 // AUTO DISABLE ONLINE CLASSES
-                if (!data["class"][code]["section"][section].hasOwnProperty("override")) {
-                    data["class"][code]["section"][section]["override"] = 0;
-                }
+                data = addkeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["override",0]]);
 
                 if (!logSuccess.includes(code)) {
                     logSuccess.push(code);
@@ -197,16 +189,15 @@ export function submitClasses() {
 
             if (/[\s\S]+,[\s\S]+/i.test(professor)) {
                 // WRITE PROFESSOR NAME
-                if (!data["class"][code]["section"][section].hasOwnProperty("professors")) {
-                    data["class"][code]["section"][section]["professors"] = [];
-                }
+                data = addkeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["professors",[]]]);
                 data["class"][code]["section"][section]["professors"].push(professor);
 
             } else {
                 console.log(`Improper Format: "${professor}" is not professor.`);
             }
             
-            if (!data["class"][code]["section"][section].hasOwnProperty("location")) {data["class"][code]["section"][section]["location"] = [];}
+            data = addkeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["location",[]]]);
+
             data["class"][code]["section"][section]["location"].push(location);
             //console.log(section, location)
             iterator++;
@@ -234,8 +225,10 @@ export function submitClasses() {
         for (let j = 0; j < sectionlist.length; j++) {
             if (data["class"][classlist[i]]["section"][sectionlist[j]]["time"][0] != "online") {
                 if (startDate == "") {
-                    startDate = data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"];
-                    endDate = data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"];
+                    if (data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"] != "") {
+                        startDate = data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"];
+                        endDate = data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"];
+                    }
                 } else {
                     if (largerDate(data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"], startDate) == 0) {
                         startDate = data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"];
@@ -274,8 +267,10 @@ function resetEverything() {
 window.updateFilterList = updateFilterList;
 function updateFilterList(input) {
     let data = getData();
-    if (!data.hasOwnProperty("settings")) {data["settings"] = {};}
+    data = addKeys(data, [["settings", {}]]);
+
     data["settings"]["inputFilter"] = input.toUpperCase().split("\n");
+
     if (isWhitespaceOrEmpty(data["settings"]["inputFilter"])) {
         data["settings"]["inputFilter"] = [];
     }
