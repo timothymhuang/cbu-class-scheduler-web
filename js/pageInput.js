@@ -3,6 +3,7 @@ import {
     getData,
     setData,
     largerDate,
+    isWhitespaceOrEmpty
 } from './helpers.js';
 
 import { HTML_INPUT_PAGE } from './const.js';
@@ -45,9 +46,11 @@ export function submitClasses() {
     let code;
     let seatsOpen;
     let seatsTotal;
+    let tempLen;
     let logIgnore = [];
     let logSuccess = [];
     let multiDateAlertShown = false;
+    let sectionlist;
     
 
     // Start Processing
@@ -144,10 +147,10 @@ export function submitClasses() {
                     //data["class"][code]["section"][section]["meetings"][iterator]["time"].push("online");
 
                     // AUTO DISABLE ONLINE CLASSES
-                    data = addkeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["override",0]]);
+                    data = addKeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["override",0]]);
                 } else {
                     // DO NOT OVERRIDE CLASSES WITH TIME
-                    data = addkeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["override",-1]]);
+                    data = addKeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["override",-1]]);
 
                     let dayArray = timeDay[0].split("");
                     let timeArray = timeDay[1].split('-');
@@ -178,7 +181,7 @@ export function submitClasses() {
                 data["class"][code]["section"][section]["time"].push("online");
 
                 // AUTO DISABLE ONLINE CLASSES
-                data = addkeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["override",0]]);
+                data = addKeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["override",0]]);
 
                 if (!logSuccess.includes(code)) {
                     logSuccess.push(code);
@@ -189,14 +192,14 @@ export function submitClasses() {
 
             if (/[\s\S]+,[\s\S]+/i.test(professor)) {
                 // WRITE PROFESSOR NAME
-                data = addkeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["professors",[]]]);
+                data = addKeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["professors",[]]]);
                 data["class"][code]["section"][section]["professors"].push(professor);
 
             } else {
                 console.log(`Improper Format: "${professor}" is not professor.`);
             }
             
-            data = addkeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["location",[]]]);
+            data = addKeys(data, [["class", {}], [code, {}],["section",{}], [section, {}],["location",[]]]);
 
             data["class"][code]["section"][section]["location"].push(location);
             //console.log(section, location)
