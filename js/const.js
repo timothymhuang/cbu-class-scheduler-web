@@ -99,7 +99,7 @@ export const HTML_INPUT_PAGE = `
     <p id="p1">Filter List (Optional, only classes in this list will be accepted)</p>
     <textarea id="filterList" name="Text2" cols="6" rows="10" style="padding: 5px;" onChange="updateFilterList(this.value)"></textarea>
     <div style="padding-top: 15px"></div>
-    <button type="button" class="btn-sm" onclick="addChapel()">Add Chapel to Schedule</button>
+    <!--<button type="button" class="btn-sm" onclick="addChapel()">Add Chapel to Schedule</button>-->
     <div style="padding-top: 15px"></div>
     <p>Backup your work, or transfer it to another device:</p>
     <button type="button" class="btn-sm" onclick="upload('everything')">Import Everything</button>
@@ -107,7 +107,7 @@ export const HTML_INPUT_PAGE = `
     </div>
 `;
 
-export const PAYPAL_URL = "https://www.paypal.com/donate/?business=9ZCUEUSNY5B7Y&no_recurring=0&item_name=Hi%21+The+CBU+Class+Scheduler+was+made+entirely+by+me,+a+poor+college+student+that+would+appreciate+your+support.+Thank+you%21&currency_code=USD";
+export const PAYPAL_URL = "https://ko-fi.com/timothyhuang";
 
 export const HTML_PAGE_MANAGE_HEADER = `
     <div style="height:35px"></div>
