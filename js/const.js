@@ -107,7 +107,7 @@ export const HTML_INPUT_PAGE = `
     </div>
 `;
 
-export const PAYPAL_URL = "https://www.paypal.com/donate/?business=9ZCUEUSNY5B7Y&no_recurring=0&item_name=Hi%21+The+CBU+Class+Scheduler+was+made+entirely+by+me,+a+poor+college+student+that+would+appreciate+your+support.+Thank+you%21&currency_code=USD";
+export const PAYPAL_URL = "https://ko-fi.com/timothyhuang";
 
 export const HTML_PAGE_MANAGE_HEADER = `
     <div style="height:35px"></div>
