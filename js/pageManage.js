@@ -1,1 +1,206 @@
-const _0x3989d9=_0x4f97;(function(_0x558d6e,_0x2d0bd6){const _0x3f7a4d=_0x4f97,_0x3dd89c=_0x558d6e();while(!![]){try{const _0x54e4df=parseInt(_0x3f7a4d(0x16f))/0x1+-parseInt(_0x3f7a4d(0x194))/0x2*(-parseInt(_0x3f7a4d(0x187))/0x3)+parseInt(_0x3f7a4d(0x19f))/0x4+parseInt(_0x3f7a4d(0x177))/0x5+-parseInt(_0x3f7a4d(0x195))/0x6*(parseInt(_0x3f7a4d(0x192))/0x7)+-parseInt(_0x3f7a4d(0x175))/0x8+parseInt(_0x3f7a4d(0x191))/0x9*(-parseInt(_0x3f7a4d(0x193))/0xa);if(_0x54e4df===_0x2d0bd6)break;else _0x3dd89c['push'](_0x3dd89c['shift']());}catch(_0x45ea0d){_0x3dd89c['push'](_0x3dd89c['shift']());}}}(_0x2ed9,0xea3fa));function _0x2ed9(){const _0x28f3a9=['log','</label><br>','Are\x20you\x20sure\x20you\x20want\x20to\x20delete\x20','</label></div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:70px;\x22><label>','quality','Closed','>Enable</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20style=\x22color:red\x22\x20value=\x220\x22\x20','</div>\x20<!--Final\x20Closing\x20Div\x20Tag-->','__proto__','\x20-\x20','class','startDate','changeClassOption','<h1\x20style=\x22margin-bottom:5px\x22>','\x22\x20id=\x22dropdown\x22\x20onchange=\x22changeClassOption(\x27overrideAll\x27,\x20\x27','#FFAA00','professors','Open','value','open','bind','></option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20style=\x22color:green\x22\x20value=\x221\x22\x20','\x27,this)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22-1\x22\x20','Green','getElementById','selected','626584kZynNF','return\x20(function()\x20','apply','</div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:200px;\x22><label>','time','innerHTML','10424928GfHJQP','info','6654165TazXua','overrideAll','#000000','>Disable</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20style=\x22color:red\x22\x20value=\x22-1\x22>Delete</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','<br>','endDate','</label></div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:50px;\x22>','classes','display','constructor','console','toString','\x27,\x20null,\x20this)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20style=\x22color:green\x22\x20value=\x221\x22\x20','keys','</label></div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:70px;\x22><label\x20style=\x22color:','trace','18YUBzlk','\x22\x20onchange=\x22changeClassOption(\x27override\x27,\x27','>SOLO</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select></div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:275px;\x22><label>','>Enable</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20style=\x22color:#FFAA00\x22\x20value=\x220\x22\x20','Red','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22wrapper\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:100px;\x22><label>','warn','\x27,\x27','#FF8000','indexOf','21839508QLUoBB','416570aBRLWZ','10LTsWIt','627778atVvsG','12DHESro','section','prototype','hasOwnProperty','exception','enable','override','#FF0000','split','substring','3869916culeEK','#009000','length'];_0x2ed9=function(){return _0x28f3a9;};return _0x2ed9();}const _0x244d0c=(function(){let _0x4bd0b1=!![];return function(_0x53f392,_0x29c3dc){const _0x5a063c=_0x4bd0b1?function(){const _0x5db42b=_0x4f97;if(_0x29c3dc){const _0x539e82=_0x29c3dc[_0x5db42b(0x171)](_0x53f392,arguments);return _0x29c3dc=null,_0x539e82;}}:function(){};return _0x4bd0b1=![],_0x5a063c;};}()),_0x48fe04=_0x244d0c(this,function(){const _0x33cb26=_0x4f97,_0x41ba3d=function(){const _0x3c13bb=_0x4f97;let _0x759ee1;try{_0x759ee1=Function(_0x3c13bb(0x170)+'{}.constructor(\x22return\x20this\x22)(\x20)'+');')();}catch(_0x4d630a){_0x759ee1=window;}return _0x759ee1;},_0x228292=_0x41ba3d(),_0xe496d5=_0x228292['console']=_0x228292[_0x33cb26(0x181)]||{},_0x287235=[_0x33cb26(0x1a2),_0x33cb26(0x18d),_0x33cb26(0x176),'error',_0x33cb26(0x199),'table',_0x33cb26(0x186)];for(let _0x108406=0x0;_0x108406<_0x287235[_0x33cb26(0x1a1)];_0x108406++){const _0x4e38d6=_0x244d0c[_0x33cb26(0x180)][_0x33cb26(0x197)]['bind'](_0x244d0c),_0x1df8e1=_0x287235[_0x108406],_0x499b4d=_0xe496d5[_0x1df8e1]||_0x4e38d6;_0x4e38d6[_0x33cb26(0x1aa)]=_0x244d0c[_0x33cb26(0x169)](_0x244d0c),_0x4e38d6[_0x33cb26(0x182)]=_0x499b4d[_0x33cb26(0x182)][_0x33cb26(0x169)](_0x499b4d),_0xe496d5[_0x1df8e1]=_0x4e38d6;}});_0x48fe04();import{beautifyTime}from'./helpers.js';import{RMP}from'./rmp.js';import{HTML_PAGE_MANAGE_HEADER,HTML_PAGE_MANAGE_COLUMNS,DAYS_OF_WEEK}from'./const.js';import{addKeys,getData,setData}from'./helpers.js';export function pageManageClasses(){const _0x4afb94=_0x4f97;let _0x11076f=getData();_0x11076f=addKeys(_0x11076f,[[_0x4afb94(0x15f),{}]]);let _0x52555e=HTML_PAGE_MANAGE_HEADER,_0x131180=[],_0x25671a=Object[_0x4afb94(0x184)](_0x11076f['class']),_0x1fb1ef,_0x1cc361,_0x2b1c21,_0x5be12a,_0x56ea8b,_0x270adc,_0x31e14b,_0x573a0f,_0x3d57e9,_0x33bfd5,_0x2203c1,_0x31120f,_0x2a643a,_0x639c99,_0x9cbea8,_0x6d2b30,_0x3cb4cb;for(let _0xde8cac=0x0;_0xde8cac<_0x25671a[_0x4afb94(0x1a1)];_0xde8cac++){if(_0x11076f[_0x4afb94(0x15f)][_0x25671a[_0xde8cac]][_0x4afb94(0x19a)]==0x1)_0x1fb1ef='Green';else _0x11076f[_0x4afb94(0x15f)][_0x25671a[_0xde8cac]][_0x4afb94(0x19a)]==0x0?_0x1fb1ef=_0x4afb94(0x164):_0x1fb1ef='';_0x52555e+=_0x4afb94(0x162)+_0x25671a[_0xde8cac]+'</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<select\x20style=\x22margin-bottom:5px;\x20color:'+_0x1fb1ef+_0x4afb94(0x163)+_0x25671a[_0xde8cac]+_0x4afb94(0x183)+(_0x11076f[_0x4afb94(0x15f)][_0x25671a[_0xde8cac]][_0x4afb94(0x19a)]==0x1?_0x4afb94(0x16e):'')+_0x4afb94(0x18a)+(_0x11076f[_0x4afb94(0x15f)][_0x25671a[_0xde8cac]][_0x4afb94(0x19a)]==0x0?_0x4afb94(0x16e):'')+_0x4afb94(0x17a),_0x1cc361=Object[_0x4afb94(0x184)](_0x11076f['class'][_0x25671a[_0xde8cac]]['section']),_0x52555e+=HTML_PAGE_MANAGE_COLUMNS;for(let _0x4c9ea8=0x0;_0x4c9ea8<_0x1cc361[_0x4afb94(0x1a1)];_0x4c9ea8++){_0x2b1c21=_0x11076f[_0x4afb94(0x15f)][_0x25671a[_0xde8cac]][_0x4afb94(0x196)][_0x1cc361[_0x4c9ea8]],_0x5be12a=_0x1cc361[_0x4c9ea8],_0x56ea8b=_0x5be12a[_0x4afb94(0x19e)](0x0,_0x5be12a[_0x4afb94(0x190)]('-')),_0x270adc=_0x11076f[_0x4afb94(0x15f)][_0x56ea8b][_0x4afb94(0x196)][_0x5be12a][_0x4afb94(0x173)],_0x31e14b='';for(let _0x3201cf=0x0;_0x3201cf<_0x270adc[_0x4afb94(0x1a1)];_0x3201cf++){if(_0x270adc[_0x3201cf]==['online']){_0x31e14b+='Online';break;}_0x573a0f=parseInt(_0x270adc[_0x3201cf][0x0][_0x4afb94(0x19e)](0x0,_0x270adc[_0x3201cf][0x0][_0x4afb94(0x190)]('.'))),_0x3d57e9=_0x270adc[_0x3201cf][0x0][_0x4afb94(0x19e)](_0x270adc[_0x3201cf][0x0][_0x4afb94(0x190)]('.')+0x1),_0x33bfd5=_0x270adc[_0x3201cf][0x1][_0x4afb94(0x19e)](_0x270adc[_0x3201cf][0x1][_0x4afb94(0x190)]('.')+0x1),_0x31e14b+=DAYS_OF_WEEK[_0x573a0f]+',\x20'+beautifyTime(_0x3d57e9)+_0x4afb94(0x1ab)+beautifyTime(_0x33bfd5)+_0x4afb94(0x17b);}_0x131180=_0x11076f[_0x4afb94(0x15f)][_0x56ea8b]['section'][_0x5be12a][_0x4afb94(0x165)],_0x2203c1='',_0x31120f='';for(let _0x13463c=0x0;_0x13463c<_0x131180[_0x4afb94(0x1a1)];_0x13463c++){_0x2203c1+=_0x131180[_0x13463c]+_0x4afb94(0x17b),_0x639c99=_0x131180[_0x13463c][_0x4afb94(0x19d)](',\x20')[0x0],_0x9cbea8=_0x131180[_0x13463c][_0x4afb94(0x19d)](',\x20')[0x1][_0x4afb94(0x19d)]('\x20')[0x0];RMP[_0x4afb94(0x198)](_0x9cbea8+'\x20'+_0x639c99)?_0x6d2b30=RMP[_0x9cbea8+'\x20'+_0x639c99][_0x4afb94(0x1a6)]:_0x6d2b30=0x0;if(_0x6d2b30>=0x4)_0x2a643a=_0x4afb94(0x1a0);else{if(_0x6d2b30>=0x3)_0x2a643a=_0x4afb94(0x18f);else _0x6d2b30>=0x1?_0x2a643a=_0x4afb94(0x19c):_0x2a643a=_0x4afb94(0x179);}_0x31120f+='<label\x20style=\x22color:'+_0x2a643a+'\x22>'+_0x6d2b30+_0x4afb94(0x1a3);}if(_0x2b1c21[_0x4afb94(0x19b)]==0x1)_0x3cb4cb=_0x4afb94(0x16c);else{if(_0x2b1c21['override']==0x0)_0x3cb4cb=_0x4afb94(0x18b);else _0x2b1c21['override']==0x2?_0x3cb4cb=_0x4afb94(0x164):_0x3cb4cb='';}_0x52555e+=_0x4afb94(0x18c)+_0x1cc361[_0x4c9ea8]+_0x4afb94(0x185)+(_0x2b1c21[_0x4afb94(0x168)]==0x1?'Green':_0x4afb94(0x18b))+'\x22>'+(_0x2b1c21[_0x4afb94(0x168)]==0x1?_0x4afb94(0x166):_0x4afb94(0x1a7))+'</label></div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:100px;\x22><select\x20id=\x22dropdown\x22\x20style=\x22color:'+_0x3cb4cb+_0x4afb94(0x188)+[_0x25671a[_0xde8cac]]+_0x4afb94(0x18e)+[_0x1cc361[_0x4c9ea8]]+_0x4afb94(0x16b)+(_0x2b1c21[_0x4afb94(0x19b)]==-0x1?_0x4afb94(0x16e):'')+_0x4afb94(0x16a)+(_0x2b1c21[_0x4afb94(0x19b)]==0x1?_0x4afb94(0x16e):'')+_0x4afb94(0x1a8)+(_0x2b1c21[_0x4afb94(0x19b)]==0x0?_0x4afb94(0x16e):'')+'>Disable</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20style=\x22color:#FFAA00\x22\x20value=\x222\x22\x20'+(_0x2b1c21[_0x4afb94(0x19b)]==0x2?'selected':'')+_0x4afb94(0x189)+_0x31e14b+_0x4afb94(0x17d)+_0x31120f+_0x4afb94(0x172)+_0x2203c1+_0x4afb94(0x1a5)+(_0x2b1c21['seatsOpen']!=null?_0x2b1c21['seatsOpen']:'')+'</label></div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:200px;\x22><label>'+(_0x2b1c21[_0x4afb94(0x160)]!=null&&_0x2b1c21[_0x4afb94(0x17c)]!=null?_0x2b1c21[_0x4afb94(0x160)]+'\x20-\x20'+_0x2b1c21[_0x4afb94(0x17c)]:'')+'</label></div>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22manageClassItem\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';}}_0x52555e+=_0x4afb94(0x1a9),document[_0x4afb94(0x16d)](_0x4afb94(0x17f))[_0x4afb94(0x174)]=_0x52555e,setData(_0x11076f);}window[_0x3989d9(0x161)]=changeClassOption;function changeClassOption(_0x820a80,_0x52a205,_0x5ab6ba,_0x1b26e7){const _0x58659b=_0x3989d9;let _0x172371=getData();switch(_0x820a80){case'override':_0x172371[_0x58659b(0x15f)][_0x52a205][_0x58659b(0x196)][_0x5ab6ba]['override']=_0x1b26e7[_0x58659b(0x167)],setData(_0x172371),menubar(_0x58659b(0x17e));break;case _0x58659b(0x178):if(_0x1b26e7[_0x58659b(0x167)]==-0x1){deleteClass(_0x52a205);return;}else{if(_0x1b26e7[_0x58659b(0x167)]==0x0)_0x172371[_0x58659b(0x15f)][_0x52a205][_0x58659b(0x19a)]=0x0;else _0x1b26e7[_0x58659b(0x167)]==0x1&&(_0x172371[_0x58659b(0x15f)][_0x52a205][_0x58659b(0x19a)]=0x1);}setData(_0x172371),menubar('classes');break;default:break;}setData(_0x172371);return;}function _0x4f97(_0x8fa824,_0x1ff6ec){const _0x376c68=_0x2ed9();return _0x4f97=function(_0x48fe04,_0x244d0c){_0x48fe04=_0x48fe04-0x15f;let _0x3f525a=_0x376c68[_0x48fe04];return _0x3f525a;},_0x4f97(_0x8fa824,_0x1ff6ec);}function deleteClass(_0x25ab7a){const _0x185fd2=_0x3989d9;let _0x4ad987=getData();confirm(_0x185fd2(0x1a4)+_0x25ab7a+'?')&&(delete _0x4ad987['class'][_0x25ab7a],console[_0x185fd2(0x1a2)]('Deleted\x20'+_0x25ab7a)),setData(_0x4ad987),menubar(_0x185fd2(0x17e));}
+import { beautifyTime } from "./helpers.js";
+
+import { RMP } from "./rmp.js";
+
+import {
+    HTML_PAGE_MANAGE_HEADER,
+    HTML_PAGE_MANAGE_COLUMNS,
+    DAYS_OF_WEEK
+} from "./const.js";
+
+import {
+    addKeys,
+    getData,
+    setData
+} from './helpers.js';
+
+export function pageManageClasses() {
+    let data = getData();
+    data = addKeys(data,[["class",{}]])
+
+    let displayThis = HTML_PAGE_MANAGE_HEADER;
+    let professors = [];
+
+    let classes = Object.keys(data.class);
+
+    let overrideAllColor;
+    let sections;
+    let sectionInfo;
+    let thisSection;
+    let thisClass;
+    let thisTime;
+    let displayThisTime;
+    let thisDay;
+    let thisStartTime;
+    let thisEndTime;
+    let displayThisProfessors;
+    let displayThisScore;
+    let scoreColor;
+    let lastname;
+    let firstname;
+    let theScore;
+    let overrideColor;
+
+    for (let i = 0 ; i < classes.length ; i++) {
+
+        if (data["class"][classes[i]]["enable"] == 1) {
+            overrideAllColor = "Green";
+        } else if (data["class"][classes[i]]["enable"] == 0) {
+            overrideAllColor = "#FFAA00";
+        } else {
+            overrideAllColor = "";
+        }
+        displayThis += `<h1 style="margin-bottom:5px">${classes[i]}</h1>
+        <select style="margin-bottom:5px; color:${overrideAllColor}" id="dropdown" onchange="changeClassOption('overrideAll', '${classes[i]}', null, this)">
+                <option style="color:green" value="1" ${(data["class"][classes[i]]["enable"] == 1) ? "selected" : ""}>Enable</option>
+                <option style="color:#FFAA00" value="0" ${(data["class"][classes[i]]["enable"] == 0) ? "selected" : ""}>Disable</option>
+                <option style="color:red" value="-1">Delete</option>
+        </select>
+            `;
+        sections = Object.keys(data["class"][classes[i]]["section"]);
+
+        displayThis += HTML_PAGE_MANAGE_COLUMNS;
+
+        for (let j = 0 ; j < sections.length ; j++) {
+            sectionInfo = data["class"][classes[i]]["section"][sections[j]];
+
+            thisSection = sections[j];
+            thisClass = thisSection.substring (0, thisSection.indexOf("-"));
+            thisTime = data["class"][thisClass]["section"][thisSection]["time"];
+            displayThisTime = "";
+            for (let k = 0; k < thisTime.length; k++) {
+                if (thisTime[k] == ["online"]) {
+                    displayThisTime += "Online";
+                    break;
+                }
+                thisDay = parseInt(thisTime[k][0].substring(0, thisTime[k][0].indexOf(".")));
+                thisStartTime = thisTime[k][0].substring(thisTime[k][0].indexOf(".")+1);
+                thisEndTime = thisTime[k][1].substring(thisTime[k][1].indexOf(".")+1);
+
+                displayThisTime += DAYS_OF_WEEK[thisDay] + ", " + beautifyTime(thisStartTime) + " - " + beautifyTime(thisEndTime) + "<br>";
+            }
+            professors = data["class"][thisClass]["section"][thisSection]["professors"];
+            displayThisProfessors = "";
+            displayThisScore = "";
+            for (let l = 0; l < professors.length ; l++) {
+                displayThisProfessors += `${professors[l]}<br>`;
+                lastname = professors[l].split(", ")[0];
+                firstname = professors[l].split(", ")[1].split(" ")[0];
+                if (RMP.hasOwnProperty(`${firstname} ${lastname}`)) {
+                    theScore = RMP[`${firstname} ${lastname}`]["quality"];
+                } else {
+                    theScore = 0;
+                }
+                
+                //theScore = data["professor"][professors[l]]["score"]
+                if (theScore >= 4) {
+                    scoreColor = "#009000";
+                } else if (theScore >= 3) {
+                    scoreColor = "#FF8000";
+                } else if (theScore >= 1) {
+                    scoreColor = "#FF0000";
+                } else {
+                    scoreColor = "#000000";
+                }
+                displayThisScore += `<label style="color:${scoreColor}">${theScore}</label><br>`;
+            }
+            
+            if (sectionInfo["override"] == 1) {
+                overrideColor = "Green";
+            } else if (sectionInfo["override"] == 0) {
+                overrideColor = "Red";
+            } else if (sectionInfo["override"] == 2) {
+                overrideColor = "#FFAA00";
+            } else {
+                overrideColor = "";
+            }
+
+            displayThis += `
+            <div class="wrapper">
+            <div class="item" style="width:100px;"><label>${sections[j]}</label></div>
+
+            <div class="item" style="width:70px;"><label style="color:${(sectionInfo["open"] == 1) ? "Green" : "Red"}">${(sectionInfo["open"] == 1) ? "Open" : "Closed"}</label></div>
+
+            <div class="item" style="width:100px;"><select id="dropdown" style="color:${overrideColor}" onchange="changeClassOption('override','${[classes[i]]}','${[sections[j]]}',this)">
+                <option value="-1" ${(sectionInfo["override"] == -1) ? "selected" : ""}></option>
+                <option style="color:green" value="1" ${(sectionInfo["override"] == 1) ? "selected" : ""}>Enable</option>
+                <option style="color:red" value="0" ${(sectionInfo["override"] == 0) ? "selected" : ""}>Disable</option>
+                <option style="color:#FFAA00" value="2" ${(sectionInfo["override"] == 2) ? "selected" : ""}>SOLO</option>
+            </select></div>
+
+            <div class="item" style="width:275px;"><label>${displayThisTime}</label></div>
+
+            <div class="item" style="width:50px;">${displayThisScore}</div>
+
+            <div class="item" style="width:200px;"><label>${displayThisProfessors}</label></div>
+
+            <div class="item" style="width:70px;"><label>${((sectionInfo["seatsOpen"] != null) ? sectionInfo["seatsOpen"] : '')}</label></div>
+
+            <div class="item" style="width:200px;"><label>${((sectionInfo["startDate"] != null && sectionInfo["endDate"] != null) ? sectionInfo["startDate"] + " - " + sectionInfo["endDate"] : '')}</label></div>
+
+            </div>
+            <div class="manageClassItem"></div>
+            `;
+        }
+    }
+    displayThis += "</div> <!--Final Closing Div Tag-->";
+
+
+    document.getElementById("display").innerHTML = displayThis;
+
+    setData(data);
+}
+
+window.changeClassOption = changeClassOption;
+function changeClassOption(type, thisClass, thisSection, value) {
+    let data = getData();
+
+    switch (type) {
+        case "override":
+            data["class"][thisClass]["section"][thisSection]["override"] = value.value;
+            setData(data);
+            menubar('classes');
+            break;
+        case "overrideAll":
+            if (value.value == -1) {
+                deleteClass(thisClass);
+                return;
+            } else if (value.value == 0) {
+                data["class"][thisClass]["enable"] = 0;
+            } else if (value.value == 1) {
+                data["class"][thisClass]["enable"] = 1;
+            }
+            setData(data);
+            menubar('classes');
+            break;
+        default:
+            break;
+    }
+
+    /*
+        if (value.value == 1) {
+            data["class"][thisClass]["section"][thisSection]["override"] = -1
+        } else if (value.value == 2) {
+            data["class"][thisClass]["section"][thisSection]["override"] = 1
+        } else if (value.value == 3) {
+            data["class"][thisClass]["section"][thisSection]["override"] = 0
+        }
+    }
+    */
+
+    setData(data);
+    return;
+}
+
+function deleteClass(thisClass) {
+    let data = getData();
+
+    if (confirm("Are you sure you want to delete " + thisClass + "?")) {
+        delete data["class"][thisClass];
+        console.log("Deleted " + thisClass);
+    }
+
+    setData(data);
+
+    menubar('classes');
+}

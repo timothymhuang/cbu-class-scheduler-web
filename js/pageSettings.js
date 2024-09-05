@@ -1,1 +1,34 @@
-const _0x2c1950=_0x3f89;(function(_0x382b55,_0x3145fb){const _0x41e448=_0x3f89,_0x350221=_0x382b55();while(!![]){try{const _0xa0fc69=parseInt(_0x41e448(0x1eb))/0x1+parseInt(_0x41e448(0x1e4))/0x2+-parseInt(_0x41e448(0x1dc))/0x3*(parseInt(_0x41e448(0x1dd))/0x4)+parseInt(_0x41e448(0x1d6))/0x5+-parseInt(_0x41e448(0x1ce))/0x6*(-parseInt(_0x41e448(0x1cd))/0x7)+-parseInt(_0x41e448(0x1e2))/0x8+-parseInt(_0x41e448(0x1d7))/0x9;if(_0xa0fc69===_0x3145fb)break;else _0x350221['push'](_0x350221['shift']());}catch(_0x383814){_0x350221['push'](_0x350221['shift']());}}}(_0x1aa9,0xc7884));const _0x1d9d81=(function(){let _0x355232=!![];return function(_0x33b6c5,_0x50119e){const _0x562b54=_0x355232?function(){const _0x1e017a=_0x3f89;if(_0x50119e){const _0x4e07ca=_0x50119e[_0x1e017a(0x1da)](_0x33b6c5,arguments);return _0x50119e=null,_0x4e07ca;}}:function(){};return _0x355232=![],_0x562b54;};}()),_0x4ce1fb=_0x1d9d81(this,function(){const _0x5dc6b0=_0x3f89,_0x297240=function(){const _0x27f1d9=_0x3f89;let _0x3c5689;try{_0x3c5689=Function(_0x27f1d9(0x1ea)+_0x27f1d9(0x1e3)+');')();}catch(_0x49fc81){_0x3c5689=window;}return _0x3c5689;},_0x1417c7=_0x297240(),_0x228cd3=_0x1417c7[_0x5dc6b0(0x1e1)]=_0x1417c7[_0x5dc6b0(0x1e1)]||{},_0x4773d4=[_0x5dc6b0(0x1ed),_0x5dc6b0(0x1d5),_0x5dc6b0(0x1e5),_0x5dc6b0(0x1ec),_0x5dc6b0(0x1e8),_0x5dc6b0(0x1d8),_0x5dc6b0(0x1d3)];for(let _0x43f057=0x0;_0x43f057<_0x4773d4[_0x5dc6b0(0x1e6)];_0x43f057++){const _0x3808d5=_0x1d9d81['constructor'][_0x5dc6b0(0x1d0)][_0x5dc6b0(0x1e0)](_0x1d9d81),_0x4a4a71=_0x4773d4[_0x43f057],_0x520090=_0x228cd3[_0x4a4a71]||_0x3808d5;_0x3808d5[_0x5dc6b0(0x1df)]=_0x1d9d81[_0x5dc6b0(0x1e0)](_0x1d9d81),_0x3808d5[_0x5dc6b0(0x1d9)]=_0x520090[_0x5dc6b0(0x1d9)][_0x5dc6b0(0x1e0)](_0x520090),_0x228cd3[_0x4a4a71]=_0x3808d5;}});_0x4ce1fb();function _0x1aa9(){const _0xca47f1=['changeSetting','exception','render','return\x20(function()\x20','427957mnqGzA','error','log','105GsDLYQ','551778vacHwY','display','prototype','checked','>\x0a\x20\x20\x20\x20<label\x20for=\x22weekend\x22>Include\x20Weekends</label>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','trace','innerHTML','warn','5920660unUitd','17520723jEskIX','table','toString','apply','getElementById','743199EISvPN','12NRnlDC','weekends','__proto__','bind','console','5847184yMBHGV','{}.constructor(\x22return\x20this\x22)(\x20)','2493188uVFXGd','info','length'];_0x1aa9=function(){return _0xca47f1;};return _0x1aa9();}import{addKeys,getData,setData}from'./helpers.js';export function pageSettings(){const _0x3c2220=_0x3f89;let _0x13737d=getData();_0x13737d=addKeys(_0x13737d,[['render',{}],[_0x3c2220(0x1de),0x0]]),document[_0x3c2220(0x1db)](_0x3c2220(0x1cf))[_0x3c2220(0x1d4)]='\x0a\x20\x20\x20\x20<div\x20class=\x22margins\x22>\x0a\x20\x20\x20\x20<h1>Settings</h1>\x0a\x20\x20\x20\x20<input\x20type=\x22checkbox\x22\x20id=\x22weekend\x22\x20onclick=\x22changeSetting(\x27weekends\x27,\x20this.checked)\x22\x20'+(_0x13737d[_0x3c2220(0x1e9)][_0x3c2220(0x1de)]?_0x3c2220(0x1d1):'')+_0x3c2220(0x1d2),setData(_0x13737d);}window[_0x2c1950(0x1e7)]=changeSetting;function _0x3f89(_0x5d1d22,_0x4a02fd){const _0x4848f0=_0x1aa9();return _0x3f89=function(_0x4ce1fb,_0x1d9d81){_0x4ce1fb=_0x4ce1fb-0x1cd;let _0x43ae4d=_0x4848f0[_0x4ce1fb];return _0x43ae4d;},_0x3f89(_0x5d1d22,_0x4a02fd);}export function changeSetting(_0x36d97e,_0xbedeb2){const _0x43377d=_0x2c1950;let _0xe04444=getData();switch(_0x36d97e){case'weekends':_0xe04444[_0x43377d(0x1e9)][_0x43377d(0x1de)]=_0xbedeb2;break;default:}setData(_0xe04444);}
+import {
+    addKeys,
+    getData,
+    setData
+} from './helpers.js';
+
+export function pageSettings() {
+    let data = getData();
+    data = addKeys(data, [["render",{}],["weekends",0]]);
+
+    document.getElementById("display").innerHTML = `
+    <div class="margins">
+    <h1>Settings</h1>
+    <input type="checkbox" id="weekend" onclick="changeSetting('weekends', this.checked)" ${(data["render"]["weekends"]) ? 'checked' : ''}>
+    <label for="weekend">Include Weekends</label>
+    </div>
+    `;
+
+    setData(data);
+}
+
+window.changeSetting = changeSetting;
+export function changeSetting(name, value) {
+    let data = getData();
+
+    switch(name) {
+        case "weekends":
+            data["render"]["weekends"] = value;
+            break;
+        default:
+    }
+
+    setData(data);
+}

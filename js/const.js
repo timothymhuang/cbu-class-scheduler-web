@@ -1,1 +1,145 @@
-const _0x26865e=_0x4a49;(function(_0x2b374b,_0x36a595){const _0x3594b5=_0x4a49,_0x26e525=_0x2b374b();while(!![]){try{const _0x17cf07=-parseInt(_0x3594b5(0xce))/0x1+-parseInt(_0x3594b5(0xfb))/0x2+parseInt(_0x3594b5(0xf9))/0x3+-parseInt(_0x3594b5(0xe3))/0x4+-parseInt(_0x3594b5(0xd4))/0x5*(-parseInt(_0x3594b5(0xfd))/0x6)+parseInt(_0x3594b5(0xd7))/0x7*(parseInt(_0x3594b5(0xf6))/0x8)+parseInt(_0x3594b5(0xd8))/0x9;if(_0x17cf07===_0x36a595)break;else _0x26e525['push'](_0x26e525['shift']());}catch(_0x232716){_0x26e525['push'](_0x26e525['shift']());}}}(_0x50d6,0x42253));const _0x8d5763=(function(){let _0x76a05b=!![];return function(_0x1ef03d,_0x1822fb){const _0x4bbcc7=_0x76a05b?function(){const _0x640160=_0x4a49;if(_0x1822fb){const _0x458514=_0x1822fb[_0x640160(0xf7)](_0x1ef03d,arguments);return _0x1822fb=null,_0x458514;}}:function(){};return _0x76a05b=![],_0x4bbcc7;};}()),_0x59b2cb=_0x8d5763(this,function(){const _0x1f395a=_0x4a49,_0x16aead=function(){const _0x4f58e9=_0x4a49;let _0xb22f84;try{_0xb22f84=Function('return\x20(function()\x20'+_0x4f58e9(0xda)+');')();}catch(_0x7595a5){_0xb22f84=window;}return _0xb22f84;},_0x26c497=_0x16aead(),_0x23383a=_0x26c497[_0x1f395a(0xed)]=_0x26c497[_0x1f395a(0xed)]||{},_0x1ce986=[_0x1f395a(0xe2),_0x1f395a(0xd5),'info','error',_0x1f395a(0xea),_0x1f395a(0xd0),'trace'];for(let _0x340bd9=0x0;_0x340bd9<_0x1ce986[_0x1f395a(0xe9)];_0x340bd9++){const _0x1e022c=_0x8d5763[_0x1f395a(0xe6)][_0x1f395a(0xd6)]['bind'](_0x8d5763),_0x3a38da=_0x1ce986[_0x340bd9],_0x6b5600=_0x23383a[_0x3a38da]||_0x1e022c;_0x1e022c['__proto__']=_0x8d5763[_0x1f395a(0xcf)](_0x8d5763),_0x1e022c['toString']=_0x6b5600[_0x1f395a(0xf8)][_0x1f395a(0xcf)](_0x6b5600),_0x23383a[_0x3a38da]=_0x1e022c;}});_0x59b2cb();export const DAYS_OF_WEEK=[_0x26865e(0xf1),_0x26865e(0xf2),_0x26865e(0xe4),_0x26865e(0xdd),_0x26865e(0xfc),_0x26865e(0xd9),_0x26865e(0xdf)];function _0x50d6(){const _0x850120=['56usAOIE','1142451wEURGq','Saturday','{}.constructor(\x22return\x20this\x22)(\x20)','#F8B195','#FFEFD5','Thursday','\x0a\x20\x20\x20\x20<div\x20class=\x22margins\x22>\x0a\x20\x20\x20\x20<p\x20id=\x22p1\x22>Paste\x20Class\x20List\x20Below</p>\x0a\x20\x20\x20\x20<textarea\x20id=\x22inputClasses\x22\x20name=\x22Text1\x22\x20cols=\x2240\x22\x20rows=\x225\x22\x20style=\x22padding:\x205px;\x22></textarea>\x0a\x20\x20\x20\x20<br>\x0a\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22btn-sm\x22\x20onclick=\x22submitClasses()\x22\x20value=\x22Display\x22>Submit</button>\x0a\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22btn-sm\x22\x20onclick=\x22resetEverything()\x22\x20value=\x22Display\x22>Reset\x20Everything</button>\x0a\x20\x20\x20\x20<div\x20style=\x22padding-top:\x205px\x22></div>\x0a\x20\x20\x20\x20<p\x20id=\x22p1\x22>Filter\x20List\x20(Optional,\x20only\x20classes\x20in\x20this\x20list\x20will\x20be\x20accepted)</p>\x0a\x20\x20\x20\x20<textarea\x20id=\x22filterList\x22\x20name=\x22Text2\x22\x20cols=\x226\x22\x20rows=\x2210\x22\x20style=\x22padding:\x205px;\x22\x20onChange=\x22updateFilterList(this.value)\x22></textarea>\x0a\x20\x20\x20\x20<div\x20style=\x22padding-top:\x2015px\x22></div>\x0a\x20\x20\x20\x20<!--<button\x20type=\x22button\x22\x20class=\x22btn-sm\x22\x20onclick=\x22addChapel()\x22>Add\x20Chapel\x20to\x20Schedule</button>-->\x0a\x20\x20\x20\x20<div\x20style=\x22padding-top:\x2015px\x22></div>\x0a\x20\x20\x20\x20<p>Backup\x20your\x20work,\x20or\x20transfer\x20it\x20to\x20another\x20device:</p>\x0a\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22btn-sm\x22\x20onclick=\x22upload(\x27everything\x27)\x22>Import\x20Everything</button>\x0a\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22btn-sm\x22\x20onclick=\x22download(\x27everything\x27)\x22>Export\x20Everything</button>\x0a\x20\x20\x20\x20</div>\x0a','Sunday','#FAFFC7','#F9E4AD','log','496356uQETKK','Wednesday','\x0a\x20\x20\x20\x20<div\x20style=\x22height:35px\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22wrapper\x20secondarybar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20type=\x22button\x22\x20class=\x22btn-sm\x22\x20onclick=\x22prepCallGenerateSchedules()\x22\x20value=\x22Display\x22>Generate\x20Schedules</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:20px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<label\x20id=\x22p1\x22></label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20<div\x20class=\x22margins\x22>\x0a','constructor','#F6A6FF','#FFB6C1','length','exception','#D7EEFF','https://ko-fi.com/timothyhuang','console','#FEC8D8','#B4CFEC','#FFDFD3','Monday','Tuesday','#FFCCE1','\x0a\x20\x20\x20\x20<div\x20class=\x22margins\x22>\x0a\x20\x20\x20\x20<button\x20type=\x22button\x22\x20onclick=\x22upload(\x27professors\x27)\x22>Import\x20Professor\x20Scores</button>\x0a\x20\x20\x20\x20<button\x20type=\x22button\x22\x20onclick=\x22download(\x27professors\x27)\x22>Export\x20Professor\x20Scores</button>\x0a\x20\x20\x20\x20<div\x20class=\x22wrapper\x22>\x0a\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:200px;\x22><label><b>Name</b></label></div>\x0a\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:50px;\x22><label><b>Score</b></label></div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20<hr\x20style=\x22height:0px;\x20margin-top:0px\x22>\x0a','\x0a\x20\x20\x20\x20<div\x20class=\x22wrapper\x22>\x0a\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:100px;\x22><label><b>Section</b></label></div>\x0a\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:70px;\x22><label><b>Status</b></label></div>\x0a\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:100px;\x22><label><b>Override</b></label></div>\x0a\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:275px;\x22><label><b>Time</b></label></div>\x0a\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:50px;\x22><label><b>Score</b></label></div>\x0a\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:200px;\x22><label><b>Professor</b></label></div>\x0a\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:70px;\x22><label><b>Seats</b></label></div>\x0a\x20\x20\x20\x20<div\x20class=\x22item\x22\x20style=\x22width:200px;\x22><label><b>Date\x20Range</b></label></div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20<div\x20class=\x22manageClassItem\x22></div>\x0a','34312dhotyL','apply','toString','798972mGOYOi','#957DAD','529874EkFtPP','Friday','12LIhSyn','#CCF1FF','212780koSPvf','bind','table','#A7FFEB','#E0D7FF','#ADD8E6','1112905xhZmQg','warn','prototype'];_0x50d6=function(){return _0x850120;};return _0x50d6();}export const SCHEDULE_COLORS=['#E0BBE4',_0x26865e(0xfa),'#D291BC',_0x26865e(0xee),_0x26865e(0xf0),_0x26865e(0xcd),_0x26865e(0xd2),_0x26865e(0xf3),_0x26865e(0xeb),_0x26865e(0xe0),_0x26865e(0xef),_0x26865e(0xe1),_0x26865e(0xe7),_0x26865e(0xd1),_0x26865e(0xdb),'#A8E6CF',_0x26865e(0xdc),'#F0E68C',_0x26865e(0xe8),_0x26865e(0xd3)];function _0x4a49(_0xf6865e,_0x185ae9){const _0x5400b2=_0x50d6();return _0x4a49=function(_0x59b2cb,_0x8d5763){_0x59b2cb=_0x59b2cb-0xcd;let _0x373977=_0x5400b2[_0x59b2cb];return _0x373977;},_0x4a49(_0xf6865e,_0x185ae9);}export const HTML_HOME_PAGE='\x0a\x20\x20\x20\x20<div\x20class=\x22margins\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<h1>CBU\x20Class\x20Scheduler</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<p>Created\x20by\x20Timothy\x20Huang.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<p>This\x20program\x20is\x20in\x20development\x20and\x20probably\x20has\x20a\x20lot\x20of\x20bugs.\x20It\x20is\x20in\x20no\x20way\x20affiliated\x20with\x20or\x20endorsed\x20by\x20California\x20Baptist\x20University.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<p>This\x20program\x20looks\x20through\x20all\x20the\x20classes\x20you\x20need\x20to\x20take\x20and\x20creates\x20every\x20possible\x20schedule,\x20allowing\x20you\x20to\x20look\x20through\x20them\x20and\x20choose\x20the\x20best\x20one.\x20You\x20still\x20need\x20to\x20know\x20what\x20classes\x20you\x20need\x20to\x20take\x20and\x20be\x20familiar\x20with\x20how\x20to\x20register\x20for\x20classes\x20normally.\x20You\x20can\x20refresh\x20yourself\x20by\x20watching\x20these\x20videos\x20on\x20<a\x20href=\x22https://youtu.be/VYoQPnrwxAk\x22\x20target=\x22_blank\x22>Adding\x20Classes</a>,\x20<a\x20href=\x22https://youtu.be/Ny3le5uxQec\x22\x20target=\x22_blank\x22>Dropping\x20Classes</a>,\x20and\x20<a\x20href=\x22https://youtu.be/7KrpukYLkvU\x22\x20target=\x22_blank\x22>Swapping\x20Classes</a>.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<h2>General\x20Instructions</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22row\x22\x20style=\x22max-width:\x201500px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.1.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>1.\x20Go\x20to\x20<a\x20href=\x22https://insidecbu.calbaptist.edu/ICS/\x22\x20target=\x22_blank\x22>InsideCBU</a>\x20and\x20click\x20[Add\x20/\x20Drop\x20Courses].</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-left:\x2010px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.2.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>2.\x20Set\x20the\x20[Term]\x20to\x20the\x20correct\x20semeseter\x20(e.g.\x20SP\x202024).</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-top:\x2010px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22row\x22\x20style=\x22max-width:\x201500px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.3.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>3.\x20Enter\x20the\x20Course\x20Code\x20for\x20the\x20course\x20you\x20want\x20to\x20register\x20for,\x20then\x20click\x20[Search].</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-left:\x2010px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.4.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>4.\x20If\x20there\x20is\x20a\x20show\x20all\x20button,\x20press\x20it.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-top:\x2010px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22row\x22\x20style=\x22max-width:\x201500px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.5.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>5.\x20Press\x20[CTRL/CMD]\x20+\x20[A]\x20to\x20select\x20all\x20the\x20text\x20on\x20the\x20page,\x20then\x20[CTRL/CMD]\x20+\x20[C]\x20to\x20copy\x20all\x20the\x20text.\x20It\x20doesn\x27t\x20matter\x20that\x20other\x20random\x20text\x20is\x20included,\x20it\x20will\x20automatically\x20be\x20filtered\x20out.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-left:\x2010px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.6.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>6.\x20Go\x20back\x20to\x20the\x20CBU\x20Class\x20Scheduler.\x20Switch\x20to\x20the\x20[Input\x20Classes]\x20tab\x20(on\x20the\x20top)\x20and\x20click\x20inside\x20the\x20text\x20box.\x20Press\x20[CTRL/CMD]\x20+\x20[V]\x20to\x20paste\x20all\x20the\x20text.\x20Then\x20press\x20[Submit].</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Repeat\x20these\x20steps\x20for\x20each\x20class\x20you\x20want\x20to\x20register\x20for.\x20(Note:\x20All\x20information\x20is\x20stored\x20locally\x20on\x20your\x20browser.)</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-top:\x2010px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22row\x22\x20style=\x22max-width:\x201500px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.7.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>7.\x20Switch\x20to\x20the\x20[Manage\x20Classes]\x20tab.\x20Scroll\x20down\x20to\x20check\x20that\x20all\x20your\x20classes\x20are\x20here.\x20If\x20you\x20accidentally\x20added\x20an\x20extra\x20class,\x20click\x20the\x20dropdown\x20under\x20the\x20class\x20code\x20heading,\x20then\x20select\x20[Delete].</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>If\x20you\x20are\x20already\x20registered\x20for\x20a\x20section,\x20but\x20there\x20are\x20no\x20seats\x20left\x20in\x20that\x20section,\x20the\x20scheduler\x20won\x27t\x20include\x20it\x20in\x20the\x20schedules\x20it\x20generates.\x20To\x20make\x20sure\x20it\x20does\x20include\x20it,\x20click\x20on\x20the\x20override\x20drowpdown\x20next\x20to\x20that\x20section,\x20then\x20click\x20[Enable].</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>You\x20can\x20also\x20click\x20[SOLO]\x20in\x20the\x20override\x20dropdown.\x20This\x20will\x20force\x20that\x20specific\x20class\x20to\x20be\x20used,\x20which\x20is\x20useful,\x20for\x20example,\x20if\x20you\x20want\x20to\x20be\x20in\x20the\x20same\x20section\x20as\x20your\x20friend.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-left:\x2010px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.8.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>8.\x20Click\x20on\x20[Generate\x20Schedules]\x20on\x20the\x20top.\x20The\x20website\x20will\x20tell\x20you\x20how\x20many\x20possible\x20schedules\x20it\x20generated.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-top:\x2010px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22row\x22\x20style=\x22max-width:\x201500px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.9.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>9.\x20If\x20you\x20have\x20a\x20lot\x20of\x20possible\x20schedules,\x20try\x20disabling\x20classes\x20that\x20you\x20don\x27t\x20want\x20to\x20take.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>The\x20time\x20of\x20the\x20class\x20is\x20listed,\x20so\x20if\x20you\x20don\x27t\x20want\x20to\x20take\x20a\x207\x20a.m.\x20class,\x20disable\x20it.\x20The\x20Rate\x20My\x20Professors\x20score\x20is\x20also\x20displayed\x20(if\x20found,\x20this\x20feature\x20is\x20still\x20buggy).</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-left:\x2010px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.10.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>10.\x20Click\x20on\x20[View\x20Schedules]\x20on\x20the\x20top.\x20Use\x20the\x20[Back]\x20and\x20[Forward]\x20buttons\x20or\x20arrow\x20keys\x20to\x20view\x20your\x20possible\x20schedules.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<h2>Bulk\x20Input\x20Instructions</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22row\x22\x20style=\x22max-width:\x201500px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.11.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>It\x20may\x20get\x20tedious\x20to\x20transfer\x20every\x20class\x20over\x20to\x20the\x20class\x20scheduler.\x20To\x20make\x20this\x20easier,\x20you\x20can\x20add\x20multiple\x20classes\x20at\x20once.\x20To\x20do\x20this,\x20search\x20for\x20something\x20broader\x20for\x20your\x20classes\x20on\x20InsideCBU.\x20For\x20example,\x20search\x20\x22EGR\x22\x20if\x20you\x20are\x20taking\x20multiple\x20classes\x20that\x20start\x20with\x20\x22EGR.\x22\x20Then\x20\x20[CTRL/CMD]\x20+\x20[A]\x20and\x20[CTRL/CMD]\x20+\x20[C]\x20like\x20normal.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding-left:\x2010px;\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22column\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22assets/tut.12.png\x22\x20style=\x22max-width:100%\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Before\x20you\x20paste\x20the\x20class\x20list\x20into\x20the\x20class\x20scheduler,\x20write\x20a\x20filter\x20list\x20that\x20contains\x20all\x20the\x20classes\x20you\x20are\x20trying\x20to\x20take.\x20This\x20will\x20ensure\x20that\x20only\x20these\x20classes\x20make\x20it\x20into\x20your\x20schedule,\x20no\x20matter\x20what\x20you\x20may\x20have\x20copied\x20from\x20InsideCBU.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20</div>\x0a';export const HTML_INPUT_PAGE=_0x26865e(0xde);export const PAYPAL_URL=_0x26865e(0xec);export const HTML_PAGE_MANAGE_HEADER=_0x26865e(0xe5);export const HTML_PAGE_MANAGE_COLUMNS=_0x26865e(0xf5);export const HTML_PAGE_PROFESSORS_HEADER=_0x26865e(0xf4);
+export const DAYS_OF_WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+export const SCHEDULE_COLORS = ["#E0BBE4", "#957DAD", "#D291BC", "#FEC8D8", "#FFDFD3", "#CCF1FF", "#E0D7FF", "#FFCCE1", "#D7EEFF", "#FAFFC7", "#B4CFEC", "#F9E4AD", "#F6A6FF", "#A7FFEB", "#F8B195", "#A8E6CF", "#FFEFD5", "#F0E68C", "#FFB6C1", "#ADD8E6"];
+
+export const HTML_HOME_PAGE = `
+    <div class="margins">
+        <h1>CBU Class Scheduler</h1>
+        <p>Created by Timothy Huang.</p>
+        <p>This program is in development and probably has a lot of bugs. It is in no way affiliated with or endorsed by California Baptist University.</p>
+        <br>
+        <p>This program looks through all the classes you need to take and creates every possible schedule, allowing you to look through them and choose the best one. You still need to know what classes you need to take and be familiar with how to register for classes normally. You can refresh yourself by watching these videos on <a href="https://youtu.be/VYoQPnrwxAk" target="_blank">Adding Classes</a>, <a href="https://youtu.be/Ny3le5uxQec" target="_blank">Dropping Classes</a>, and <a href="https://youtu.be/7KrpukYLkvU" target="_blank">Swapping Classes</a>.</p>
+        <h2>General Instructions</h2>
+        <div class="row" style="max-width: 1500px;">
+            <div class="column">
+                <img src="assets/tut.1.png" style="max-width:100%">
+                <p>1. Go to <a href="https://insidecbu.calbaptist.edu/ICS/" target="_blank">InsideCBU</a> and click [Add / Drop Courses].</p>
+            </div>
+            <div style="padding-left: 10px;"></div>
+            <div class="column">
+                <img src="assets/tut.2.png" style="max-width:100%">
+                <p>2. Set the [Term] to the correct semeseter (e.g. SP 2024).</p>
+            </div>
+        </div>
+        <div style="padding-top: 10px;"></div>
+        <div class="row" style="max-width: 1500px;">
+            <div class="column">
+                <img src="assets/tut.3.png" style="max-width:100%">
+                <p>3. Enter the Course Code for the course you want to register for, then click [Search].</p>
+            </div>
+            <div style="padding-left: 10px;"></div>
+            <div class="column">
+                <img src="assets/tut.4.png" style="max-width:100%">
+                <p>4. If there is a show all button, press it.</p>
+            </div>
+        </div>
+        <div style="padding-top: 10px;"></div>
+        <div class="row" style="max-width: 1500px;">
+            <div class="column">
+                <img src="assets/tut.5.png" style="max-width:100%">
+                <p>5. Press [CTRL/CMD] + [A] to select all the text on the page, then [CTRL/CMD] + [C] to copy all the text. It doesn't matter that other random text is included, it will automatically be filtered out.</p>
+            </div>
+            <div style="padding-left: 10px;"></div>
+            <div class="column">
+                <img src="assets/tut.6.png" style="max-width:100%">
+                <p>6. Go back to the CBU Class Scheduler. Switch to the [Input Classes] tab (on the top) and click inside the text box. Press [CTRL/CMD] + [V] to paste all the text. Then press [Submit].</p>
+                <p>Repeat these steps for each class you want to register for. (Note: All information is stored locally on your browser.)</p>
+            </div>
+        </div>
+        <div style="padding-top: 10px;"></div>
+        <div class="row" style="max-width: 1500px;">
+            <div class="column">
+                <img src="assets/tut.7.png" style="max-width:100%">
+                <p>7. Switch to the [Manage Classes] tab. Scroll down to check that all your classes are here. If you accidentally added an extra class, click the dropdown under the class code heading, then select [Delete].</p>
+                <p>If you are already registered for a section, but there are no seats left in that section, the scheduler won't include it in the schedules it generates. To make sure it does include it, click on the override drowpdown next to that section, then click [Enable].</p>
+                <p>You can also click [SOLO] in the override dropdown. This will force that specific class to be used, which is useful, for example, if you want to be in the same section as your friend.</p>
+            </div>
+            <div style="padding-left: 10px;"></div>
+            <div class="column">
+                <img src="assets/tut.8.png" style="max-width:100%">
+                <p>8. Click on [Generate Schedules] on the top. The website will tell you how many possible schedules it generated.</p>
+            </div>
+        </div>
+        <div style="padding-top: 10px;"></div>
+        <div class="row" style="max-width: 1500px;">
+            <div class="column">
+                <img src="assets/tut.9.png" style="max-width:100%">
+                <p>9. If you have a lot of possible schedules, try disabling classes that you don't want to take.</p>
+                <p>The time of the class is listed, so if you don't want to take a 7 a.m. class, disable it. The Rate My Professors score is also displayed (if found, this feature is still buggy).</p>
+            </div>
+            <div style="padding-left: 10px;"></div>
+            <div class="column">
+                <img src="assets/tut.10.png" style="max-width:100%">
+                <p>10. Click on [View Schedules] on the top. Use the [Back] and [Forward] buttons or arrow keys to view your possible schedules.</p>
+            </div>
+        </div>
+        <h2>Bulk Input Instructions</h2>
+        <div class="row" style="max-width: 1500px;">
+        <div class="column">
+            <img src="assets/tut.11.png" style="max-width:100%">
+            <p>It may get tedious to transfer every class over to the class scheduler. To make this easier, you can add multiple classes at once. To do this, search for something broader for your classes on InsideCBU. For example, search "EGR" if you are taking multiple classes that start with "EGR." Then  [CTRL/CMD] + [A] and [CTRL/CMD] + [C] like normal.</p>
+        </div>
+        <div style="padding-left: 10px;"></div>
+        <div class="column">
+            <img src="assets/tut.12.png" style="max-width:100%">
+            <p>Before you paste the class list into the class scheduler, write a filter list that contains all the classes you are trying to take. This will ensure that only these classes make it into your schedule, no matter what you may have copied from InsideCBU.</p>
+        </div>
+    </div>
+    </div>
+`;
+
+export const HTML_INPUT_PAGE = `
+    <div class="margins">
+    <p id="p1">Paste Class List Below</p>
+    <textarea id="inputClasses" name="Text1" cols="40" rows="5" style="padding: 5px;"></textarea>
+    <br>
+    <button type="button" class="btn-sm" onclick="submitClasses()" value="Display">Submit</button>
+    <button type="button" class="btn-sm" onclick="resetEverything()" value="Display">Reset Everything</button>
+    <div style="padding-top: 5px"></div>
+    <p id="p1">Filter List (Optional, only classes in this list will be accepted)</p>
+    <textarea id="filterList" name="Text2" cols="6" rows="10" style="padding: 5px;" onChange="updateFilterList(this.value)"></textarea>
+    <div style="padding-top: 15px"></div>
+    <button type="button" class="btn-sm" onclick="addChapel()">Add Chapel to Schedule</button>
+    <div style="padding-top: 15px"></div>
+    <p>Backup your work, or transfer it to another device:</p>
+    <button type="button" class="btn-sm" onclick="upload('everything')">Import Everything</button>
+    <button type="button" class="btn-sm" onclick="download('everything')">Export Everything</button>
+    </div>
+`;
+
+export const PAYPAL_URL = "https://www.paypal.com/donate/?business=9ZCUEUSNY5B7Y&no_recurring=0&item_name=Hi%21+The+CBU+Class+Scheduler+was+made+entirely+by+me,+a+poor+college+student+that+would+appreciate+your+support.+Thank+you%21&currency_code=USD";
+
+export const HTML_PAGE_MANAGE_HEADER = `
+    <div style="height:35px"></div>
+        <div class="wrapper secondarybar">
+            <button type="button" class="btn-sm" onclick="prepCallGenerateSchedules()" value="Display">Generate Schedules</button>
+            <div class="item" style="width:20px;"></div>
+            <label id="p1"></label>
+        </div>
+    <div class="margins">
+`
+
+export const HTML_PAGE_MANAGE_COLUMNS = `
+    <div class="wrapper">
+    <div class="item" style="width:100px;"><label><b>Section</b></label></div>
+    <div class="item" style="width:70px;"><label><b>Status</b></label></div>
+    <div class="item" style="width:100px;"><label><b>Override</b></label></div>
+    <div class="item" style="width:275px;"><label><b>Time</b></label></div>
+    <div class="item" style="width:50px;"><label><b>Score</b></label></div>
+    <div class="item" style="width:200px;"><label><b>Professor</b></label></div>
+    <div class="item" style="width:70px;"><label><b>Seats</b></label></div>
+    <div class="item" style="width:200px;"><label><b>Date Range</b></label></div>
+    </div>
+    <div class="manageClassItem"></div>
+`;
+
+export const HTML_PAGE_PROFESSORS_HEADER = `
+    <div class="margins">
+    <button type="button" onclick="upload('professors')">Import Professor Scores</button>
+    <button type="button" onclick="download('professors')">Export Professor Scores</button>
+    <div class="wrapper">
+    <div class="item" style="width:200px;"><label><b>Name</b></label></div>
+    <div class="item" style="width:50px;"><label><b>Score</b></label></div>
+    </div>
+    <hr style="height:0px; margin-top:0px">
+`;
