@@ -7,6 +7,7 @@ export const HTML_HOME_PAGE = `
         <h1>CBU Class Scheduler</h1>
         <p>Created by Timothy Huang.</p>
         <p>This program is in development and probably has a lot of bugs. It is in no way affiliated with or endorsed by California Baptist University.</p>
+        <p><b>Rate My Professors data is outdated and may not be accurate.</b></p>
         <br>
         <p>This program looks through all the classes you need to take and creates every possible schedule, allowing you to look through them and choose the best one. You still need to know what classes you need to take and be familiar with how to register for classes normally. You can refresh yourself by watching these videos on <a href="https://youtu.be/VYoQPnrwxAk" target="_blank">Adding Classes</a>, <a href="https://youtu.be/Ny3le5uxQec" target="_blank">Dropping Classes</a>, and <a href="https://youtu.be/7KrpukYLkvU" target="_blank">Swapping Classes</a>.</p>
         <h2>General Instructions</h2>
