@@ -51,17 +51,19 @@ function generateSchedules()
         sectionlist = Object.keys(data["class"][classlist[i]]["section"]);
         for (let j = 0; j < sectionlist.length; j++) {
             if (data["class"][classlist[i]]["section"][sectionlist[j]]["time"][0] != "online") {
-                if (startDate == "") {
-                    startDate = data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"];
-                    endDate = data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"];
-                } else {
-                    if (largerDate(data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"], startDate) == 0) {
+                if (data["class"][classlist[i]]["section"][sectionlist[j]].hasOwnProperty("startDate") && data["class"][classlist[i]]["section"][sectionlist[j]].hasOwnProperty("endDate")) {
+                    if (startDate == "") {
                         startDate = data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"];
-                    }
-                    if (largerDate(data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"],endDate) == 1) {
                         endDate = data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"];
+                    } else {
+                        if (largerDate(data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"], startDate) == 0) {
+                            startDate = data["class"][classlist[i]]["section"][sectionlist[j]]["startDate"];
+                        }
+                        if (largerDate(data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"],endDate) == 1) {
+                            endDate = data["class"][classlist[i]]["section"][sectionlist[j]]["endDate"];
+                        }
+                        console.log(startDate,endDate)
                     }
-                    console.log(startDate,endDate)
                 }
             }
         }
