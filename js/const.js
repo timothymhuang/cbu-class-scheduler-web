@@ -100,7 +100,7 @@ export const HTML_INPUT_PAGE = `
     <p id="p1">Filter List (Optional, only classes in this list will be accepted)</p>
     <textarea id="filterList" name="Text2" cols="6" rows="10" style="padding: 5px;" onChange="updateFilterList(this.value)"></textarea>
     <div style="padding-top: 15px"></div>
-    <button type="button" class="btn-sm" onclick="addChapel()">Add Chapel to Schedule</button>
+    <button type="button" class="btn-sm" id="addChapelButton" onclick="addChapel()">Add Chapel to Schedule</button>
     <div style="padding-top: 15px"></div>
     <p>Backup your work, or transfer it to another device:</p>
     <button type="button" class="btn-sm" onclick="upload('everything')">Import Everything</button>
@@ -144,3 +144,47 @@ export const HTML_PAGE_PROFESSORS_HEADER = `
     </div>
     <hr style="height:0px; margin-top:0px">
 `;
+
+export const CHAPEL_JSON = {
+    "enable": 1,
+    "section": {
+        "GST050-A": {
+            "open": 1,
+            "seatsOpen": "3400",
+            "seatsTotal": "3400",
+            "professors": [
+                "Vowell, Andy B."
+            ],
+            "time": [
+                [
+                    "1.0900",
+                    "1.1000"
+                ]
+            ],
+            "location": [
+                "MAIN Campus, Events Center"
+            ],
+            "override": -1,
+            "units": "0.00"
+        },
+        "GST050-B": {
+            "open": 1,
+            "seatsOpen": "3400",
+            "seatsTotal": "3400",
+            "professors": [
+                "Vowell, Andy B."
+            ],
+            "time": [
+                [
+                    "1.1045",
+                    "1.1145"
+                ]
+            ],
+            "location": [
+                "MAIN Campus, Events Center"
+            ],
+            "override": -1,
+            "units": "0.00"
+        }
+    }
+}

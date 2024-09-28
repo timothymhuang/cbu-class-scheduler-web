@@ -6,7 +6,10 @@ import {
     isWhitespaceOrEmpty
 } from './helpers.js';
 
-import { HTML_INPUT_PAGE } from './const.js';
+import {
+    HTML_INPUT_PAGE,
+    CHAPEL_JSON
+} from './const.js';
 
 //Render input pages
 export function pageInput() {
@@ -284,8 +287,11 @@ function updateFilterList(input) {
 window.addChapel = addChapel;
 function addChapel() {
     let data = getData();
-    
-    
+    data["class"]["GST050"] = CHAPEL_JSON;
+    // Set the text in the add chapel button to "Chapel Added"
+    document.getElementById("addChapelButton").innerHTML = "Chapel Added";
+    // Set the inline css color of the add chapel fill color to green
+    document.getElementById("addChapelButton").style.backgroundColor = "#008000";
 
     setData(data);
 }

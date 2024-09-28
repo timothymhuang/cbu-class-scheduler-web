@@ -1,6 +1,6 @@
 import { PAYPAL_URL } from "./const.js";
 
-export function getData() {
+export function getData() { // Get the data from local storage, if it doesn't exist, create it
     if (localStorage.getItem("data") == null) {
         localStorage.setItem("data","{}");
     }
@@ -8,11 +8,11 @@ export function getData() {
     return theData;
 }
 
-export function setData(theData) {
+export function setData(theData) { // Store the data to local storage
     localStorage.setItem("data",JSON.stringify(theData));
 }
 
-export function isWhitespaceOrEmpty(array) {
+export function isWhitespaceOrEmpty(array) { // Check if an array is empty or contains only whitespace
     // Check if the array is empty
     if (array.length === 0) {
       return true;
@@ -26,6 +26,7 @@ export function isWhitespaceOrEmpty(array) {
     });
 }
 
+/* This function is not used
 export function readSingleFile(evt) {
     //Retrieve the first (and only!) File from the FileList object
     var f = evt.target.files[0];
@@ -41,8 +42,9 @@ export function readSingleFile(evt) {
         alert("Failed to load file");
     }
 }
+*/
 
-export function beautifyTime(time) {
+export function beautifyTime(time) { // Beautify the time for display
     let hours = time.substring(0,2);
     let minutes = time.substring(2);
     if (parseInt(hours) >= 12) {
@@ -56,15 +58,15 @@ export function beautifyTime(time) {
     }
 }
 
-export function htm(hours) {
+export function htm(hours) { // Convert hours to minutes
     return hours*60;
 }
 
-export function mth(minutes) {
+export function mth(minutes) { // Convert minutes to hours
     return minutes/60;
 }
 
-export function addKeys(json, arr) {
+export function addKeys(json, arr) { // Add keys to a JSON object, creating the path up to the key if it doesn't exist
     let keyList = "";
     for (let i = 0 ; i < arr.length ; i++) {
         if (!eval("json" + keyList + ".hasOwnProperty(arr[i][0])")) {
@@ -75,7 +77,7 @@ export function addKeys(json, arr) {
     return json;
 }
 
-export function checkRangeOverlap(ranges) {
+export function checkRangeOverlap(ranges) { // Check if number ranges overlap, used for checking if class times overlaps
     ranges = ranges.filter(item => item !== "online");
     // convert the string ranges to numbers
     ranges = ranges.map (range => range.map (num => Number (num)));
@@ -98,7 +100,7 @@ export function checkRangeOverlap(ranges) {
     return false;
 }
 
-window.download = download;
+window.download = download; // Export the JSON data to a file for the user to keep
 export function download(what, payload) {
     let data = getData();
 
@@ -131,7 +133,7 @@ export function download(what, payload) {
     setData(data);
 }
 
-window.upload = upload;
+window.upload = upload; // Allow the user to upload a JSON file to import the data
 export function upload(what) {
     let data = getData();
 
@@ -191,12 +193,12 @@ export function upload(what) {
 
 }
 
-window.openPaypal = openPaypal;
+window.openPaypal = openPaypal; // Open the donation page. It is named paypal, but it is not necessarily paypal
 export function openPaypal() {
     window.open(PAYPAL_URL, '_blank').focus();
 }
 
-export function largerDate(date1, date2) {
+export function largerDate(date1, date2) { // Compare two dates and indicate which date is larger
     const [month1, day1, year1] = date1.split('/');
     const [month2, day2, year2] = date2.split('/');
 
