@@ -199,6 +199,10 @@ export function openPaypal() {
 }
 
 export function largerDate(date1, date2) { // Compare two dates and indicate which date is larger
+    // IF date1 is undefined
+    if (date1 === undefined || date2 === undefined) {
+        return -2;
+    }
     const [month1, day1, year1] = date1.split('/');
     const [month2, day2, year2] = date2.split('/');
 
