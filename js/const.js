@@ -6,7 +6,6 @@ export const HTML_HOME_PAGE = `
     <div class="margins">
         <h1>CBU Class Scheduler</h1>
         <p>Created by Timothy Huang.</p>
-        <h2 style="background-color: #FFFF00"><b>The class scheduler is currently broken. I am working on a fix.</b></h2>
         <p>This program is in development and probably has a lot of bugs. It is in no way affiliated with or endorsed by California Baptist University.</p>
         <p><b>Rate My Professors data is outdated and may not be accurate.</b></p>
         <br>
