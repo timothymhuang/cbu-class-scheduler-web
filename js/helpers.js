@@ -217,3 +217,14 @@ export function largerDate(date1, date2) { // Compare two dates and indicate whi
         return -1;
     }
 }
+
+export function arrayOfTimesHasWeekends(arr) { // Check if an array of times has weekends
+    for (let subArray of arr) {
+        for (let numStr of subArray) {
+            if (parseFloat(numStr) >= 5) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
