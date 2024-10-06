@@ -4,6 +4,7 @@ import {
     addKeys,
     checkRangeOverlap,
     largerDate,
+    arrayOfTimesHasWeekends,
 } from './helpers.js';
 
 window.prepCallGenerateSchedules = prepCallGenerateSchedules;
@@ -42,6 +43,7 @@ function generateSchedules()
     let startDate = "";
     let endDate = "";
     let hasDateMismatch = false;
+    let weekendClasses = false;
 
     let totalSections = 0;
 
@@ -121,6 +123,8 @@ function generateSchedules()
     if (((totalSections >= 50) ? confirm("There are a lot of available sections, so it might take a little longer than normal to process. Are you sure you want to continue?") : true)) {
         data["schedule"] = [];
         run = 1;
+        data = addKeys(data, [["render", {}], ["weekends", 0]])
+        data["render"]["weekends"] = 0;
         while (run) {
             // Check Schedule Overlap
             theseTimes = [];
@@ -145,6 +149,14 @@ function generateSchedules()
 
             if (!checkRangeOverlap(theseTimes)) {
                 data["schedule"].push(theseClasses);
+                console.log(theseTimes);
+                if(arrayOfTimesHasWeekends(theseTimes) && !weekendClasses) {
+                    log += "One or more schedules contain weekend classes.<br>";
+                    data = addKeys(data, [["render", {}], ["weekends", 1]])
+                    data["render"]["weekends"] = 1;
+                    console.log(data);
+                    weekendClasses = true;
+                }
             }
 
 

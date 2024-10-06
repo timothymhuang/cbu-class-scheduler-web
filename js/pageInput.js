@@ -32,7 +32,7 @@ export function submitClasses() {
     data = addKeys(data, [["settings", {}],["inputFilter", []]]);
 
     // Prepare variables
-    const DoW = ["M","T","W","R","F"];
+    const DoW = ["M","T","W","R","F","S"];
     let columns;
     let section;
     let name;

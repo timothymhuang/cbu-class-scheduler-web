@@ -23,7 +23,7 @@ export function pageRenderBackground()
     data["render"]["columnWidth"] = 100;
     data["render"]["columnPad"] = 1;
     data["render"]["timeScale"] = 0.6;
-    if (!data["render"].hasOwnProperty("weekends")) {data["render"]["weekends"] = 0;}
+    if (!data["render"].hasOwnProperty("weekends")) {data["render"]["weekends"] = 1;}
 
     let weekends = data["render"]["weekends"];
     let days = ((weekends) ? 7 : 5);
