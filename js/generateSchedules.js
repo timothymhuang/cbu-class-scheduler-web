@@ -71,14 +71,14 @@ function generateSchedules()
         }
     }
     if (largerDate(startDate,endDate) == 0 && !hasDateMismatch) {
-        log = "Warning: Your class list contains classes that do not overlap. You may have forgotten to clear last semester's classes. Click \"Reset Everything\" to clear your classes and start over. If you are sure your class list is correct, you can ignore this message.<br>" + log;
+        log = " | Your list contains classes that are not at the same time." + log;
         hasDateMismatch = true;
     }
 
     for (let i = 0; i < classlist.length; i++) {
         // if it is disabled, exclude this class
         if (data["class"][classlist[i]]["enable"] == 0) {
-            log += classlist[i] + " excluded because it is disabled.<br>";
+            log += " | " + classlist[i] + " disabled.";
             delete classlist[i];
         } else {
             process[classlist[i]] = {};
@@ -108,7 +108,7 @@ function generateSchedules()
             totalSections += process[classlist[i]]["list"].length;
             // If there are no sections open, exclude this class.
             if (process[classlist[i]]["max"] == -1) {
-                log += classlist[i] + " excluded because no sections are available.<br>";
+                log += " | " + classlist[i] + " full";
                 delete process[classlist[i]];
                 delete classlist[i];
             }
@@ -151,7 +151,7 @@ function generateSchedules()
                 data["schedule"].push(theseClasses);
                 console.log(theseTimes);
                 if(arrayOfTimesHasWeekends(theseTimes) && !weekendClasses) {
-                    log += "One or more schedules contain weekend classes.<br>";
+                    log += " | Contains weekend classes";
                     data = addKeys(data, [["render", {}], ["weekends", 1]])
                     data["render"]["weekends"] = 1;
                     console.log(data);
@@ -183,7 +183,7 @@ function generateSchedules()
         }
 
         setData(data);
-        log = `<b>${data["schedule"].length} Schedules Generated</b><br>${log}`;
+        log = `<b>${data["schedule"].length} Schedules Generated</b>${log}`;
         return log;
     } else {
         return "";

@@ -112,10 +112,9 @@ export const PAYPAL_URL = "https://ko-fi.com/timothyhuang";
 
 export const HTML_PAGE_MANAGE_HEADER = `
     <div style="height:35px"></div>
-        <div class="wrapper secondarybar">
+        <div class="wrapper secondarybar" id="secondarybar">
             <button type="button" class="btn-sm" onclick="prepCallGenerateSchedules()" value="Display">Generate Schedules</button>
-            <div class="item" style="width:20px;"></div>
-            <label id="p1"></label>
+            <label id="p1" style="padding-left:20px;"></label>
         </div>
     <div class="margins">
 `

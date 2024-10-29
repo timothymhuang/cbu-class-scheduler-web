@@ -46,14 +46,16 @@ export function pageRenderBackground()
     document.getElementById("display").innerHTML = `
     <div style="height:35px"></div>
     <div class="wrapper secondarybar">
+        <!--<div class="item" style="width:10px;"></div>
+        <button type="button" class="btn-sm" onclick="prepCallGenerateSchedules()" value="Display">Regenerate Schedules</button>-->
         <div class="item" style="width:10px;"></div>
         <button class="btn-sm" onClick="scheduleAdv(-1)">Back</button>
         <div class="item" style="width:10px;"></div>
         <button class="btn-sm" onClick="scheduleAdv(1)">Forward</button>
         <div class="item" style="width:10px;"></div>
-        <p id="p1" style="font-size: 20px;">${"Page " + (data["render"]["current"]+1) + " / " + (data["schedule"].length)}</p>
+        <p id="p2" style="font-size: 20px;">${"Page " + (data["render"]["current"]+1) + " / " + (data["schedule"].length)}</p>
         <div class="item" style="width:20px;"></div>
-        <label id="p1"></label>
+        <label id="p2"></label>
     </div>
     <div class="margins">
 
@@ -165,7 +167,7 @@ function scheduleAdv(moveByThis) {
     }
 
 
-    document.getElementById("p1").innerHTML = "Page " + (data["render"]["current"]+1) + " / " + (data["schedule"].length);
+    document.getElementById("p2").innerHTML = "Page " + (data["render"]["current"]+1) + " / " + (data["schedule"].length);
 
 
     setData(data);
